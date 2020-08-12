@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 's2hCreator';
+  log(msg){
+    console.log(msg);
+  }
 }

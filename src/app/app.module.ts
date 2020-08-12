@@ -1,3 +1,5 @@
+import { QuizModule } from './quiz/quiz.module';
+import { LayoutModule } from './layout/layout.module';
 import { MaterialModule } from './shared/material/material.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -14,7 +16,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    LayoutModule,
+    QuizModule
   ],
   providers: [],
   bootstrap: [AppComponent]

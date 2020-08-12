@@ -1,0 +1,44 @@
+<mat-toolbar class="flex justify-start w-full" color="primary">
+    <mat-toolbar-row class="flex justify-between w-full bg-transparent navbar">
+        <div class="flex justify-start align-middle">
+            <div class="flex flex-row block px-2 py-2 font-mono font-extrabold">
+                Administrator Panel
+            </div>
+            <div class="hidden sm:flex">
+                <a [routerLink]='["/home"]' routerLinkActive="active-link"
+                    [routerLinkActive]='["active","inactive"]' mat-button>
+                    <mat-icon>home</mat-icon>
+                    Home
+                </a>
+                <a [routerLink]='["/quiz"]' routerLinkActive="active-link"
+                    [routerLinkActive]='["active","inactive"]' mat-button>
+                    Quiz
+                </a>
+                <a [routerLink]='["/about"]' routerLinkActive="active-link"
+                    [routerLinkActive]='["active","inactive"]' mat-button>
+                    About
+                </a>
+                <a [routerLink]='["/support"]' routerLinkActive="active-link"
+                    [routerLinkActive]='["active","inactive"]' mat-button>
+                    Support
+                </a>
+                <a [routerLink]='["/back/gallery"]' routerLinkActive="active-link"
+                    [routerLinkActive]='["active","inactive"]' mat-button>
+                    Gallery
+                </a>
+                <a [routerLink]='["/back/settings"]' routerLinkActive="active-link"
+                    [routerLinkActive]='["active","inactive"]' mat-button>
+                    Settings
+                </a>
+            </div>
+        </div>
+       <!--
+        <div class="flex flex-row align-middle">
+            <div *ngIf="currentUser" class="">
+                <app-user-logout [currentUser]="currentUser" (onLogout)="logout()"></app-user-logout>
+            </div>
+        </div>
+    TODO: implement logout
+    -->
+    </mat-toolbar-row>
+</mat-toolbar>
