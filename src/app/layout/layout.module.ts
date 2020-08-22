@@ -9,6 +9,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { ReposPageComponent } from './repos-page/repos-page.component';
+import { SideBarComponent } from './side-bar/side-bar.component';
 
 
 
@@ -19,7 +20,8 @@ import { ReposPageComponent } from './repos-page/repos-page.component';
     FooterComponent,
     ReposPageComponent,
     AboutComponent,
-    SupportPageComponent],
+    SupportPageComponent,
+    SideBarComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -32,6 +34,7 @@ import { ReposPageComponent } from './repos-page/repos-page.component';
     FooterComponent,
     ReposPageComponent,
     AboutComponent,
-    SupportPageComponent]
+    SupportPageComponent,
+    SideBarComponent]
 })
 export class LayoutModule { }
