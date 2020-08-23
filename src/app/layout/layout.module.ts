@@ -1,3 +1,6 @@
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { QuizModule } from './../quiz/quiz.module';
 import { MaterialModule } from './../shared/material/material.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -27,7 +30,8 @@ import { SideBarComponent } from './side-bar/side-bar.component';
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
-    MaterialModule
+    MaterialModule,
+    QuizModule,
   ],
   exports:[HomePageComponent,
     NavbarComponent,
