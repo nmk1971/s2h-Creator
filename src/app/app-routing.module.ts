@@ -1,3 +1,4 @@
+import { AddQuizComponent } from './quiz/add-quiz/add-quiz.component';
 import { SupportPageComponent } from './layout/support-page/support-page.component';
 import { AboutComponent } from './layout/about/about.component';
 import { ReposPageComponent } from './layout/repos-page/repos-page.component';
@@ -9,6 +10,8 @@ const routes: Routes = [
   {path:'',component:HomePageComponent},
   {path:'home', redirectTo:''},
   {path:'quiz',component:ReposPageComponent},
+  {path:'quiz/add',component:AddQuizComponent},
+  {path:'quiz/update/:id',component:AddQuizComponent},
   {path:'about',component:AboutComponent},
   {path:'support',component:SupportPageComponent},
   {path:'**',redirectTo:'',pathMatch:'full'}
