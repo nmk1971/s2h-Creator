@@ -3,12 +3,14 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve & ngtw watch",
+    "start": "node server.js",
+    "start-dev": "ng serve & ngtw watch",
     "build": "ngtw build && ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "prestart": "ngtw build"
+    "prestart-dev": "ngtw build",
+    "postinstall": "ng build --aot --prod"
   },
   "private": true,
   "dependencies": {
@@ -22,6 +24,9 @@
     "@angular/platform-browser": "~10.0.4",
     "@angular/platform-browser-dynamic": "~10.0.4",
     "@angular/router": "~10.0.4",
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
+    "path": "^0.12.7",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
@@ -34,6 +39,8 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.0.0",

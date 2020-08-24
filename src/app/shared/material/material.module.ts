@@ -34,7 +34,9 @@ import {MatTableModule} from '@angular/material/table'
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
+
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+
 import { RouterModule } from '@angular/router';
 
 const materials=[
