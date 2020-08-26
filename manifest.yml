@@ -1,7 +1,7 @@
 ---
     applications :
-    - name: "angular-cloud-deployment"
-      path : "dist/angular-cloud-deployment"
+    - name: "s2hCreator"
+      path : "dist/s2hCreator"
       memory : 256M
       buildpack :
       - "https://github.com/cloudfoundry/staticfile-buildpack.git"
