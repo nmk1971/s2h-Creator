@@ -1,6 +1,6 @@
 export function getQuiz(){
     return [
-        { id:1,title:'Pyhon I',cover:'assets/quiz.jpg',status:true },
+        { id:1,title:'Pyhon Tout Court',cover:'assets/quiz.jpg',status:true },
         {
           id:2,title:'Javascript I',cover:'assets/quiz.jpg',status:false 
           
