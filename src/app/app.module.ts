@@ -1,5 +1,5 @@
+import { LandPageComponent } from './land-page/land-page.component';
 import { QuizModule } from './quiz/quiz.module';
-import { LayoutModule } from './layout/layout.module';
 import { MaterialModule } from './shared/material/material.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -10,17 +10,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LandPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    LayoutModule,
     QuizModule,
     MatTableModule,
     MatPaginatorModule,

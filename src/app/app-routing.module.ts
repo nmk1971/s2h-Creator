@@ -1,20 +1,18 @@
-import { AddQuizComponent } from './quiz/add-quiz/add-quiz.component';
-import { SupportPageComponent } from './layout/support-page/support-page.component';
-import { AboutComponent } from './layout/about/about.component';
-import { ReposPageComponent } from './layout/repos-page/repos-page.component';
-import { HomePageComponent } from './layout/home-page/home-page.component';
+import { LandPageComponent } from './land-page/land-page.component';
+import { GuestModule } from './guest/guest.module';
+import { CreatorModule } from './creator/creator.module';
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AboutComponent } from './guest/about/about.component';
+import { ContactComponent } from './guest/contact/contact.component';
 
 const routes: Routes = [
-  {path:'',component:HomePageComponent},
-  {path:'home', redirectTo:''},
-  {path:'quiz',component:ReposPageComponent},
-  {path:'quiz/add',component:AddQuizComponent},
-  {path:'quiz/update/:id',component:AddQuizComponent},
+  {path:'',component:LandPageComponent},
   {path:'about',component:AboutComponent},
-  {path:'support',component:SupportPageComponent},
-  {path:'**',redirectTo:'',pathMatch:'full'}
+  {path:'contact',component:ContactComponent},
+  {path:'creator',loadChildren: ()=>import('./creator/creator.module').then(m => m.CreatorModule)},
+  {path:'**',redirectTo:'',pathMatch:'full'},
+ 
 ];
 
 @NgModule({

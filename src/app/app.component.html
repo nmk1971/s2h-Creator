@@ -1,17 +1,1 @@
-<div class="flex-grow min-h-screen">
-  <app-navbar></app-navbar>
-  <!-- Drawer-->
-  <mat-sidenav-container>
-      <mat-sidenav #adminsidenav (closed)="log('closed')" (opened)="log('opened')" mode="side">
-        <app-side-bar></app-side-bar>
-      </mat-sidenav>
-      <mat-sidenav-content>
-          <mat-icon (click)="adminsidenav.toggle()" color="accent">menu</mat-icon>
-          <router-outlet></router-outlet>
-      </mat-sidenav-content>
-  </mat-sidenav-container>
-
-  <div class="bg-blue-700 text-gray-200 -my-6 shadow-md h-12">
-      <app-footer></app-footer>
-  </div>
-</div>
+<router-outlet></router-outlet>
