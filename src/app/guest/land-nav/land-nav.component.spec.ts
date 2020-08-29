@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LandPageComponent } from './land-page.component';
+import { LandNavComponent } from './land-nav.component';
 
-describe('LandPageComponent', () => {
-  let component: LandPageComponent;
-  let fixture: ComponentFixture<LandPageComponent>;
+describe('LandNavComponent', () => {
+  let component: LandNavComponent;
+  let fixture: ComponentFixture<LandNavComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LandPageComponent ]
+      declarations: [ LandNavComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LandPageComponent);
+    fixture = TestBed.createComponent(LandNavComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

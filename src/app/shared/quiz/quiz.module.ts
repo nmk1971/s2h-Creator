@@ -1,7 +1,7 @@
 import { MatTableModule } from '@angular/material/table';
 //import { MatSort, MatSortModule } from '@angular/material/sort';
 //import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MaterialModule } from './../shared/material/material.module';
+import { MaterialModule } from '../material/material.module';
 import { AddQuizComponent } from './add-quiz/add-quiz.component';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';

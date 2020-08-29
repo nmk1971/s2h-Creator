@@ -1,7 +1,7 @@
 import { HomePageComponent } from './home-page/home-page.component';
 import { AboutComponent } from '../guest/about/about.component'
 
-import { AddQuizComponent } from './../quiz/add-quiz/add-quiz.component';
+import { AddQuizComponent } from './../shared/quiz/add-quiz/add-quiz.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ReposPageComponent } from './repos-page/repos-page.component';

@@ -1,5 +1,6 @@
-import { LandPageComponent } from './land-page/land-page.component';
-import { QuizModule } from './quiz/quiz.module';
+import { GuestModule } from './guest/guest.module';
+import { UserModule } from './shared/user/user.module';
+import { QuizModule } from './shared/quiz/quiz.module';
 import { MaterialModule } from './shared/material/material.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -10,10 +11,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { LandFooterComponent } from './guest/land-footer/land-footer.component';
+import { LandNavComponent } from './guest/land-nav/land-nav.component';
+import { LandHomeComponent } from './guest/land-home/land-home.component';
 @NgModule({
   declarations: [
-    AppComponent,
-    LandPageComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +26,9 @@ import { MatSortModule } from '@angular/material/sort';
     QuizModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    UserModule,
+    GuestModule
   ],
   providers: [],
   bootstrap: [AppComponent]

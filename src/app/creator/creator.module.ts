@@ -1,4 +1,4 @@
-import { QuizModule } from './../quiz/quiz.module';
+import { QuizModule } from './../shared/quiz/quiz.module';
 import { MaterialModule } from './../shared/material/material.module';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
