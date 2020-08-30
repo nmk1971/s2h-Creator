@@ -11,9 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { LandFooterComponent } from './guest/land-footer/land-footer.component';
-import { LandNavComponent } from './guest/land-nav/land-nav.component';
-import { LandHomeComponent } from './guest/land-home/land-home.component';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -28,7 +26,7 @@ import { LandHomeComponent } from './guest/land-home/land-home.component';
     MatPaginatorModule,
     MatSortModule,
     UserModule,
-    GuestModule
+    GuestModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

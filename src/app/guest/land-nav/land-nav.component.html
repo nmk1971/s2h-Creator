@@ -23,19 +23,19 @@
                     </li>
                     <li>
                         <a class="inline-block px-4 py-2 no-underline rounded-md hover:text-black hover:underline hover:bg-gray-200"
-                            [routerLink]="['/support']" routerLinkActive="router-link-active">
+                            [routerLink]="['/home/support']" routerLinkActive="router-link-active">
                             Support
                         </a>
                     </li>
                     <li>
                         <a class="inline-block px-4 py-2 no-underline rounded-md hover:text-black hover:underline hover:bg-gray-200"
-                            [routerLink]="['/about']" routerLinkActive="router-link-active">
+                            [routerLink]="['/home/about']" routerLinkActive="router-link-active">
                             About Us
                         </a>
                     </li>
                     <li>
                         <a class="inline-block px-4 py-2 no-underline rounded-md hover:text-black hover:underline hover:bg-gray-200"
-                            [routerLink]="['/contact']" routerLinkActive="router-link-active">
+                            [routerLink]="['/home/contact']" routerLinkActive="router-link-active">
                             Contact
                         </a>
                     </li>
@@ -49,6 +49,7 @@
                 <img class="h-12 p-2" src="assets/logo.png">
                 <span class="text-lg text-opacity-75">S2H Quiz Creator</span>
             </a>
-        </div>    
+        </div>  
+        <button strike-button color="accent" [routerLink]="['/creator']">Tableau de bord</button>  
     </div>
 </nav>
