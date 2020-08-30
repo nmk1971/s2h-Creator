@@ -1,27 +1,43 @@
 <div class="shadow-lg sm:flex">
-    <div class="sm:w-2/5 w-full bg-gray-400 bg-cover bg-center text-white"
-       style="background-image: url('assets/login_cover.jpg')">
-      <div class="p-8">
-      <h1>SIGN<span class="text-indigo-400">UP</span></h1>
-      <p class="leading-tight mt-2 text-sm text-white">Create an account to join our awesome community</p>
-      </div>
-    </div>
-    <div class="sm:w-3/5 w-full bg-white">
-      <div class="p-8">
+  <div class="sm:w-2/5 w-full bg-gray-400 bg-cover bg-center text-white"
+    style="background-image: url('assets/login_cover.jpg')">
+
+  </div>
+  <div class="sm:w-3/5 w-full bg-white">
+    <div class="p-8">
       <form>
-        <label for="username" class="text-xs text-gray-500">Username</label>
-        <input id="username" class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1" type="text"
-           placeholder=""/>
-        <label id="passowrd" class="text-xs text-gray-500">Password</label>
+        <label for="firstname" class="text-xs text-gray-500">Prénom</label>
+        <input id="firstname" class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1"
+          type="text" placeholder="Tapez votre prénom" />
+          <label for="lastname" class="text-xs text-gray-500">Nom</label>
+        <input id="lastname" class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1"
+          type="text" placeholder="Tapez votre nom" />
+        <label for="username" class="text-xs text-gray-500">Nom d'utilisateur</label>
+        <input id="username" class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1"
+          type="text" placeholder="Choisir un nom d'utilisateur" />
+        <label id="passowrd" class="text-xs text-gray-500">Mot de passe</label>
         <input id="password" class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-grey-700 pb-1"
-           type="password"
-           placeholder=""/>
-        <input class="shadow-lg pt-3 pb-3 w-full text-white bg-indigo-500 hover:bg-indigo-400 rounded-full cursor-pointer "
-           type="submit" value="Create account">
+          type="password" placeholder="Tapez votre mot de passe" />
+        <label id="passowrd1" class="text-xs text-gray-500">Vérification de mot de passe</label>
+        <input id="password1"
+          class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-grey-700 pb-1" type="password"
+          placeholder="Retapez votre mot de passe" />
+
+        <a [routerLink]="['signin']"> 
+          <button
+            class="shadow-lg pt-3 pb-3 w-full text-white bg-indigo-500 hover:bg-indigo-400 rounded-full cursor-pointer "
+            type="submit" value="Create account">
+            Créer le compte
+          </button>
+        </a>
       </form>
       <div class="text-center mt-4">
-        <p class="text-sm text-gray-600">Already have an account? <a href="#" class="no-underline text-indigo-500 font-bold hover:text-indigo-400">Sign in</a></p>
-      </div>
+        <p class="text-sm text-gray-600">Vous avez déjà un compte? 
+          <a [routerLink]="['']"
+            class="no-underline text-indigo-500 font-bold hover:text-indigo-400">Connecter-vous
+          </a>
+        </p>
       </div>
     </div>
   </div>
+</div>

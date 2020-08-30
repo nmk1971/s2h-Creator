@@ -1,3 +1,4 @@
+import { SupportComponent } from './guest/support/support.component';
 import { LandHomeComponent } from './guest/land-home/land-home.component';
 import { SignupComponent } from './shared/user/signup/signup.component';
 import { LoginComponent } from './shared/user/login/login.component';
@@ -11,6 +12,7 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},
   {path:'about',component:AboutComponent},
+  {path:'support',component:SupportComponent},
   {path:'contact',component:ContactComponent},
   {path:'creator',loadChildren: ()=>import('./creator/creator.module').then(m => m.CreatorModule)},
   {path:'**',redirectTo:'',pathMatch:'full'},

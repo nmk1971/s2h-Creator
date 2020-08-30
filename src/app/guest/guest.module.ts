@@ -8,6 +8,7 @@ import { AboutComponent } from './about/about.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ContactComponent } from './contact/contact.component';
+import { SupportComponent } from './support/support.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ContactComponent } from './contact/contact.component';
     AboutComponent,
     LandFooterComponent,
     LandHomeComponent,
-    LandNavComponent
+    LandNavComponent,
+    SupportComponent
   ],
   imports: [
     CommonModule,
