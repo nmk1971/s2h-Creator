@@ -31,7 +31,7 @@
                 <th mat-header-cell *matHeaderCellDef> Actions </th>
                 <td mat-cell *matCellDef="let q">
                    <button mat-button  (click)="delete(q.id)"><mat-icon class="warn">delete</mat-icon></button>
-                   <button mat-button [routerLink]="['/quiz/update',q.id]"><mat-icon class="primary">edit</mat-icon></button>
+                   <button mat-button [routerLink]="['quiz/update',q.id]"><mat-icon class="primary">edit</mat-icon></button>
                 </td>
             </ng-container>
     

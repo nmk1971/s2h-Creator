@@ -11,9 +11,6 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
-  log(msg){
-    console.log(msg);
-  }
+
 
 }

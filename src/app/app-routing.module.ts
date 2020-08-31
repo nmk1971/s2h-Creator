@@ -1,3 +1,4 @@
+import { CreatorLandPageComponent } from './creator/creator-land-page/creator-land-page.component';
 import { SupportComponent } from './guest/support/support.component';
 import { LandHomeComponent } from './guest/land-home/land-home.component';
 import { SignupComponent } from './shared/user/signup/signup.component';
@@ -22,7 +23,7 @@ const routes: Routes = [
     ]
   },
 
-  { path: 'creator', loadChildren: () => import('./creator/creator.module').then(m => m.CreatorModule) },
+  { path: 'creator',loadChildren: () => import('./creator/creator.module').then(m => m.CreatorModule) },
   { path: '**', redirectTo: 'home', pathMatch: 'full' },
 
 ];

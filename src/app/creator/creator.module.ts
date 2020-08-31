@@ -12,6 +12,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CreatorRoutingModule } from './creator-routing.module';
+import { SettingsComponent } from './settings/settings.component';
+import { CreatorLandPageComponent } from './creator-land-page/creator-land-page.component';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { CreatorRoutingModule } from './creator-routing.module';
     FooterComponent,
     ReposPageComponent,
     SideBarComponent,
-    SupportPageComponent
+    SupportPageComponent,
+    SettingsComponent,
+    CreatorLandPageComponent
   ],
   imports: [
     CommonModule,

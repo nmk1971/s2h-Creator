@@ -5,12 +5,12 @@
                 Administrator Panel
             </div>
             <div class="hidden sm:flex">
-                <a [routerLink]='["/creator/home"]' routerLinkActive="active-link"
+                <a [routerLink]='["home"]' routerLinkActive="active-link"
                     [routerLinkActive]='["active","inactive"]' mat-button>
                     <mat-icon>home</mat-icon>
                     Home
                 </a>
-                <a [routerLink]='["/creator/quiz"]' routerLinkActive="active-link"
+                <a [routerLink]='["quiz"]' routerLinkActive="active-link"
                     [routerLinkActive]='["active","inactive"]' mat-button>
                     Quiz
                 </a>
@@ -22,11 +22,7 @@
                     [routerLinkActive]='["active","inactive"]' mat-button>
                     Support
                 </a>
-                <a [routerLink]='["/back/gallery"]' routerLinkActive="active-link"
-                    [routerLinkActive]='["active","inactive"]' mat-button>
-                    Gallery
-                </a>
-                <a [routerLink]='["/back/settings"]' routerLinkActive="active-link"
+                <a [routerLink]='["settings"]' routerLinkActive="active-link"
                     [routerLinkActive]='["active","inactive"]' mat-button>
                     Settings
                 </a>
