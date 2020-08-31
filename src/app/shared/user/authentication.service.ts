@@ -1,3 +1,4 @@
+import { IUser } from './user.model';
 import {environment} from '../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -5,7 +6,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 
-import { IUser } from '../models/user.model';
+
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -24,12 +25,12 @@ export class AuthenticationService {
     login(email: string, password: string) {
   
         let _user: IUser;
-        return this.http.post<any>(`${environment.API_URL}/api/v1/users/authenticate`, { email, password })
+        return this.http.post<any>(`${environment.apiUrl}/api/v1/users/authenticate`, { email, password })
             .pipe(map(response => {
               _user = {...response.payload.user};
               _user.token = response.payload.token;
                 // login successful if there's a jwt token in the response
-              if (_user && _user.token && _user.isGranted) {
+              if (_user && _user.token) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(_user));
                     this.currentUserSubject.next(_user);

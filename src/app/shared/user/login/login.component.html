@@ -8,19 +8,27 @@
   </div>
   <div class="sm:w-3/5 w-full bg-white">
     <div class="p-8">
-      <form>
-        <label for="username" class="text-xs text-gray-500">Nom d'utlisateur</label>
-        <input id="username" class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1"
-          type="text" placeholder="Tapez votre nom d'utilisateur" />
-        <label id="passowrd" class="text-xs text-gray-500">Mot de passe</label>
-        <input id="password" class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-grey-700 pb-1"
-          type="password" placeholder="Tapez votre mot de passe">
-        <a [routerLink]="['']"><!--TODO verifier user-->
-          <button
-            class="shadow-lg pt-3 pb-3 w-full text-white bg-indigo-500 hover:bg-indigo-400 rounded-full cursor-pointer ">
-            Valider
+      <form [formGroup]="loginForm" #f>
+        <mat-form-field class="w-full">
+            <input class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1"
+            type="email" matInput placeholder="Tapez votre email" required formControlName="email">
+            <mat-error *ngIf="loginForm.value.email.invalid || loginForm.hasError">{{getErrorMessage()}}</mat-error>
+            <mat-icon matPrefix class="px-6">email</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="w-full">
+           <input class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-grey-700 pb-1"
+            type="password" placeholder="Tapez votre mot de passe" required matInput formControlName="password" [type]="hide ? 'text' : 'password' ">
+            <mat-icon matPrefix class="px-6">lock</mat-icon>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" 
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility': 'visibility_off'}}</mat-icon>
           </button>
-        </a>
+        </mat-form-field>
+        <button mat-stroked-button [disabled]="!loginForm.valid"
+          class="shadow-lg pt-3 pb-3 w-full text-white bg-indigo-500 hover:bg-indigo-400 rounded-full cursor-pointer "
+          (click)="onSubmit()">
+          Valider
+        </button>
       </form>
       <div class="text-center mt-4">
         <p class="text-sm text-gray-600">Pas encore enregistré? <a [routerLink]="['/signup']"
