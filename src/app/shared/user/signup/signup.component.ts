@@ -59,6 +59,7 @@ export class SignupComponent implements OnInit {
       next:(response:IApiResponse)=>{
         this.snackBar.open(response.status+'\n'+response.message,'X',{duration:4000});
         this.signupForm.reset();
+        this.router.navigate(['/home']);
       },
       error:(error:Error)=>{
           this.snackBar.open(error.message,'close');

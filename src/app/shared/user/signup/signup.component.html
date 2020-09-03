@@ -89,7 +89,6 @@
           </button>
           <mat-error *ngIf="pwInput2.errors?.minlength">Le mot de pass doit être d'au moins 6 caractères</mat-error>
           <mat-error *ngIf="pwInput1.value!==pwInput2.value">Les deux mots de passe doivent être identiques</mat-error>
-          {{pwInput1.value!==pwInput2.value}} | {{pwInput1.value}} | {{pwInput2.value}}
         </mat-form-field>
         <button mat-stroked-button [disabled]="!signupForm.valid || (pwInput1.value!==pwInput2.value)"
           class="shadow-lg pt-3 pb-3 w-full text-white bg-indigo-500 hover:bg-indigo-400 rounded-full cursor-pointer "
