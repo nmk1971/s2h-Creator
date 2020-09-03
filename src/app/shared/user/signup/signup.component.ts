@@ -1,9 +1,10 @@
+import { IApiResponse } from './../../helpers/api-response.model';
+import { UserService } from './../user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { AuthenticationService } from '../authentication.service';
-import { first } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 interface Gender {
   name: string;
 }
@@ -16,6 +17,7 @@ export class SignupComponent implements OnInit {
   signupForm: FormGroup;
   returnUrl: string;
   public hide:boolean;
+  private subscription:Subscription;
   public genders: Gender[] = [
     {name: 'Homme'},
     {name: 'Femme'}
@@ -26,12 +28,7 @@ export class SignupComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private snackBar:MatSnackBar,
-    private authenticationService: AuthenticationService) { 
-         // redirect to home if already logged in
-     if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/creator/home']);
-     }
-    }
+    private userService: UserService) {  }
 
   ngOnInit(): void {
     this.signupForm = this.fb.group({
@@ -42,7 +39,7 @@ export class SignupComponent implements OnInit {
         Validators.required,
         Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
       ])],
-      password1: ['', Validators.required],
+      password: ['', Validators.required],
       password2: ['', Validators.required]
     });
 
@@ -51,7 +48,27 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.signupForm.value);
+    let user={
+      fullusername:`${this.signupForm.value.firstName} ${this.signupForm.value.lastName}`,
+      email:this.signupForm.value.email,
+      gender:this.signupForm.value.genderControl.name,
+      password:this.signupForm.value.password
+    };
+
+   this.subscription=this.userService.postUser(user).subscribe({
+      next:(response:IApiResponse)=>{
+        this.snackBar.open(response.status+'\n'+response.message,'X',{duration:4000});
+        this.signupForm.reset();
+      },
+      error:(error:Error)=>{
+          this.snackBar.open(error.message,'close');
+      },
+      complete:console.log
+
+
+    })
+    
+  
   }
 
 

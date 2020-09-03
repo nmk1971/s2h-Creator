@@ -15,8 +15,9 @@
                  matInput 
                  placeholder="Tapez votre prénom" 
                  required 
-                 formControlName="firstName">
-             <mat-error *ngIf="signupForm.value.email.invalid || signupForm.hasError">{{getErrorMessage()}}</mat-error>
+                 formControlName="firstName"
+                 >
+        
       <mat-icon matPrefix class="px-6">person_pin</mat-icon>
         </mat-form-field>
         <mat-form-field class="w-full">
@@ -55,9 +56,9 @@
                  placeholder="Tapez votre mot de passe" 
                  required 
                  matInput 
-                 formControlName="password1" 
+                 formControlName="password" 
                  #pwInput1
-                 name="password1"
+                 name="password"
                  ngModel
                 [type]="hide ? 'text' : 'password' "
                 minlength="6">
