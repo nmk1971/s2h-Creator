@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-add-quiz',
@@ -9,8 +10,12 @@ import { Observable } from 'rxjs';
 })
 export class AddQuizComponent implements OnInit,OnChanges {
   public currentId$:Observable<any>;
-  constructor(private route$:ActivatedRoute) {
-    
+  public createQuizForm:FormGroup;
+  constructor(private route$:ActivatedRoute, private fb:FormBuilder) {
+    this.createQuizForm=fb.group({
+      title:[''],
+      quizImage:['']
+    });
    }
   ngOnChanges(changes: SimpleChanges): void {
   
@@ -20,4 +25,7 @@ export class AddQuizComponent implements OnInit,OnChanges {
     this.currentId$=this.route$.params
   }
 
+  onCreate(){
+    console.log(this.createQuizForm.value.quizImage);
+  }
 }

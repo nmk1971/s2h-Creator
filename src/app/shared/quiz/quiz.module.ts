@@ -12,6 +12,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 
 
@@ -25,7 +26,8 @@ import { MatSortModule } from '@angular/material/sort';
     MaterialModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MaterialFileInputModule
    ],
   exports:[AddQuizComponent,QuizListComponent]
 })
