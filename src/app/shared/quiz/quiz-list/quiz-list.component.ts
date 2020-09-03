@@ -18,6 +18,7 @@ interface IQuiz {
   styleUrls: ['./quiz-list.component.scss']
 })
 export class QuizListComponent implements OnInit,OnChanges {
+  public isLoadingResults:boolean=false;
   public displayedColumns = ["id", "title", "cover", "status","actions"];
   datasource:MatTableDataSource<IQuiz>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -31,10 +32,14 @@ export class QuizListComponent implements OnInit,OnChanges {
    }
 
   ngOnInit(): void {
+    this.isLoadingResults=true;
     this.datasource=new MatTableDataSource<IQuiz>(this.quiz);
     this.resultsLength=this.quiz.length;
     this.datasource.paginator = this.paginator;
     this.datasource.sort = this.sort;
+   
+   
+ 
   }
 
   
@@ -42,6 +47,7 @@ export class QuizListComponent implements OnInit,OnChanges {
     this.datasource = new MatTableDataSource(this.quiz);
     this.datasource.paginator = this.paginator;
     this.datasource.sort = this.sort;
+   
   }
 
   delete(id){
@@ -51,6 +57,7 @@ export class QuizListComponent implements OnInit,OnChanges {
   edit(id){
     console.log(id)
   }
- 
+
+  
 
 }

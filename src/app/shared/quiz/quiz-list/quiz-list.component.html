@@ -1,7 +1,19 @@
 
 
 <div class="container w-full flex-full">
-    
+    <div class="flex mx-auto">
+       
+        <mat-form-field class="justify-start px-12 align-center">
+            <mat-icon matPrefix>search</mat-icon>
+            <input matInput placeholder="Filter" class="px-12 py-3 text-teal-900 rounded-b shadow-md" > <!--(keyup)="applyFilter($event.target.value)"-->
+        </mat-form-field>
+        <div class="align-center">
+            <a mat-stroked-button [routerLink]="['/creator/quiz/add']"  class="justify-end"><mat-icon>add</mat-icon></a>
+        </div>
+        <div class="spinner-container center align-center" *ngIf="isLoadingResults">
+            <mat-spinner></mat-spinner>
+        </div>
+    </div>
     <div class="shadow-lg mat-elevation-z8 px-6exi" style="cursor:pointer">
         <table  mat-table [dataSource]="datasource" matSort matSortActive="id" matSortDirection="asc"
             matSortDisableClear class="font-mono">
