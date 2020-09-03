@@ -1,200 +1,105 @@
-
-<div class="px-8 mx-auto mt-8">
-  <div class="mx-auto">
-    <div class="shadow-lg sm:flex">
-      <div class="sm:w-2/5 w-full bg-gray-400 bg-cover bg-center text-white"
-        style="background-image: url('assets/login_cover.jpg')">
-        <div class="p-8">
-          <h1>SIGN<span class="text-indigo-400">UP</span></h1>
-          <p class="leading-tight mt-2 text-sm text-white">Create an account to join our awesome community</p>
-        </div>
-      </div>
-      <div class="sm:w-3/5 w-full bg-white">
-        <div class="p-8">
-          <form>
-            <label for="firstname" class="text-xs text-gray-500">Prénom</label>
-            <input id="firstname"
-              class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1" type="text"
-              placeholder="Tapez votre prénom" />
-            <label for="lastname" class="text-xs text-gray-500">Nom</label>
-            <input id="lastname"
-              class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1" type="text"
-              placeholder="Tapez votre nom" />
-            <label for="username" class="text-xs text-gray-500">Nom d'utilisateur</label>
-            <input id="username"
-              class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1" type="text"
-              placeholder="Choisir un nom d'utilisateur" />
-            <label id="passowrd" class="text-xs text-gray-500">Mot de passe</label>
-            <input id="password"
-              class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-grey-700 pb-1"
-              type="password" placeholder="Tapez votre mot de passe" />
-            <label id="passowrd1" class="text-xs text-gray-500">Vérification de mot de passe</label>
-            <input id="password1"
-              class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-grey-700 pb-1"
-              type="password" placeholder="Retapez votre mot de passe" />
-
-            <a [routerLink]="['signin']">
-              <button
-                class="shadow-lg pt-3 pb-3 w-full text-white bg-indigo-500 hover:bg-indigo-400 rounded-full cursor-pointer "
-                type="submit" value="Create account">
-                Créer le compte
-              </button>
-            </a>
-          </form>
-          <div class="text-center mt-4">
-            <p class="text-sm text-gray-600">Vous avez déjà un compte?
-              <a [routerLink]="['/']" class="no-underline text-indigo-500 font-bold hover:text-indigo-400">Connecter-vous
-              </a>
-            </p>
-          </div>
-        </div>
-      </div>
+<div class="shadow-lg sm:flex">
+  <div class="sm:w-2/5 w-full bg-gray-400 bg-cover bg-center text-white"
+    style="background-image: url('assets/login_cover.jpg')">
+    <div class="p-8">
+      <h1>SIGN<span class="text-indigo-400">UP</span></h1>
+      <p class="leading-tight mt-2 text-sm text-white">Create an account to join our awesome community</p>
     </div>
   </div>
-  <div class="flex-item">
-    <!-- TODO: Clean Up cards -->
+  <div class="sm:w-3/5 w-full bg-white">
     <div class="p-8">
-      <div class="shadow-xl rounded-lg">
-        <div
-          style="background-image: url('https://images.pexels.com/photos/814499/pexels-photo-814499.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260')"
-          class="h-64 bg-gray-200 bg-cover bg-center rounded-t-lg flex items-center justify-center">
-          <p class="text-white font-bold text-4xl">Profile</p>
-        </div>
-        <div class="bg-white rounded-b-lg px-8">
-          <div class="relative">
-            <img class="right-0 w-16 h-16 rounded-full mr-4 shadow-lg absolute -mt-8"
-              src="http://tailwindtemplates.io/wp-content/uploads/2019/03/link.jpg" alt="Avatar of Jonathan Reinink">
-          </div>
-          <div class="pt-8 pb-8">
-            <h1 class="text-2xl font-bold text-gray-700">Link</h1>
-            <p class="text-sm text-gray-600">From hyrule</p>
+      <form [formGroup]="signupForm" #f="ngForm">
+        <mat-form-field class="w-full">
+          <input class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1" 
+                 type="text"
+                 matInput 
+                 placeholder="Tapez votre prénom" 
+                 required 
+                 formControlName="firstName">
+             <mat-error *ngIf="signupForm.value.email.invalid || signupForm.hasError">{{getErrorMessage()}}</mat-error>
+      <mat-icon matPrefix class="px-6">person_pin</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="w-full">
+          <input class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1"
+                 type="text" 
+                 matInput 
+                 placeholder="Tapez votre nom" 
+                 required 
+                 formControlName="lastName">
+          <mat-icon matPrefix class="px-6">person_pin</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Genre</mat-label>
+          <mat-select formControlName="genderControl" required>
+            <mat-option>Choisir Genre</mat-option>
+            <mat-option *ngFor="let gender of genders" [value]="gender">
+              {{gender.name}}
+            </mat-option>
+          </mat-select>
+         <!-- <mat-error *ngIf="genderControl?.hasError('required')">Veuillez choisir le genre</mat-error> -->
+        </mat-form-field>
 
-            <p class="mt-6 text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a sem varius,
-              fringilla sapien at, sollicitudin risus.</p>
-
-            <div class="flex justify-around mt-8">
-              <i class="material-icons">chat</i>
-              <i class="material-icons">duo</i>
-              <i class="material-icons">location</i>
-            </div>
-          </div>
-        </div>
+        <mat-form-field class="w-full">
+          <input class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1"
+                 type="email" 
+                 matInput 
+                 placeholder="Tapez votre email" 
+                 required 
+                 formControlName="email" 
+                 email>
+           <mat-icon matPrefix class="px-6">email</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="w-full" hintLabel="Mot de passe doit être formé d'au moins 6 caractères">
+          <input class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-grey-700 pb-1"
+                 type="password" 
+                 placeholder="Tapez votre mot de passe" 
+                 required 
+                 matInput 
+                 formControlName="password1" 
+                 #pwInput1
+                 name="password1"
+                 ngModel
+                [type]="hide ? 'text' : 'password' "
+                minlength="6">
+          <mat-icon matPrefix class="px-6">lock</mat-icon>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility': 'visibility_off'}}</mat-icon>
+          </button>
+          <mat-hint align="end">{{pwInput1.value?.length}}/6</mat-hint>
+          <mat-error *ngIf="pwInput1.errors?.minlength">Le mot de pass doit être d'au moins 6 caractères</mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-full">
+          <input class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-grey-700 pb-1"
+                type="password" 
+                placeholder="Confirmez votre mot de passe" 
+                required 
+                matInput 
+                formControlName="password2"
+                #pwInput2
+                ngModel
+                name="password2"
+                minlength="6"
+                [type]="hide ? 'text' : 'password' ">
+          <mat-icon matPrefix class="px-6">lock</mat-icon>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility': 'visibility_off'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="pwInput2.errors?.minlength">Le mot de pass doit être d'au moins 6 caractères</mat-error>
+          <mat-error *ngIf="pwInput1.value!==pwInput2.value">Les deux mots de passe doivent être identiques</mat-error>
+          {{pwInput1.value!==pwInput2.value}} | {{pwInput1.value}} | {{pwInput2.value}}
+        </mat-form-field>
+        <button mat-stroked-button [disabled]="!signupForm.valid || (pwInput1.value!==pwInput2.value)"
+          class="shadow-lg pt-3 pb-3 w-full text-white bg-indigo-500 hover:bg-indigo-400 rounded-full cursor-pointer "
+          (click)="onSubmit()">
+          Créez le compte
+        </button>
+      </form>
+      <div class="text-center mt-4">
+        <p class="text-sm text-gray-600">Vous avez déjà un compte? <a [routerLink]="['/home']"
+            class="no-underline text-indigo-500 font-bold hover:text-indigo-400">Se connecter</a></p>
       </div>
     </div>
-    <div class="p-8">
-      <div class="shadow-xl rounded-lg">
-        <div
-          style="background-image: url('https://images.pexels.com/photos/814499/pexels-photo-814499.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260')"
-          class="h-64 bg-gray-200 bg-cover bg-center rounded-t-lg flex items-center justify-center">
-          <p class="text-white font-bold text-4xl">Profile</p>
-        </div>
-        <div class="bg-white rounded-b-lg px-8">
-          <div class="relative">
-            <img class="right-0 w-16 h-16 rounded-full mr-4 shadow-lg absolute -mt-8"
-              src="http://tailwindtemplates.io/wp-content/uploads/2019/03/link.jpg" alt="Avatar of Jonathan Reinink">
-          </div>
-          <div class="pt-8 pb-8">
-            <h1 class="text-2xl font-bold text-gray-700">Link</h1>
-            <p class="text-sm text-gray-600">From hyrule</p>
-
-            <p class="mt-6 text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a sem varius,
-              fringilla sapien at, sollicitudin risus.</p>
-
-            <div class="flex justify-around mt-8">
-              <i class="material-icons">chat</i>
-              <i class="material-icons">duo</i>
-              <i class="material-icons">location</i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="p-8">
-      <div class="shadow-xl rounded-lg">
-        <div
-          style="background-image: url('https://images.pexels.com/photos/814499/pexels-photo-814499.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260')"
-          class="h-64 bg-gray-200 bg-cover bg-center rounded-t-lg flex items-center justify-center">
-          <p class="text-white font-bold text-4xl">Profile</p>
-        </div>
-        <div class="bg-white rounded-b-lg px-8">
-          <div class="relative">
-            <img class="right-0 w-16 h-16 rounded-full mr-4 shadow-lg absolute -mt-8"
-              src="http://tailwindtemplates.io/wp-content/uploads/2019/03/link.jpg" alt="Avatar of Jonathan Reinink">
-          </div>
-          <div class="pt-8 pb-8">
-            <h1 class="text-2xl font-bold text-gray-700">Link</h1>
-            <p class="text-sm text-gray-600">From hyrule</p>
-
-            <p class="mt-6 text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a sem varius,
-              fringilla sapien at, sollicitudin risus.</p>
-
-            <div class="flex justify-around mt-8">
-              <i class="material-icons">chat</i>
-              <i class="material-icons">duo</i>
-              <i class="material-icons">location</i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="p-8">
-      <div class="shadow-xl rounded-lg">
-        <div
-          style="background-image: url('https://images.pexels.com/photos/814499/pexels-photo-814499.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260')"
-          class="h-64 bg-gray-200 bg-cover bg-center rounded-t-lg flex items-center justify-center">
-          <p class="text-white font-bold text-4xl">Profile</p>
-        </div>
-        <div class="bg-white rounded-b-lg px-8">
-          <div class="relative">
-            <img class="right-0 w-16 h-16 rounded-full mr-4 shadow-lg absolute -mt-8"
-              src="http://tailwindtemplates.io/wp-content/uploads/2019/03/link.jpg" alt="Avatar of Jonathan Reinink">
-          </div>
-          <div class="pt-8 pb-8">
-            <h1 class="text-2xl font-bold text-gray-700">Link</h1>
-            <p class="text-sm text-gray-600">From hyrule</p>
-
-            <p class="mt-6 text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a sem varius,
-              fringilla sapien at, sollicitudin risus.</p>
-
-            <div class="flex justify-around mt-8">
-              <i class="material-icons">chat</i>
-              <i class="material-icons">duo</i>
-              <i class="material-icons">location</i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="p-8">
-      <div class="shadow-xl rounded-lg">
-        <div
-          style="background-image: url('https://images.pexels.com/photos/814499/pexels-photo-814499.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260')"
-          class="h-64 bg-gray-200 bg-cover bg-center rounded-t-lg flex items-center justify-center">
-          <p class="text-white font-bold text-4xl">Profile</p>
-        </div>
-        <div class="bg-white rounded-b-lg px-8">
-          <div class="relative">
-            <img class="right-0 w-16 h-16 rounded-full mr-4 shadow-lg absolute -mt-8"
-              src="http://tailwindtemplates.io/wp-content/uploads/2019/03/link.jpg" alt="Avatar of Jonathan Reinink">
-          </div>
-          <div class="pt-8 pb-8">
-            <h1 class="text-2xl font-bold text-gray-700">Link</h1>
-            <p class="text-sm text-gray-600">From hyrule</p>
-
-            <p class="mt-6 text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a sem varius,
-              fringilla sapien at, sollicitudin risus.</p>
-
-            <div class="flex justify-around mt-8">
-              <i class="material-icons">chat</i>
-              <i class="material-icons">duo</i>
-              <i class="material-icons">location</i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
 </div>
-
-
