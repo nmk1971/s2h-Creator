@@ -1,6 +1,4 @@
 import { MatTableModule } from '@angular/material/table';
-//import { MatSort, MatSortModule } from '@angular/material/sort';
-//import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MaterialModule } from '../material/material.module';
 import { AddQuizComponent } from './add-quiz/add-quiz.component';
 

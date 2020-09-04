@@ -1,3 +1,4 @@
+import { UserBadgeComponent } from './badge/user-badge.component';
 import { MaterialModule } from './../material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -10,7 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
-  declarations: [LoginComponent, SignupComponent],
+  declarations: [LoginComponent, SignupComponent,UserBadgeComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -19,6 +20,6 @@ import { HttpClientModule } from '@angular/common/http';
     MaterialModule,
     HttpClientModule
   ],
-  exports:[LoginComponent, SignupComponent]
+  exports:[LoginComponent, SignupComponent,UserBadgeComponent]
 })
 export class UserModule { }

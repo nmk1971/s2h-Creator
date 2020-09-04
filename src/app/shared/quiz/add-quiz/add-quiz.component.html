@@ -1,16 +1,18 @@
 <div class="shadow-lg sm:flex">
   <div class="w-full bg-white">
     <div class="p-8">
+      <!--************* F O R M U L A I R E **********************-->
       <form [formGroup]="createQuizForm"> 
-        <input id="title"
+      <!--************* T I T R E  **********************-->
+      <input id="title"
           class="mat-display-3 bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1"
           type="text" placeholder="Titre" />
-        <mat-form-field>
-          <ngx-mat-file-input formControlName="quizImage" placeholder="JPEG file only" [accept]="'.jpeg,.jpg'">
-          </ngx-mat-file-input>
-          <mat-icon matSuffix>folder</mat-icon>
-        </mat-form-field>
-        <a [routerLink]="['']">
+      <!--************* D E S C R I P T I O N  **********************-->
+      <input id="description"
+          class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1"
+          type="text" placeholder="Description" />
+      <!--************* B O U T O N   S U B M I T  **********************-->
+         <a [routerLink]="['']">
           <button
             class="shadow-lg pt-3 pb-3 w-full text-white bg-indigo-500 hover:bg-indigo-400 rounded-full cursor-pointer "
             (click)="onCreate()">

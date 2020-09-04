@@ -1,16 +1,11 @@
 import { Component, OnInit, ViewChild, OnChanges } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import {getQuiz} from './quiz-source';
+import { getQuiz } from './quiz-source';
 import { MatTableDataSource  } from '@angular/material/table';
+import { IQuiz } from '../quiz.model';
 
 
-interface IQuiz {
-  id: number;
-  title: string;
-  cover: string;
-  status:boolean
-}
 
 @Component({
   selector: 'app-quiz-list',

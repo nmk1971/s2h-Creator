@@ -1,3 +1,4 @@
+import { UserModule } from './../shared/user/user.module';
 import { QuizModule } from './../shared/quiz/quiz.module';
 import { MaterialModule } from './../shared/material/material.module';
 import { RouterModule } from '@angular/router';
@@ -34,7 +35,8 @@ import { CreatorLandPageComponent } from './creator-land-page/creator-land-page.
     RouterModule,
     ReactiveFormsModule,
     MaterialModule,
-    QuizModule
+    QuizModule,
+    UserModule
   ],
   exports:[
     HomePageComponent,
