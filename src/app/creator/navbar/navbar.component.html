@@ -2,7 +2,7 @@
     <mat-toolbar-row class="flex justify-between w-full bg-transparent navbar">
         <div class="flex justify-start align-middle">
             <div class="flex flex-row block px-2 py-2 font-mono font-extrabold">
-                Administrator Panel
+                Espace Créateur
             </div>
             <div class="hidden sm:flex">
                 <a [routerLink]='["home"]' routerLinkActive="active-link"
@@ -26,17 +26,16 @@
                     [routerLinkActive]='["active","inactive"]' mat-button>
                     Settings
                 </a>
-                <app-user-badge [userInfo]="_user"></app-user-badge>
-
+                
             </div>
+           
         </div>
-       <!--
-        <div class="flex flex-row align-middle">
-            <div *ngIf="currentUser" class="">
-                <app-user-logout [currentUser]="currentUser" (onLogout)="logout()"></app-user-logout>
-            </div>
+        <div class="flex w-full">
+            <button mat-stroked-button class="w-full  justify-end" color="warn" (click)="logout()">Se déconnecter</button>
+            <app-user-badge [userInfo]="_user"></app-user-badge>
+           
         </div>
-    TODO: implement logout
-    -->
+ 
     </mat-toolbar-row>
+    
 </mat-toolbar>

@@ -2,7 +2,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { IApiResponse } from './../../helpers/api-response.model';
 import { Subscription } from 'rxjs';
 import { QuizService } from './../quiz.service';
-import { Component, OnInit, ViewChild, OnChanges } from '@angular/core';
+import { Component, OnInit, ViewChild, OnChanges, OnDestroy } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { getQuiz } from './quiz-source';
@@ -16,9 +16,9 @@ import { IQuiz } from '../quiz.model';
   templateUrl: './quiz-list.component.html',
   styleUrls: ['./quiz-list.component.scss']
 })
-export class QuizListComponent implements OnInit,OnChanges {
+export class QuizListComponent implements OnInit,OnChanges,OnDestroy {
   public isLoadingResults:boolean=false;
-  public displayedColumns = ["date", "theme", "title", "cover", "shared","actions"];
+  public displayedColumns = ["dateCreated", "theme", "title", "cover", "shared","actions"];
   private subscription:Subscription;
 
   datasource:MatTableDataSource<IQuiz>;
@@ -32,15 +32,15 @@ export class QuizListComponent implements OnInit,OnChanges {
     private shnackBar:MatSnackBar) {
        
    }
-
-  ngOnInit(): void {
-    this.subscription=this.quizService.getAllQuizzes().subscribe({
-      next:(data:IApiResponse)=>{
-        this.isLoadingResults=true;
-        this.quiz=data.payload;
-      this.datasource=new MatTableDataSource<IQuiz>(this.quiz);
-      this.resultsLength=this.quiz?.length;
-      this.datasource.paginator = this.paginator;
+   
+   ngOnInit(): void {
+     this.subscription=this.quizService.getAllQuizzes().subscribe({
+       next:(data:IApiResponse)=>{
+         this.isLoadingResults=true;
+         this.quiz=data.payload;
+         this.datasource=new MatTableDataSource<IQuiz>(this.quiz);
+         this.resultsLength=this.quiz?.length;
+         this.datasource.paginator = this.paginator;
       this.datasource.sort = this.sort;
       this.shnackBar.open(data.message,'X',{duration:3000});
       },
@@ -52,27 +52,35 @@ export class QuizListComponent implements OnInit,OnChanges {
       }
     })
     
+    
    
-   
- 
+    
   }
-
+  
   
   ngOnChanges() {
     this.datasource = new MatTableDataSource(this.quiz);
     this.datasource.paginator = this.paginator;
     this.datasource.sort = this.sort;
+    
    
   }
-
+  
   delete(id){
     console.log(id)
   }
-
+  
   edit(id){
     console.log(id)
   }
 
+  applyFilter(filterValue: string) {
+    this.datasource.filter = filterValue.trim().toLowerCase();
+  }
   
-
+  
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+  
 }
