@@ -1,27 +1,34 @@
-<div class="shadow-lg sm:flex">
-  <div class="w-full bg-white">
-    <div class="p-8">
-      <!--************* F O R M U L A I R E **********************-->
-      <form [formGroup]="createQuizForm"> 
-      <!--************* T I T R E  **********************-->
-      <input id="title"
-          class="mat-display-3 bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1"
-          type="text" placeholder="Titre" />
-      <!--************* D E S C R I P T I O N  **********************-->
-      <input id="description"
-          class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1"
-          type="text" placeholder="Description" />
-      <!--************* B O U T O N   S U B M I T  **********************-->
-         <a [routerLink]="['']">
-          <button
-            class="shadow-lg pt-3 pb-3 w-full text-white bg-indigo-500 hover:bg-indigo-400 rounded-full cursor-pointer "
-            (click)="onCreate()">
-            Créer le quiz
-          </button>
-        </a>
-      </form>
-    </div>
-  </div>
+<div class="shadow-lg sm:flex w-full bg-white p-8 mx-2">
+  <!--************* F O R M U L A I R E **********************-->
+  <form [formGroup]="createQuizForm" class="w-full p-5 m-5">
+    <!--************* T I T R E  **********************-->
+    <input class="mat-display-3 bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1"
+      type="text" placeholder="Titre"
+      formControlName="title">
+    <!--************* D E S C R I P T I O N  **********************-->
+    <input class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1" type="text"
+      placeholder="Description" 
+      formControlName="description">
+
+    <!--************* T H E M E   **********************-->
+    <input class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1" type="text"
+      placeholder="Theme" 
+      formControlName="theme">
+
+    <!--************* S H A R E D   **********************-->
+
+    <mat-checkbox formControlName="isShared" class="px-6"> Partagé</mat-checkbox>
+
+
+    <!--************* B O U T O N   S U B M I T  **********************-->
+
+      <button
+        class="shadow-lg pt-3 pb-3 w-full text-white bg-indigo-500 hover:bg-indigo-400 rounded-full cursor-pointer "
+        (click)="onCreate()">
+        Créer le quiz
+      </button>
+
+  </form>
 </div>
 
 <!-- TODO: To Scaffold Quiz Add Form-->

@@ -29,11 +29,11 @@ table {
   
   @include mat-table-columns((
   
-      date: (width: 4rem),
+      dateCreated: (width: 6rem),
       theme: (width: 4rem),
-      title: (width: 11rem),
-      cover:(width:4rem),
-      shared:(width: 4rem),
+      title: (width: 9rem),
+      cover:(width:2rem),
+      shared:(width: 2rem),
       actions:(width: 4rem)
   
   ));

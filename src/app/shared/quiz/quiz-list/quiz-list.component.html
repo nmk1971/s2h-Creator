@@ -16,12 +16,12 @@
         </div>
     </div>
     <div class="shadow-lg mat-elevation-z8 px-6exi" style="cursor:pointer">
-        <table  mat-table [dataSource]="datasource" matSort matSortActive="dateCreated" matSortDirection="asc"
+        <table  mat-table [dataSource]="datasource" matSort matSortActive="dateCreated" matSortDirection="desc"
             matSortDisableClear class="font-mono">
 
             <ng-container matColumnDef="dateCreated">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Date de création </th>
-                <td mat-cell *matCellDef="let q"> {{q?.dateCreated | date : 'd MMMM y, HH:mm' : '':'fr-FR'}} </td> 
+                <td mat-cell *matCellDef="let q"> {{q?.dateCreated | date : 'd MMMM y' : '':'fr-FR'}} </td> 
             </ng-container>
 
             <ng-container matColumnDef="theme">

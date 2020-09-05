@@ -1,7 +1,12 @@
+import { IUser } from './../../user/user.model';
+import { AuthenticationService } from './../../user/authentication.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { QuizService } from './../quiz.service';
 import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { IApiResponse } from '../../helpers/api-response.model';
 
 @Component({
   selector: 'app-add-quiz',
@@ -9,23 +14,53 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./add-quiz.component.scss']
 })
 export class AddQuizComponent implements OnInit,OnChanges {
-  public currentId$:Observable<any>;
+  public currentUser:IUser;
   public createQuizForm:FormGroup;
-  constructor(private route$:ActivatedRoute, private fb:FormBuilder) {
-    this.createQuizForm=fb.group({
+  private subscription:Subscription;
+  private userSubscription:Subscription;
+  
+  constructor(
+    private router: Router,
+    private fb:FormBuilder, 
+    private quizService:QuizService,
+    private snackBar:MatSnackBar,
+    private authenticationService:AuthenticationService
+    ) {
+    this.createQuizForm=this.fb.group({
       title:[''],
-      quizImage:['']
+      description:[''],
+      theme:[''],
+      isShared:[false]
+
     });
    }
+
+
   ngOnChanges(changes: SimpleChanges): void {
   
   }
 
   ngOnInit(): void {
-    this.currentId$=this.route$.params
+    this.userSubscription=this.authenticationService.currentUser.subscribe(data=>this.currentUser=data);
   }
 
   onCreate(){
-    console.log(this.createQuizForm.value.quizImage);
+   
+      let quiz={...this.createQuizForm.value};
+      quiz.creator=this.currentUser._id;
+      quiz.dateCreated=new Date();
+      quiz.cover='assets/quiz.jpg';
+      this.subscription=this.quizService.postQuiz(quiz).subscribe({
+        next:(response:IApiResponse)=>{
+          this.snackBar.open(response.status+'\n'+response.message,'X',{duration:4000});
+           this.createQuizForm.reset();
+         // this.router.navigate(['/home']);
+        },
+        error:(error:Error)=>{
+            this.snackBar.open(error.message,'close');
+        },
+        complete:console.log
+      })
+
   }
 }
