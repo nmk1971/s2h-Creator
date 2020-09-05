@@ -1,3 +1,7 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { IApiResponse } from './../../helpers/api-response.model';
+import { Subscription } from 'rxjs';
+import { QuizService } from './../quiz.service';
 import { Component, OnInit, ViewChild, OnChanges } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -14,7 +18,9 @@ import { IQuiz } from '../quiz.model';
 })
 export class QuizListComponent implements OnInit,OnChanges {
   public isLoadingResults:boolean=false;
-  public displayedColumns = ["id", "title", "cover", "status","actions"];
+  public displayedColumns = ["date", "title", "cover", "shared","actions"];
+  private subscription:Subscription;
+
   datasource:MatTableDataSource<IQuiz>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -22,16 +28,30 @@ export class QuizListComponent implements OnInit,OnChanges {
 
   resultsLength = 0;
   public quiz:IQuiz[];
-  constructor() {
-    this.quiz=getQuiz();  
+  constructor(private quizService:QuizService,
+    private shnackBar:MatSnackBar) {
+       
    }
 
   ngOnInit(): void {
-    this.isLoadingResults=true;
-    this.datasource=new MatTableDataSource<IQuiz>(this.quiz);
-    this.resultsLength=this.quiz.length;
-    this.datasource.paginator = this.paginator;
-    this.datasource.sort = this.sort;
+    this.subscription=this.quizService.getAllQuizzes().subscribe({
+      next:(data:IApiResponse)=>{
+        this.isLoadingResults=true;
+        this.quiz=data.payload;
+      this.datasource=new MatTableDataSource<IQuiz>(this.quiz);
+      this.resultsLength=this.quiz?.length;
+      this.datasource.paginator = this.paginator;
+      this.datasource.sort = this.sort;
+      this.shnackBar.open(data.message,'X',{duration:3000});
+      },
+      error:(error:Error)=>{
+        this.shnackBar.open(error.message,'X');
+      },
+      complete:()=>{
+        this.isLoadingResults=false;
+      }
+    })
+    
    
    
  
