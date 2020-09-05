@@ -18,7 +18,7 @@ import { IQuiz } from '../quiz.model';
 })
 export class QuizListComponent implements OnInit,OnChanges {
   public isLoadingResults:boolean=false;
-  public displayedColumns = ["date", "title", "cover", "shared","actions"];
+  public displayedColumns = ["date", "theme", "title", "cover", "shared","actions"];
   private subscription:Subscription;
 
   datasource:MatTableDataSource<IQuiz>;

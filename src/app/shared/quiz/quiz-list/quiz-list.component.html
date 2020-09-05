@@ -15,14 +15,19 @@
         </div>
     </div>
     <div class="shadow-lg mat-elevation-z8 px-6exi" style="cursor:pointer">
-        <table  mat-table [dataSource]="datasource" matSort matSortActive="date" matSortDirection="asc"
+        <table  mat-table [dataSource]="datasource" matSort matSortActive="date" matSortDirection="desc"
             matSortDisableClear class="font-mono">
 
             <ng-container matColumnDef="date">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
-                <td mat-cell *matCellDef="let q"> {{q?.dateCreated | date}} </td>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Date de création </th>
+                <td mat-cell *matCellDef="let q"> {{q?.dateCreated | date : 'd MMMM y, HH:mm' : '':'fr-FR'}} </td> 
             </ng-container>
 
+            <ng-container matColumnDef="theme">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Thème </th>
+                <td mat-cell *matCellDef="let q"> {{q?.theme}} </td>
+            </ng-container>
+     
             <ng-container matColumnDef="title">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
                 <td mat-cell *matCellDef="let q"> {{q?.title}}

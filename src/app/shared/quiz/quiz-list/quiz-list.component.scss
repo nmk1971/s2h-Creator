@@ -30,6 +30,7 @@ table {
   @include mat-table-columns((
   
       date: (width: 4rem),
+      theme: (width: 4rem),
       title: (width: 11rem),
       cover:(width:4rem),
       shared:(width: 4rem),

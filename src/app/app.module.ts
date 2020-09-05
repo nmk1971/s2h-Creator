@@ -5,7 +5,7 @@ import { UserModule } from './shared/user/user.module';
 import { QuizModule } from './shared/quiz/quiz.module';
 import { MaterialModule } from './shared/material/material.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Pipe, PipeTransform } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,7 +15,22 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { registerLocaleData, formatDate } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+import localeFrExtra from '@angular/common/locales/extra/fr';
 
+registerLocaleData(localeFr,'fr-FR',localeFrExtra);
+
+/*@Pipe({
+name : 'monthAsLabel'
+})
+
+export class MonthAsLabelPipe implements PipeTransform{
+  transform(value: DateModel, args?:any): any {
+    return formatDate(value.dateTime, 'MMMM', 'fr-FR');
+  }
+}
+*/
 @NgModule({
   declarations: [
     AppComponent
