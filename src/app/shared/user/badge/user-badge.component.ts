@@ -1,7 +1,9 @@
+import { AuthenticationService } from './../authentication.service';
 import { Component, OnInit, Input } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { IUser } from '../user.model';
+
 
 @Component({
   selector: 'app-user-badge',
@@ -10,7 +12,12 @@ import { IUser } from '../user.model';
 })
 export class UserBadgeComponent implements OnInit {
   @Input() userInfo:IUser;
-  constructor() { }
+  constructor(
+    private authenticationService:AuthenticationService,
+    private router: Router
+    ) {
+
+     }
 
   ngOnInit() {
   }
@@ -19,5 +26,8 @@ export class UserBadgeComponent implements OnInit {
     return url ? `${environment.apiUrl}/${url}` : 'assets/default-avatar.jpg'
   }
   
-
+logout(){
+  this.authenticationService.logout();
+  this.router.navigate(['/home']);
+}
 }
