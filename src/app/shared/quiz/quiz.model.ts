@@ -1,5 +1,5 @@
 export interface IQuiz {
-    id: number;
+    _id?: string;
     title: string;
     cover: string;
     status:boolean

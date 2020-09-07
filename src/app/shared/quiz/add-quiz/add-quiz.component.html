@@ -2,33 +2,44 @@
   <!--************* F O R M U L A I R E **********************-->
   <form [formGroup]="createQuizForm" class="w-full p-5 m-5">
     <!--************* T I T R E  **********************-->
-    <input class="mat-display-3 bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1"
-      type="text" placeholder="Titre"
-      formControlName="title">
+    <mat-form-field class="w-full">
+      <input matInput
+        class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1 text-4xl"
+        type="text" placeholder="Titre" required formControlName="title">
+    </mat-form-field>
     <!--************* D E S C R I P T I O N  **********************-->
-    <input class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1" type="text"
-      placeholder="Description" 
-      formControlName="description">
+    <mat-form-field class="w-full">
+      <input class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1" type="text"
+        placeholder="Description" formControlName="description" matInput>
+    </mat-form-field>
 
     <!--************* T H E M E   **********************-->
-    <input class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1" type="text"
-      placeholder="Theme" 
-      formControlName="theme">
+    <mat-form-field class="w-full">
+      <input class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1" type="text"
+        placeholder="Theme" formControlName="theme"  matInput>
+    </mat-form-field>
 
     <!--************* S H A R E D   **********************-->
-
-    <mat-checkbox formControlName="isShared" class="px-6"> Partagé</mat-checkbox>
-
+    <div class="w-full">
+      <mat-checkbox  formControlName="isShared" class="px-6">Partagé</mat-checkbox>
+    </div>
 
     <!--************* B O U T O N   S U B M I T  **********************-->
+    <div  class="w-full">
+    <button  mat-raised-button color="primary" (click)="saveQuiz()" [disabled]="!createQuizForm.valid">
+      <span *ngIf="!isCreated">Créer le quiz</span>
+      <span *ngIf="isCreated">Enregistrer</span>
+    </button>
+  </div>
 
-      <button
-        class="shadow-lg pt-3 pb-3 w-full text-white bg-indigo-500 hover:bg-indigo-400 rounded-full cursor-pointer "
-        (click)="onCreate()">
-        Créer le quiz
+    <div class="w-full">
+      <button  mat-button *ngIf="isCreated" (click)="openDialog()">
+        <mat-icon>add</mat-icon>Question
       </button>
-
+    </div>
   </form>
 </div>
+
+<app-question-form [question_type]="currentQuestionType"></app-question-form>
 
 <!-- TODO: To Scaffold Quiz Add Form-->

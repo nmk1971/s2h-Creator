@@ -1,1 +1,31 @@
+<form [formGroup]="QCUQuestionForm" class="w-full p-5 m-5">
+    <mat-form-field class="w-full">
+        <input class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1" type="text"
+            placeholder="Texte de la question" formControlName="questionText" matInput>
+    </mat-form-field>
+</form>
 
+
+<ol>
+    <li *ngFor="let response of qcuResponseList; let i=index">
+        <mat-form-field class="w-full">
+            <input class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1"
+                type="text" placeholder="Texte de la Réponse" name="qcuResponseList[i].label"
+                [(ngModel)]="qcuResponseList[i].label" matInput>
+
+            <mat-radio-button [checked]="response.isValid" (change)='radioChecked(i)'></mat-radio-button>
+        </mat-form-field>
+
+        <mat-icon (click)="display(response)">edit</mat-icon>
+
+
+
+    </li>
+
+</ol>
+<pre>
+    <code>
+    {{qcuResponseList | json}}
+</code>
+</pre>
+<mat-icon (click)="addResponse()">add</mat-icon>

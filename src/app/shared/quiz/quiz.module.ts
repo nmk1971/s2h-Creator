@@ -17,11 +17,20 @@ import { InputQuestionFormComponent } from './input-question-form/input-question
 import { OrderingQuestionFormComponent } from './ordering-question-form/ordering-question-form.component';
 import { QuestionFormComponent } from './question-form/question-form.component';
 import { QuestionListComponent } from './question-list/question-list.component';
+import { ChoixTypeQuestionComponent } from './choix-type-question/choix-type-question.component';
 
 
 
 @NgModule({
-  declarations: [AddQuizComponent,QuizListComponent, QcmQuestionFormComponent, QcuQuestionFormComponent, InputQuestionFormComponent, OrderingQuestionFormComponent, QuestionFormComponent, QuestionListComponent],
+  declarations: [AddQuizComponent,
+    QuizListComponent,
+    QcmQuestionFormComponent,
+    QcuQuestionFormComponent,
+    InputQuestionFormComponent,
+    OrderingQuestionFormComponent,
+    QuestionFormComponent,
+    QuestionListComponent,
+    ChoixTypeQuestionComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -32,7 +41,7 @@ import { QuestionListComponent } from './question-list/question-list.component';
     MatPaginatorModule,
     MatSortModule,
     MaterialFileInputModule
-   ],
-  exports:[AddQuizComponent,QuizListComponent]
+  ],
+  exports: [AddQuizComponent, QuizListComponent]
 })
 export class QuizModule { }

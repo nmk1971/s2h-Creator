@@ -1,0 +1,28 @@
+
+
+<h1 mat-dialog-title class="flex text-center">Veillez Choisir le type de votre question</h1>
+<hr>
+<mat-dialog-content >
+<mat-form-field appearance="fill">
+  <mat-label>Type de Question</mat-label>
+  <mat-select [(ngModel)]="question_type" name="question_type">
+    <mat-option *ngFor="let question_type of qtypes" [value]="question_type">
+      {{question_type}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions class="flex flex-row justify-between py-5">
+    <div class="flex items-center">
+        <button mat-raised-button color="primary" (click)="confirm()">
+            Yes
+        </button>
+    </div>
+    <div class="flex items-center">
+        <button mat-raised-button mat-dialog-close color="warn"   (click)="cancel()">
+            No
+        </button>
+    </div>
+
+</mat-dialog-actions>

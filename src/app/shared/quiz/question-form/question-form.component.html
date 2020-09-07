@@ -1,7 +1,8 @@
-<div [ngSwitch]="question.question_type">
-    <app-qcu-question-form *ngSwitchCase="QCU"></app-qcu-question-form>
-    <app-qcm-question-form *ngSwitchCase="QCM"></app-qcm-question-form>
-    <app-input-question-form *ngSwitchCase="INPUT"></app-input-question-form>
-    <app-ordering-question-form *ngSwitchCase="ORDERING"></app-ordering-question-form>
+
+<div [ngSwitch]="question_type">
+    <app-qcu-question-form *ngSwitchCase="'QCU'"></app-qcu-question-form>
+    <app-qcm-question-form *ngSwitchCase="'QCM'"></app-qcm-question-form>
+    <app-input-question-form *ngSwitchCase="'INPUT'"></app-input-question-form>
+    <app-ordering-question-form *ngSwitchCase="'ORDERING'"></app-ordering-question-form>
 
 </div>
