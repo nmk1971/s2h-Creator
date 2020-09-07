@@ -11,11 +11,17 @@ import { CommonModule } from '@angular/common';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { QcmQuestionFormComponent } from './qcm-question-form/qcm-question-form.component';
+import { QcuQuestionFormComponent } from './qcu-question-form/qcu-question-form.component';
+import { InputQuestionFormComponent } from './input-question-form/input-question-form.component';
+import { OrderingQuestionFormComponent } from './ordering-question-form/ordering-question-form.component';
+import { QuestionFormComponent } from './question-form/question-form.component';
+import { QuestionListComponent } from './question-list/question-list.component';
 
 
 
 @NgModule({
-  declarations: [AddQuizComponent,QuizListComponent],
+  declarations: [AddQuizComponent,QuizListComponent, QcmQuestionFormComponent, QcuQuestionFormComponent, InputQuestionFormComponent, OrderingQuestionFormComponent, QuestionFormComponent, QuestionListComponent],
   imports: [
     CommonModule,
     RouterModule,
