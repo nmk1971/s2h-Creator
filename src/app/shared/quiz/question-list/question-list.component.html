@@ -1,1 +1,12 @@
-<p>question-list works!</p>
+<div class="w-full">
+    <h1 class="text-center">Liste des Questions <span class="text-blue-800">{{(questions$ | async).length}}</span></h1>
+    <ul class="w-full px-4 mx-2 flex flex-col">
+        <li class="bg-gray-200 text-gray-800 justify-between flex  w-full justify-rounded"
+            *ngFor="let question of questions$ | async">
+            <span class="text-gray-800 mat-display-1"> {{question.questionText}}</span>
+            <span class="text-red-700 mat-display-1"> {{question.question_type}}</span>
+            <button mat-button (click)="deleteQuestion()"><mat-icon class="icon-button" color="warn">delete</mat-icon></button>
+            <button mat-button (click)="updateQuestion()"><mat-icon class="icon-button" color="primary">edit</mat-icon></button>
+        </li>
+    </ul>
+</div>

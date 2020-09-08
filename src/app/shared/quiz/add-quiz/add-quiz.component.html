@@ -1,45 +1,56 @@
-<div class="shadow-lg sm:flex w-full bg-white p-8 mx-2">
+<div class="flex flex-col mx-auto">
+   <div class="flex flex-row">
   <!--************* F O R M U L A I R E **********************-->
-  <form [formGroup]="createQuizForm" class="w-full p-5 m-5">
-    <!--************* T I T R E  **********************-->
-    <mat-form-field class="w-full">
-      <input matInput
-        class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1 text-4xl"
-        type="text" placeholder="Titre" required formControlName="title">
-    </mat-form-field>
-    <!--************* D E S C R I P T I O N  **********************-->
-    <mat-form-field class="w-full">
-      <input class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1" type="text"
-        placeholder="Description" formControlName="description" matInput>
-    </mat-form-field>
+  <div class="shadow-lg sm:flex sm:w-full bg-white p-8 mx-2 w-1/2">
 
-    <!--************* T H E M E   **********************-->
-    <mat-form-field class="w-full">
-      <input class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1" type="text"
-        placeholder="Theme" formControlName="theme"  matInput>
-    </mat-form-field>
+    <form [formGroup]="createQuizForm" class="w-full p-5 m-5">
+      <!--************* T I T R E  **********************-->
+      <mat-form-field class="w-full">
+        <input matInput
+          class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1 text-4xl"
+          type="text" placeholder="Titre" required formControlName="title">
+      </mat-form-field>
+      <!--************* D E S C R I P T I O N  **********************-->
+      <mat-form-field class="w-full">
+        <input class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1" type="text"
+          placeholder="Description" formControlName="description" matInput>
+      </mat-form-field>
 
-    <!--************* S H A R E D   **********************-->
-    <div class="w-full">
-      <mat-checkbox  formControlName="isShared" class="px-6">Partagé</mat-checkbox>
-    </div>
+      <!--************* T H E M E   **********************-->
+      <mat-form-field class="w-full">
+        <input class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1" type="text"
+          placeholder="Theme" formControlName="theme" matInput>
+      </mat-form-field>
 
-    <!--************* B O U T O N   S U B M I T  **********************-->
-    <div  class="w-full">
-    <button  mat-raised-button color="primary" (click)="saveQuiz()" [disabled]="!createQuizForm.valid">
-      <span *ngIf="!isCreated">Créer le quiz</span>
-      <span *ngIf="isCreated">Enregistrer</span>
-    </button>
+      <!--************* S H A R E D   **********************-->
+      <div class="w-full">
+        <mat-checkbox formControlName="isShared" class="px-6">Partagé</mat-checkbox>
+      </div>
+
+      <!--************* B O U T O N   S U B M I T  **********************-->
+      <div class="w-full">
+        <button mat-raised-button color="primary" (click)="saveQuiz()" [disabled]="!createQuizForm.valid">
+          <span *ngIf="!isCreated">Créer le quiz</span>
+          <span *ngIf="isCreated">Enregistrer</span>
+        </button>
+      </div>
+
+      <div class="w-full">
+        <button mat-button *ngIf="isCreated" (click)="openDialog()">
+          <mat-icon>add</mat-icon>Question
+        </button>
+      </div>
+    </form>
   </div>
 
-    <div class="w-full">
-      <button  mat-button *ngIf="isCreated" (click)="openDialog()">
-        <mat-icon>add</mat-icon>Question
-      </button>
-    </div>
-  </form>
+  <div class="shadow-lg sm:flex sm:w-full bg-white p-8 mx-2 w-1/2">
+      <app-question-list class="w-full"></app-question-list>
+  </div>
+</div>
+<div>
+  <app-question-form [quizId]="currentQuiz?._id" [question_type]="currentQuestionType"></app-question-form>
 </div>
 
-<app-question-form [question_type]="currentQuestionType"></app-question-form>
+</div>
 
 <!-- TODO: To Scaffold Quiz Add Form-->

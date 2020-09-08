@@ -1,3 +1,5 @@
+import { QuestionService } from './../shared/quiz/question.service';
+import { QuizService } from './../shared/quiz/quiz.service';
 import { UserModule } from './../shared/user/user.module';
 import { QuizModule } from './../shared/quiz/quiz.module';
 import { MaterialModule } from './../shared/material/material.module';
@@ -45,6 +47,6 @@ import { CreatorLandPageComponent } from './creator-land-page/creator-land-page.
     ReposPageComponent,
     SupportPageComponent,
     SideBarComponent
-  ],
+  ]
 })
 export class CreatorModule { }

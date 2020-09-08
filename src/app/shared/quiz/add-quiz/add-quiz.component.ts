@@ -1,3 +1,4 @@
+import { QuestionService } from './../question.service';
 import { IApiResponse } from './../../helpers/api-response.model';
 import { IQuiz } from './../quiz.model';
 import { ChoixTypeQuestionComponent } from '../choix-type-question/choix-type-question.component';
@@ -9,7 +10,6 @@ import { Component, OnInit, OnChanges, SimpleChanges, OnDestroy } from '@angular
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IApiResponse } from '../../helpers/api-response.model';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -35,7 +35,8 @@ export class AddQuizComponent implements OnInit, OnChanges, OnDestroy {
     private snackBar: MatSnackBar,
     private authenticationService: AuthenticationService,
     public dialog: MatDialog,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private questionService:QuestionService
   ) {
     this.createQuizForm = this.fb.group({
       title: [''],
@@ -64,6 +65,11 @@ export class AddQuizComponent implements OnInit, OnChanges, OnDestroy {
         isShared: [data.isSahred]
       });
       this.isCreated=true;
+      this.currentQuiz=data;
+      console.log('data  :',data);
+      console.log('currentQuiz  :',this.currentQuiz);
+      this.questionService.loadQuestions(data.questions);
+
     };
     
   }

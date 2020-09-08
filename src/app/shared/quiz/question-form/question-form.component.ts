@@ -7,6 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class QuestionFormComponent implements OnInit {
   @Input() question_type;
+  @Input() quizId;
  
   constructor() { }
 
