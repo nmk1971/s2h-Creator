@@ -108,8 +108,8 @@ export class AddQuizComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-    this.userSubscription.unsubscribe();
-    this.updateSubscription.unsubscribe();
+    if (this.subscription) this.subscription.unsubscribe();
+    if (this.userSubscription) this.userSubscription.unsubscribe();
+    if (this.updateSubscription) this.updateSubscription.unsubscribe();
   }
 }
