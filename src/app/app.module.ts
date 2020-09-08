@@ -1,3 +1,4 @@
+import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confirmation-dialog.component';
 import { ErrorInterceptor } from './shared/helpers/error.interceptor';
 import { JwtInterceptor } from './shared/helpers/jwt.intercepror';
 import { GuestModule } from './guest/guest.module';
@@ -33,7 +34,7 @@ export class MonthAsLabelPipe implements PipeTransform{
 */
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,

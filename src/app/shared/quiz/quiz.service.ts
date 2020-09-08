@@ -16,7 +16,7 @@ export class QuizService {
       return this.httpClient.post(`${environment.apiUrl}/api/v1/quizzes/add`,quiz) as Observable<IApiResponse>;
   }
 
-  deleteQuiz(id){
+  deleteQuiz(id):Observable<IApiResponse>{
     return this.httpClient.delete(`${environment.apiUrl}/api/v1/quizzes/delete/${id}`) as Observable<IApiResponse>;;
   }
 
