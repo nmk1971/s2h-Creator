@@ -1,3 +1,4 @@
+import { QuizResolver } from './../shared/quiz/quiz-resolver';
 import { CreatorLandPageComponent } from './creator-land-page/creator-land-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { AboutComponent } from '../guest/about/about.component'
@@ -16,7 +17,13 @@ export const routes: Routes = [
       { path: 'home', component:HomePageComponent },
       { path: 'quiz', component: ReposPageComponent },
       { path: 'quiz/add', component: AddQuizComponent },
-      { path: 'quiz/update/:id', component: AddQuizComponent },
+      { 
+        path: 'quiz/update/:id', 
+      component: AddQuizComponent,
+      resolve: {
+        _quiz:QuizResolver
+      }
+    },
       { path: 'about', component: AboutComponent },
       { path: 'support', component: SupportPageComponent },
       { path: 'settings', component: SettingsComponent },

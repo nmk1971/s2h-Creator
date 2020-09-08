@@ -52,7 +52,7 @@ export class QuizListComponent implements OnInit, OnChanges, OnDestroy {
   delete(id) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '450px',
-      data: "Remove this Quiz?"
+      data: "Supprimer le Quiz?"+"\n"
     });
 
     dialogRef.afterClosed().subscribe(result => {

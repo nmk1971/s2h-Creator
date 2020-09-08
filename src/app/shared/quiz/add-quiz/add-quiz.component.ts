@@ -1,3 +1,4 @@
+import { IApiResponse } from './../../helpers/api-response.model';
 import { IQuiz } from './../quiz.model';
 import { ChoixTypeQuestionComponent } from '../choix-type-question/choix-type-question.component';
 import { IUser } from './../../user/user.model';
@@ -25,6 +26,7 @@ export class AddQuizComponent implements OnInit, OnChanges, OnDestroy {
   public currentQuestionType: String;
   public isCreated: boolean=false;
   public currentQuiz:IQuiz;
+  
 
   constructor(
     private router: Router,
@@ -32,7 +34,8 @@ export class AddQuizComponent implements OnInit, OnChanges, OnDestroy {
     private quizService: QuizService,
     private snackBar: MatSnackBar,
     private authenticationService: AuthenticationService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private route:ActivatedRoute
   ) {
     this.createQuizForm = this.fb.group({
       title: [''],
@@ -50,6 +53,19 @@ export class AddQuizComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit(): void {
     this.userSubscription = this.authenticationService.currentUser.subscribe(data => this.currentUser = data);
+   
+    //when navigated from update route
+    let data=this.route.snapshot.data?._quiz?.payload as IQuiz;
+    if(data){
+      this.createQuizForm = this.fb.group({
+        title: [data.title],
+        description: [data.description],
+        theme: [data.theme],
+        isShared: [data.isSahred]
+      });
+      this.isCreated=true;
+    };
+    
   }
 
   createQuiz() {

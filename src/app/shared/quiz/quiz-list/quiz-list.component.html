@@ -52,7 +52,7 @@
                 <th mat-header-cell *matHeaderCellDef> Actions </th>
                 <td mat-cell *matCellDef="let q">
                    <button mat-button (click)="delete(q?._id)"><mat-icon class="icon-button" color="warn">delete</mat-icon></button>
-                   <button mat-button [routerLink]="['/creator/quiz/update',q.id]"><mat-icon class="icon-button" color="primary">edit</mat-icon></button>
+                   <button mat-button [routerLink]="['/creator/quiz/update',q._id]"><mat-icon class="icon-button" color="primary">edit</mat-icon></button>
                 </td>
             </ng-container>
     

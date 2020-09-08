@@ -1,6 +1,8 @@
 export interface IQuiz {
     _id?: string;
     title: string;
+    description?:string;
+    theme:string;
     cover: string;
-    status:boolean
+    isSahred:boolean
   }
