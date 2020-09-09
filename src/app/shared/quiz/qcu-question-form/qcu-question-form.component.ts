@@ -4,7 +4,7 @@ import { QuestionService } from './../question.service';
 import { IQuestion } from './../quiz-list/question.model';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { IQCXResponse } from './../add-quiz/qcu.model';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-qcu-question-form',
@@ -13,11 +13,16 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class QcuQuestionFormComponent implements OnInit {
   @Input() quizId;
+  @Output() onQuestionSave:EventEmitter<any>=new EventEmitter<any>();
+
   public qcuResponseList: IQCXResponse[] = [];
-  public QCUQuestionForm: FormGroup
-  constructor( private fb: FormBuilder,
-               private questionService: QuestionService,
-               private snackBar:MatSnackBar) {
+  public QCUQuestionForm: FormGroup;
+  public oneChecked:boolean=false;
+
+
+  constructor(private fb: FormBuilder,
+    private questionService: QuestionService,
+    private snackBar: MatSnackBar) {
     this.QCUQuestionForm = fb.group({
       questionText: ['']
     })
@@ -29,11 +34,13 @@ export class QcuQuestionFormComponent implements OnInit {
     this.qcuResponseList.push({ label: '', isValid: false });
   }
 
-  display(v) {
-    console.dir(v)
-  }
+
   addResponse() {
     this.qcuResponseList.push({ label: '', isValid: false });
+  }
+
+  deleteResponse(response) {
+    this.qcuResponseList = this.qcuResponseList.filter(r => r !== response);
   }
 
   radioChecked(index) {
@@ -44,6 +51,7 @@ export class QcuQuestionFormComponent implements OnInit {
         this.qcuResponseList[i].isValid = true;
       }
     }
+    this.oneChecked=true;
   }
 
   saveQuestion() {
@@ -56,13 +64,14 @@ export class QcuQuestionFormComponent implements OnInit {
 
     this.questionService.postQuestion(quest).subscribe({
       next: (data: IApiResponse) => {
-            this.snackBar.open(data.message,'x',{duration:3000});
-            this.questionService.addQuestion(data.payload);
+        this.snackBar.open(data.message, 'x', { duration: 3000 });
+        this.questionService.addQuestion(data.payload);
+        this.onQuestionSave.emit('Ok');
       },
-      error:(error:Error)=>{
-        this.snackBar.open(error.message,'x');
+      error: (error: Error) => {
+        this.snackBar.open(error.message, 'x');
       },
-      complete:console.log
+      complete: console.log
     })
 
   }
