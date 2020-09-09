@@ -18,6 +18,10 @@ export class QuestionService {
     return this.http.post(`${environment.apiUrl}/api/v1/questions/add`,question) as Observable<IApiResponse>
   }
 
+  public deleteQuestionFromAPI(id:string):Observable<IApiResponse>{
+    return this.http.delete(`${environment.apiUrl}/api/v1/questions/delete/${id}`) as Observable<IApiResponse>
+  }
+
   public loadQuestions(list):void{
         this.questionList=[...list];
         this.currentQuestionList$.next(this.questionList)
@@ -28,8 +32,8 @@ export class QuestionService {
        this.currentQuestionList$.next(this.questionList);
   }
 
-  public deleteQuestion(question:IQuestion):void{
-    this.questionList=this.questionList.filter(q=>q._id !== question._id)
+  public deleteQuestion(id:string):void{
+    this.questionList=this.questionList.filter(q=>q._id !== id)
     this.currentQuestionList$.next(this.questionList);
   }
   public updateQuestion(question:IQuestion):void{
