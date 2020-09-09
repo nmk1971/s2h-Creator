@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { IQuestion } from '../quiz-list/question.model';
 
 @Component({
   selector: 'app-question-form',
@@ -8,6 +9,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class QuestionFormComponent implements OnInit {
   @Input() question_type;
   @Input() quizId;
+  @Input() context:string;
+  @Input() question:IQuestion;
+  
   @Output() onQuestionSave:EventEmitter<any>=new EventEmitter<any>();
  
   constructor() { }

@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { QuestionService } from './../question.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { IQuestion } from '../quiz-list/question.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
@@ -14,6 +14,7 @@ import { IApiResponse } from '../../helpers/api-response.model';
   styleUrls: ['./question-list.component.scss']
 })
 export class QuestionListComponent implements OnInit {
+  @Output() onQuestionUpdateCliqued=new EventEmitter<IQuestion>()
 
   public questions$:Observable<IQuestion[]>;
   constructor(
@@ -27,7 +28,6 @@ export class QuestionListComponent implements OnInit {
   }
 
   deleteQuestion(id){
-        //TODO: to implement delete Question and update behaviorSubject
         const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
           width: '450px',
           data: "Supprimer la Question?"
@@ -51,8 +51,12 @@ export class QuestionListComponent implements OnInit {
         });
 
   }
-  updateQuestion(){
+
+
+  updateQuestion(question:IQuestion){
     //TODO: to implement update Question and update behaviorSubject
+    this.onQuestionUpdateCliqued.next(question);
+
 }
 
 

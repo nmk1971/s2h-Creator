@@ -1,3 +1,4 @@
+import { IQuestion } from './../quiz-list/question.model';
 import { QuestionService } from './../question.service';
 import { IApiResponse } from './../../helpers/api-response.model';
 import { IQuiz } from './../quiz.model';
@@ -26,6 +27,10 @@ export class AddQuizComponent implements OnInit, OnChanges, OnDestroy {
   public currentQuestionType: String;
   public isCreated: boolean=false;
   public currentQuiz:IQuiz;
+  public questionToUpdate:IQuestion;
+
+  public currentQuestion:IQuestion;
+  public context : string='new'; // 'new' Question  'update'
   
 
   constructor(
@@ -127,6 +132,7 @@ export class AddQuizComponent implements OnInit, OnChanges, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
       this.currentQuestionType = result;
     });
+    this.context='new';
   }
 
   ngOnDestroy(): void {
@@ -135,5 +141,11 @@ export class AddQuizComponent implements OnInit, OnChanges, OnDestroy {
     if (this.updateSubscription) this.updateSubscription.unsubscribe();
   }
 
+  updateQuestionContext(question:IQuestion){
+    this.currentQuestionType=question.question_type;
+    this.questionToUpdate=question;
+    this.context='update'
+
+  }
   
 }

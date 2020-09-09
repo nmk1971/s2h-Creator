@@ -13,11 +13,14 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class QcuQuestionFormComponent implements OnInit {
   @Input() quizId;
-  @Output() onQuestionSave:EventEmitter<any>=new EventEmitter<any>();
+  @Input() context;
+  @Input() question:IQuestion;
+
+  @Output() onQuestionSave: EventEmitter<any> = new EventEmitter<any>();
 
   public qcuResponseList: IQCXResponse[] = [];
   public QCUQuestionForm: FormGroup;
-  public oneChecked:boolean=false;
+  public oneChecked: boolean = false;
 
 
   constructor(private fb: FormBuilder,
@@ -30,8 +33,17 @@ export class QcuQuestionFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.qcuResponseList.push({ label: '', isValid: false });
-    this.qcuResponseList.push({ label: '', isValid: false });
+    if (this.context === 'new') {
+      this.qcuResponseList.push({ label: '', isValid: false });
+      this.qcuResponseList.push({ label: '', isValid: false });
+    } else if (this.context === 'update') {
+      this.QCUQuestionForm = this.fb.group({
+        questionText: [this.question.questionText]
+      });
+
+      this.qcuResponseList=[...this.question.qcxResponse];
+
+    }
   }
 
 
@@ -51,10 +63,11 @@ export class QcuQuestionFormComponent implements OnInit {
         this.qcuResponseList[i].isValid = true;
       }
     }
-    this.oneChecked=true;
+    this.oneChecked = true;
   }
 
-  saveQuestion() {
+
+  createQuestion() {
     let quest: IQuestion = {
       quizId: this.quizId,
       questionText: this.QCUQuestionForm.value.questionText,
@@ -75,4 +88,19 @@ export class QcuQuestionFormComponent implements OnInit {
     })
 
   }
+
+
+  updateQuestion() {
+   console.log(this.QCUQuestionForm.value,'\n',this.qcuResponseList)
+  }
+
+  saveQuestion() {
+    if (this.context === 'new') {
+      this.createQuestion();
+    } else if (this.context === 'update') {
+      this.updateQuestion();
+    }
+  }
 }
+
+

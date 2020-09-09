@@ -44,12 +44,18 @@
     </div>
 
     <div class="shadow-lg sm:flex sm:w-full bg-white p-8 mx-2 w-1/2">
-      <app-question-list class="w-full"></app-question-list>
+      <app-question-list (onQuestionUpdateCliqued)="updateQuestionContext($event)" class="w-full"></app-question-list>
     </div>
   </div>
   <div class="flex w-full justify-center py-4 px-2 bg-gray-200 m-3">
   <div class="w-3/4">
-    <app-question-form (onQuestionSave)="currentQuestionType=''" [quizId]="currentQuiz?._id" [question_type]="currentQuestionType"></app-question-form>
+    <app-question-form 
+      (onQuestionSave)="currentQuestionType=''" 
+      [quizId]="currentQuiz?._id" 
+      [question_type]="currentQuestionType"
+      [context]="context"
+      [question]="questionToUpdate">
+    </app-question-form>
   </div>
 </div>
 </div>
