@@ -46,12 +46,13 @@ export class QcuQuestionFormComponent implements OnInit,OnChanges {
   }
 
   ngOnChanges(){
-    console.log(`%c ${JSON.stringify(this.question)} `, 'background: tomato; color: white')
+ //   console.log(`%c ${JSON.stringify(this.question)} `, 'background: tomato; color: white')
     if (this.context === 'update') {
       this.QCUQuestionForm = this.fb.group({
         questionText: [this.question.questionText]
       });
       this.qcuResponseList = [...this.question.qcxResponse];
+      this.oneChecked=true;
     }
   }
 

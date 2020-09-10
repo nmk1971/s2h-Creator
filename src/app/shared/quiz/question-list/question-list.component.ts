@@ -55,7 +55,6 @@ export class QuestionListComponent implements OnInit {
 
 
   updateQuestion(question:IQuestion){
-    //TODO: to implement update Question and update behaviorSubject
     this.onQuestionUpdateCliqued.next(question);
 
 
