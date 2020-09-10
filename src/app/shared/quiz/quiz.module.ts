@@ -18,6 +18,7 @@ import { OrderingQuestionFormComponent } from './ordering-question-form/ordering
 import { QuestionFormComponent } from './question-form/question-form.component';
 import { QuestionListComponent } from './question-list/question-list.component';
 import { ChoixTypeQuestionComponent } from './choix-type-question/choix-type-question.component';
+import { QuestionListPipe } from './question-list.pipe';
 
 
 
@@ -30,7 +31,8 @@ import { ChoixTypeQuestionComponent } from './choix-type-question/choix-type-que
     OrderingQuestionFormComponent,
     QuestionFormComponent,
     QuestionListComponent,
-    ChoixTypeQuestionComponent],
+    ChoixTypeQuestionComponent,
+    QuestionListPipe],
   imports: [
     CommonModule,
     RouterModule,

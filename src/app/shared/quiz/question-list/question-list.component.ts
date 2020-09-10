@@ -14,7 +14,8 @@ import { IApiResponse } from '../../helpers/api-response.model';
   styleUrls: ['./question-list.component.scss']
 })
 export class QuestionListComponent implements OnInit {
-  @Output() onQuestionUpdateCliqued=new EventEmitter<IQuestion>()
+  @Output() onQuestionUpdateCliqued=new EventEmitter<IQuestion>();
+  public searchText:string='';
 
   public questions$:Observable<IQuestion[]>;
   constructor(
