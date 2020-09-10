@@ -4,17 +4,17 @@ import { QuestionService } from './../question.service';
 import { IQuestion } from './../quiz-list/question.model';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { IQCXResponse } from './../add-quiz/qcu.model';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-qcu-question-form',
   templateUrl: './qcu-question-form.component.html',
   styleUrls: ['./qcu-question-form.component.scss']
 })
-export class QcuQuestionFormComponent implements OnInit {
+export class QcuQuestionFormComponent implements OnInit,OnChanges {
   @Input() quizId;
   @Input() context;
-  @Input() question:IQuestion;
+  @Input() question: IQuestion;
 
   @Output() onQuestionSave: EventEmitter<any> = new EventEmitter<any>();
 
@@ -40,9 +40,18 @@ export class QcuQuestionFormComponent implements OnInit {
       this.QCUQuestionForm = this.fb.group({
         questionText: [this.question.questionText]
       });
+      this.qcuResponseList = [...this.question.qcxResponse];
 
-      this.qcuResponseList=[...this.question.qcxResponse];
+    }
+  }
 
+  ngOnChanges(){
+    console.log(`%c ${JSON.stringify(this.question)} `, 'background: tomato; color: white')
+    if (this.context === 'update') {
+      this.QCUQuestionForm = this.fb.group({
+        questionText: [this.question.questionText]
+      });
+      this.qcuResponseList = [...this.question.qcxResponse];
     }
   }
 
@@ -66,7 +75,7 @@ export class QcuQuestionFormComponent implements OnInit {
     this.oneChecked = true;
   }
 
-
+// save to api
   createQuestion() {
     let quest: IQuestion = {
       quizId: this.quizId,
@@ -89,9 +98,27 @@ export class QcuQuestionFormComponent implements OnInit {
 
   }
 
-
+// update to api
   updateQuestion() {
-   console.log(this.QCUQuestionForm.value,'\n',this.qcuResponseList)
+    let quest: IQuestion = {
+      _id: this.question._id,
+      quizId: this.quizId,
+      questionText: this.QCUQuestionForm.value.questionText,
+      question_type: 'QCU',
+      qcxResponse: this.qcuResponseList
+    }
+
+    this.questionService.updateQuestionInAPI(this.question._id, quest).subscribe({
+      next: (data: IApiResponse) => {
+        this.snackBar.open(data.message, 'x', { duration: 3000 });
+        this.questionService.updateQuestion(quest);
+        this.onQuestionSave.emit('Ok');
+      },
+      error: (error: Error) => {
+        this.snackBar.open(error.message, 'x');
+      },
+      complete: console.log
+    })
   }
 
   saveQuestion() {

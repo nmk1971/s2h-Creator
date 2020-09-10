@@ -23,15 +23,15 @@ export class AddQuizComponent implements OnInit, OnChanges, OnDestroy {
   public createQuizForm: FormGroup;
   private subscription: Subscription;
   private userSubscription: Subscription;
-  private updateSubscription:Subscription;
+  private updateSubscription: Subscription;
   public currentQuestionType: String;
-  public isCreated: boolean=false;
-  public currentQuiz:IQuiz;
-  public questionToUpdate:IQuestion;
+  public isCreated: boolean = false;
+  public currentQuiz: IQuiz;
+  public questionToUpdate: IQuestion;
 
-  public currentQuestion:IQuestion;
-  public context : string='new'; // 'new' Question  'update'
-  
+  public currentQuestion: IQuestion;
+  public context: string = 'new'; // 'new' Question  'update'
+
 
   constructor(
     private router: Router,
@@ -40,8 +40,8 @@ export class AddQuizComponent implements OnInit, OnChanges, OnDestroy {
     private snackBar: MatSnackBar,
     private authenticationService: AuthenticationService,
     public dialog: MatDialog,
-    private route:ActivatedRoute,
-    private questionService:QuestionService
+    private route: ActivatedRoute,
+    private questionService: QuestionService
   ) {
     this.createQuizForm = this.fb.group({
       title: [''],
@@ -49,7 +49,7 @@ export class AddQuizComponent implements OnInit, OnChanges, OnDestroy {
       theme: [''],
       isShared: [false]
     });
-   
+
   }
 
 
@@ -59,24 +59,24 @@ export class AddQuizComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit(): void {
     this.userSubscription = this.authenticationService.currentUser.subscribe(data => this.currentUser = data);
-   
+
     //when navigated from update route
-    let data=this.route.snapshot.data?._quiz?.payload as IQuiz;
-    if(data){
+    let data = this.route.snapshot.data?._quiz?.payload as IQuiz;
+    if (data) {
       this.createQuizForm = this.fb.group({
         title: [data.title],
         description: [data.description],
         theme: [data.theme],
         isShared: [data.isSahred]
       });
-      this.isCreated=true;
-      this.currentQuiz=data;
-      console.log('data  :',data);
-      console.log('currentQuiz  :',this.currentQuiz);
+      this.isCreated = true;
+      this.currentQuiz = data;
       this.questionService.loadQuestions(data.questions);
 
-    };
-    
+    } else {
+      
+      this.questionService.loadQuestions([]);
+    }
   }
 
   createQuiz() {
@@ -88,8 +88,8 @@ export class AddQuizComponent implements OnInit, OnChanges, OnDestroy {
       next: (response: IApiResponse) => {
         if (response.status == "success") {
           this.snackBar.open(response.status + '\n' + response.message, 'X', { duration: 4000 });
-          this.currentQuiz=response.payload;
-          this.isCreated=true;
+          this.currentQuiz = response.payload;
+          this.isCreated = true;
         } else {
           this.snackBar.open(response.status + '\n' + response.message, 'X');
         }
@@ -111,18 +111,18 @@ export class AddQuizComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   updateQuiz() {
-    this.updateSubscription=this.quizService.updateQuiz(this.currentQuiz._id,this.createQuizForm.value).subscribe({
-        next: (response: IApiResponse) => {
-            this.snackBar.open(response.status + '\n' + response.message, 'X', { duration: 4000 });
-        },
-        error: (error) => {
-          this.snackBar.open(error, 'close');
-        },
-        complete: console.log
-      }
+    this.updateSubscription = this.quizService.updateQuiz(this.currentQuiz._id, this.createQuizForm.value).subscribe({
+      next: (response: IApiResponse) => {
+        this.snackBar.open(response.status + '\n' + response.message, 'X', { duration: 4000 });
+      },
+      error: (error) => {
+        this.snackBar.open(error, 'close');
+      },
+      complete: console.log
+    }
     )
   }
-  
+
   openDialog(): void {
     const dialogRef = this.dialog.open(ChoixTypeQuestionComponent, {
       width: '250px',
@@ -132,7 +132,7 @@ export class AddQuizComponent implements OnInit, OnChanges, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
       this.currentQuestionType = result;
     });
-    this.context='new';
+    this.context = 'new';
   }
 
   ngOnDestroy(): void {
@@ -141,11 +141,11 @@ export class AddQuizComponent implements OnInit, OnChanges, OnDestroy {
     if (this.updateSubscription) this.updateSubscription.unsubscribe();
   }
 
-  updateQuestionContext(question:IQuestion){
-    this.currentQuestionType=question.question_type;
-    this.questionToUpdate=question;
-    this.context='update'
+  updateQuestionContext(question: IQuestion) {
+    this.currentQuestionType = question.question_type;
+    this.questionToUpdate = { ...question };
+    this.context = 'update'
 
   }
-  
+
 }
