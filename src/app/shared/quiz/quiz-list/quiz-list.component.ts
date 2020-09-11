@@ -33,13 +33,13 @@ export class QuizListComponent implements OnInit, OnChanges, OnDestroy {
   public quiz: IQuiz[];
   constructor(
     private quizService: QuizService,
-    private shnackBar: MatSnackBar,
+    private snackBar: MatSnackBar,
     public dialog: MatDialog) {
 
   }
 
   ngOnInit(): void {
-    this.getAllQuizzes();
+    this.getCreatorQuizzes();
   }
 
 
@@ -59,11 +59,11 @@ export class QuizListComponent implements OnInit, OnChanges, OnDestroy {
       if (result) {
         this.quizService.deleteQuiz(id).subscribe({
           next: (response: IApiResponse) => {
-            this.shnackBar.open(response.message, 'X', { duration: 3000 });
-            this.getAllQuizzes();
+            this.snackBar.open(response.message, 'X', { duration: 3000 });
+            this.getCreatorQuizzes();
           },
           error: (error) => {
-            this.shnackBar.open(error.message, 'X');
+            this.snackBar.open(error.message, 'X');
           },
           complete: console.log
         });
@@ -88,8 +88,8 @@ export class QuizListComponent implements OnInit, OnChanges, OnDestroy {
   }
 
 
-  getAllQuizzes() {
-    this.subscription = this.quizService.getAllQuizzes().subscribe({
+  getCreatorQuizzes() {
+    this.subscription = this.quizService.getQuizzesByCreator(JSON.parse(localStorage.getItem('currentUser'))._id).subscribe({
       next: (data: IApiResponse) => {
         this.isLoadingResults = true;
         this.quiz = data.payload;
@@ -97,10 +97,10 @@ export class QuizListComponent implements OnInit, OnChanges, OnDestroy {
         this.resultsLength = this.quiz?.length;
         this.datasource.paginator = this.paginator;
         this.datasource.sort = this.sort;
-        this.shnackBar.open(data.message, 'X', { duration: 3000 });
+        this.snackBar.open(data.message, 'X', { duration: 3000 });
       },
       error: (error: Error) => {
-        this.shnackBar.open(error.message, 'X');
+        this.snackBar.open(error.message, 'X');
       },
       complete: () => {
         this.isLoadingResults = false;

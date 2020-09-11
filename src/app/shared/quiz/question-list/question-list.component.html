@@ -22,10 +22,12 @@
 
 
 
-    <ol class="w-full px-4 mx-2 flex flex-col">
+    <ol class="w-full px-4 mx-2 flex flex-col overflow-y-scroll h-48">
         <li class="bg-gray-200 text-gray-800 justify-between flex  w-full"
-            *ngFor="let question of (questions$ | async) | questionListFilter:searchText">
+            *ngFor="let question of (questions$ | async) | questionListFilter:searchText;let i=index;">
+           
             <span class="py-2 inline-block align-middle">
+                <span class="text-bold px-2  inline-block align-middle"> {{i+1}}</span>
                 {{question.questionText}}
             </span>
             <span class="align-middle">

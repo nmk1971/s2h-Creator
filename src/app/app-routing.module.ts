@@ -7,7 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AboutComponent } from './guest/about/about.component';
 import { ContactComponent } from './guest/contact/contact.component';
 import { LoginComponent } from './shared/user/login/login.component';
-import {AuthGuard} from './guard/auth.guard';
+import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
   {
