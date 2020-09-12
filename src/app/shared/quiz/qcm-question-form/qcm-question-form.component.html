@@ -1,1 +1,64 @@
-<p>qcm-question-form works!</p>
+<mat-card>
+    <mat-card-header>
+      
+        <mat-card-title>
+            QUESTION            
+        </mat-card-title>
+        <mat-card-subtitle class="w-1/2">  
+            :)
+        </mat-card-subtitle>
+    </mat-card-header>
+        <mat-card-content class="w-full">
+            <!-- THE QUESTION FORM-->
+
+            <form [formGroup]="QCMQuestionForm" class="w-full p-5 m-5">
+                <mat-form-field class="w-full">
+                  
+                    <input class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1"
+                        type="text" placeholder="Texte de la question" formControlName="questionText" matInput>
+                
+                    </mat-form-field>
+                    
+            </form>
+
+            <ol>
+                <li *ngFor="let response of qcmResponseList; let i=index">
+                    <div class="flex w-full">
+                        <div class="flex  m-2 align-center">
+                            <mat-checkbox [(ngModel)]="response.isValid">
+                            </mat-checkbox>
+                        </div>
+                        <div class="flex-grow  px-4 py-2 m-2">
+                            <mat-form-field class="w-full">
+
+
+                                <input matInput
+                                    class="w-full bg-transparent border-b m-auto block border-gray-500 mb-6 text-gray-700 p-1"
+                                    type="text" placeholder="Texte de la Réponse" name="qcmResponseList[i].label"
+                                    [(ngModel)]="qcmResponseList[i].label">
+
+                            </mat-form-field>
+                        </div>
+                        <div class="flex-none text-center px-4 py-2 m-2">
+                            <mat-icon  color="warn" (click)="deleteResponse(response)">delete</mat-icon>
+                        </div>
+
+                    </div>
+                </li>
+
+            </ol>
+           <pre>
+    <code>
+        {{context}}
+    {{qcmResponseList | json}}
+</code>
+</pre>
+
+
+            <mat-icon (click)="addResponse()">add</mat-icon>
+        </mat-card-content>
+
+    <mat-dialog-actions>
+        <button *ngIf="QCMQuestionForm.value.questionText!=''" mat-raised-button color="primary" (click)="saveQuestion()">Enregistrer</button>
+    </mat-dialog-actions>
+</mat-card>

@@ -42,7 +42,6 @@ export class QuizListComponent implements OnInit, OnChanges, OnDestroy {
     this.getCreatorQuizzes();
   }
 
-
   ngOnChanges() {
     this.datasource = new MatTableDataSource(this.quiz);
     this.datasource.paginator = this.paginator;

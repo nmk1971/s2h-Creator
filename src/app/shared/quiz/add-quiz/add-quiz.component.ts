@@ -132,6 +132,7 @@ export class AddQuizComponent implements OnInit, OnChanges, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
       this.currentQuestionType = result;
     });
+    
     this.context = 'new';
   }
 
