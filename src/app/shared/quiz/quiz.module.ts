@@ -19,6 +19,7 @@ import { QuestionFormComponent } from './question-form/question-form.component';
 import { QuestionListComponent } from './question-list/question-list.component';
 import { ChoixTypeQuestionComponent } from './choix-type-question/choix-type-question.component';
 import { QuestionListPipe } from './question-list.pipe';
+import { SharedQuizzesComponent } from './shared-quizzes/shared-quizzes.component';
 
 
 
@@ -32,7 +33,8 @@ import { QuestionListPipe } from './question-list.pipe';
     QuestionFormComponent,
     QuestionListComponent,
     ChoixTypeQuestionComponent,
-    QuestionListPipe],
+    QuestionListPipe,
+    SharedQuizzesComponent],
   imports: [
     CommonModule,
     RouterModule,

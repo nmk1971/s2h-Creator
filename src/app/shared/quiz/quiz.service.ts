@@ -10,36 +10,37 @@ import { environment } from 'src/environments/environment';
 })
 export class QuizService {
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
-  postQuiz(quiz:IQuiz):Observable<IApiResponse>{
-      return this.httpClient.post(`${environment.apiUrl}/api/v1/quizzes/add`,quiz) as Observable<IApiResponse>;
+  postQuiz(quiz: IQuiz): Observable<IApiResponse> {
+    return this.httpClient.post(`${environment.apiUrl}/api/v1/quizzes/add`, quiz) as Observable<IApiResponse>;
   }
 
-  deleteQuiz(id):Observable<IApiResponse>{
+  deleteQuiz(id): Observable<IApiResponse> {
     return this.httpClient.delete(`${environment.apiUrl}/api/v1/quizzes/delete/${id}`) as Observable<IApiResponse>;;
   }
 
 
 
-  updateQuiz(id,quiz):Observable<IApiResponse>{
-     let _quiz={...quiz};
-    return this.httpClient.put(`${environment.apiUrl}/api/v1/quizzes/update/${id}`,_quiz) as Observable<IApiResponse>;
+  updateQuiz(id, quiz): Observable<IApiResponse> {
+    let _quiz = { ...quiz };
+    return this.httpClient.put(`${environment.apiUrl}/api/v1/quizzes/update/${id}`, _quiz) as Observable<IApiResponse>;
   }
 
-  getAllQuizzes(){
+
+  getQuizById(id) {
+    return this.httpClient.get(`${environment.apiUrl}/api/v1/quizzes/${id}`) as Observable<IApiResponse>;
+  }
+  
+  getAllQuizzes() {
     return this.httpClient.get(`${environment.apiUrl}/api/v1/quizzes`) as Observable<IApiResponse>;
   }
 
-  getQuizById(id){
-    return this.httpClient.get(`${environment.apiUrl}/api/v1/quizzes/${id}`) as Observable<IApiResponse>;
+  getSharedQuizzes() {
+    return this.httpClient.get(`${environment.apiUrl}/api/v1/quizzes/shared`) as Observable<IApiResponse>;
   }
 
-  getSharedQuizzes(){
-    return this.httpClient.get(`${environment.apiUrl}/api/v1/quizzes/shared}`) as Observable<IApiResponse>;
-  }
-
-  getQuizzesByCreator(userId){
+  getQuizzesByCreator(userId) {
     return this.httpClient.get(`${environment.apiUrl}/api/v1/quizzes/creator/${userId}`) as Observable<IApiResponse>;
   }
 

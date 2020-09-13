@@ -9,6 +9,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ReposPageComponent } from './repos-page/repos-page.component';
 import { SupportPageComponent } from './support-page/support-page.component';
 import { SettingsComponent } from './settings/settings.component';
+import { SharedQuizzesComponent } from '../shared/quiz/shared-quizzes/shared-quizzes.component';
 
 export const routes: Routes = [
   {
@@ -26,6 +27,7 @@ export const routes: Routes = [
     },
       { path: 'about', component: AboutComponent },
       { path: 'support', component: SupportPageComponent },
+      { path: 'shared', component : SharedQuizzesComponent},
       { path: 'settings', component: SettingsComponent },
       { path: '**', redirectTo: 'home', pathMatch:"full"}
     ]
