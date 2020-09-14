@@ -6,6 +6,6 @@ export interface IQuiz {
     description?:string;
     theme:string;
     cover: string;
-    isSahred:boolean;
+    isShared:boolean;
     questions:IQuestion[] ;
   }

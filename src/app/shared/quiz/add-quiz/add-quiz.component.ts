@@ -67,7 +67,7 @@ export class AddQuizComponent implements OnInit, OnChanges, OnDestroy {
         title: [data.title],
         description: [data.description],
         theme: [data.theme],
-        isShared: [data.isSahred]
+        isShared: [data.isShared]
       });
       this.isCreated = true;
       this.currentQuiz = data;

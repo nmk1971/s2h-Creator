@@ -16,7 +16,7 @@ import { IApiResponse } from '../../helpers/api-response.model';
 })
 export class SharedQuizzesComponent implements OnInit, OnChanges, OnDestroy {
   public isLoadingResults: boolean = false;
-  public displayedColumns = ["dateCreated", "theme", "title",  "actions"];
+  public displayedColumns = ["dateCreated", "theme", "title", "actions"];
   private subscription: Subscription;
 
 
@@ -44,7 +44,19 @@ export class SharedQuizzesComponent implements OnInit, OnChanges, OnDestroy {
     this.datasource.sort = this.sort;
   }
 
-  
+  duplicate(id) {
+
+        this.quizService.duplicateQuiz(id).subscribe({
+          next: (response: IApiResponse) => {
+            this.snackBar.open(response.message, 'X', { duration: 3000 });
+          },
+          error: (error) => {
+            this.snackBar.open(error.message, 'X');
+          },
+          complete: console.log
+        });
+     
+  }
   edit(id) {
     console.log(id)
   }

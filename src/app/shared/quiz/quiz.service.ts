@@ -17,9 +17,12 @@ export class QuizService {
   }
 
   deleteQuiz(id): Observable<IApiResponse> {
-    return this.httpClient.delete(`${environment.apiUrl}/api/v1/quizzes/delete/${id}`) as Observable<IApiResponse>;;
+    return this.httpClient.delete(`${environment.apiUrl}/api/v1/quizzes/delete/${id}`) as Observable<IApiResponse>;
   }
-
+  
+  duplicateQuiz(id): Observable<IApiResponse> {
+    return this.httpClient.post(`${environment.apiUrl}/api/v1/quizzes/duplicate/${id}`,{}) as Observable<IApiResponse>;
+  }
 
 
   updateQuiz(id, quiz): Observable<IApiResponse> {
