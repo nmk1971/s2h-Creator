@@ -1,15 +1,15 @@
 <h1 mat-dialog-title class="flex text-center">Questions</h1>
 <hr>
-<mat-dialog-content>
+<mat-dialog-content class="">
     <!-- Logic -->
-    <div class="flex flex-col" >
-        <div class="flex flex-row justify-between w-full" *ngFor="let question of questions;let i=index;">
-            <p class="bg-red-200 px-4 text-blue-800 ">{{i+1}}</p>
-          
-                <p class="text-left">{{question.questionText}}</p>
-            
-            <p class="bg-red-200 px-8 text-blue-800 text-right ">{{question.question_type}}</p>
+    <div class="flex flex-col w-full">
+        <div class="flex flex-row w-full" *ngFor="let question of questions;let i=index;">
+            <p class=" px-4 text-blue-800 w-1/12">{{i+1}}</p>
 
+            <p class="text-left w-9/12">{{question.questionText}}</p>
+            <div class="justify-end text-right float-right w-1/6">
+                <p class="px-8 text-blue-800 text-right ">{{question.question_type}}</p>
+            </div>
         </div>
 
     </div>
