@@ -26,6 +26,10 @@ export class QuestionService {
     return this.http.put(`${environment.apiUrl}/api/v1/questions/update/${id}`,question) as Observable<IApiResponse>
   }
 
+  public getQuestionsByQuiz(quizId:string):Observable<IApiResponse>{
+    return this.http.get(`${environment.apiUrl}/api/v1/questions/shared/${quizId}`) as Observable<IApiResponse>
+  }
+
   public loadQuestions(list):void{
         this.questionList=[...list];
         this.currentQuestionList$.next(this.questionList)

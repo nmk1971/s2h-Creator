@@ -1,3 +1,4 @@
+import { ViewSharedQuizContentComponent } from './../view-shared-quiz-content/view-shared-quiz-content.component';
 import { Component, OnInit, OnChanges, OnDestroy, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
@@ -93,9 +94,9 @@ export class SharedQuizzesComponent implements OnInit, OnChanges, OnDestroy {
   
   
   viewQuestionList(id){
- /*   const dialogRef = this.dialog.open(ChoixTypeQuestionComponent, {
-      width: '250px',
-      data: { question_type: ['QCM', 'QCU', 'INPUT', 'ORDERING'] }
-    });*/
+    const dialogRef = this.dialog.open(ViewSharedQuizContentComponent, {
+      width: '650px',
+      data: { quizId: id }
+    });
   }
 }
