@@ -88,9 +88,10 @@ export class QuizListComponent implements OnInit, OnChanges, OnDestroy {
 
 
   getCreatorQuizzes() {
+    this.isLoadingResults = true;
     this.subscription = this.quizService.getQuizzesByCreator(JSON.parse(localStorage.getItem('currentUser'))._id).subscribe({
       next: (data: IApiResponse) => {
-        this.isLoadingResults = true;
+        
         this.quiz = data.payload;
         this.datasource = new MatTableDataSource<IQuiz>(this.quiz);
         this.resultsLength = this.quiz?.length;

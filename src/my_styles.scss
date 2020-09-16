@@ -8,3 +8,12 @@
   .tooltip:hover .tooltip-text {
     visibility: visible;
   }
+
+  .spinner-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    position: absolute; 
+    top: 40%; 
+    left: 35%;
+  }

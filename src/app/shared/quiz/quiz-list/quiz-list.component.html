@@ -10,7 +10,7 @@
         <div class="align-center">
             <a mat-stroked-button [routerLink]="['/creator/quiz/add']"  class="justify-end"><mat-icon>add</mat-icon></a>
         </div>
-        <div class="spinner-container center align-center" *ngIf="isLoadingResults">
+        <div class="spinner-container" *ngIf="isLoadingResults">
             <mat-spinner></mat-spinner>
             <!-- TODO:fix spinner style position-->
         </div>
