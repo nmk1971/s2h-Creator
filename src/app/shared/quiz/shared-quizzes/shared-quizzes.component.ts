@@ -16,7 +16,7 @@ import { IApiResponse } from '../../helpers/api-response.model';
 })
 export class SharedQuizzesComponent implements OnInit, OnChanges, OnDestroy {
   public isLoadingResults: boolean = false;
-  public displayedColumns = ["dateCreated", "theme", "title", "actions"];
+  public displayedColumns = ["dateCreated", "theme", "title", "creator", "actions"];
   private subscription: Subscription;
 
 
@@ -89,5 +89,13 @@ export class SharedQuizzesComponent implements OnInit, OnChanges, OnDestroy {
         this.isLoadingResults = false;
       }
     })
+  }
+  
+  
+  viewQuestionList(id){
+ /*   const dialogRef = this.dialog.open(ChoixTypeQuestionComponent, {
+      width: '250px',
+      data: { question_type: ['QCM', 'QCU', 'INPUT', 'ORDERING'] }
+    });*/
   }
 }

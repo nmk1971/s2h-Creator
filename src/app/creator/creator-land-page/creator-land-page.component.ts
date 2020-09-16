@@ -6,13 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./creator-land-page.component.scss']
 })
 export class CreatorLandPageComponent implements OnInit {
-
+  public isOpened=false;
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  log(msg) {
-    console.log(msg);
+  toggle(){
+    this.isOpened = !this.isOpened;
   }
 }

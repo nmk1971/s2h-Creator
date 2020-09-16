@@ -1,7 +1,7 @@
 <div class="">
     <app-navbar></app-navbar>
     <mat-sidenav-container>
-      <mat-sidenav #adminsidenav (closed)="log('closed')" (opened)="log('opened')" mode="side">
+      <mat-sidenav #adminsidenav (closed)="toggle()" (opened)="toggle()" mode="side">
         <app-side-bar></app-side-bar>
       </mat-sidenav>
       <mat-sidenav-content>
