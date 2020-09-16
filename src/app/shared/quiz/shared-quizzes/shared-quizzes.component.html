@@ -7,9 +7,8 @@
             <mat-icon matPrefix>search</mat-icon>
             <input matInput placeholder="Filter" class="px-12 py-3 text-teal-900 rounded-b shadow-md" (keyup)="applyFilter($event.target.value)">
         </mat-form-field>
-        <div class="spinner-container center align-center" *ngIf="isLoadingResults">
+        <div class="spinner-container" *ngIf="isLoadingResults">
             <mat-spinner></mat-spinner>
-            <!-- TODO:fix spinner style position-->
         </div>
     </div>
     <div class="shadow-lg mat-elevation-z8 px-6exi" style="cursor:pointer">

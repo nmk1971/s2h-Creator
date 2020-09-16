@@ -47,16 +47,16 @@ export class SharedQuizzesComponent implements OnInit, OnChanges, OnDestroy {
 
   duplicate(id) {
 
-        this.quizService.duplicateQuiz(id).subscribe({
-          next: (response: IApiResponse) => {
-            this.snackBar.open(response.message, 'X', { duration: 3000 });
-          },
-          error: (error) => {
-            this.snackBar.open(error.message, 'X');
-          },
-          complete: console.log
-        });
-     
+    this.quizService.duplicateQuiz(id).subscribe({
+      next: (response: IApiResponse) => {
+        this.snackBar.open(response.message, 'X', { duration: 3000 });
+      },
+      error: (error) => {
+        this.snackBar.open(error.message, 'X');
+      },
+      complete: console.log
+    });
+
   }
   edit(id) {
     console.log(id)
@@ -73,6 +73,7 @@ export class SharedQuizzesComponent implements OnInit, OnChanges, OnDestroy {
 
 
   getSharedQuizzes() {
+    this.isLoadingResults = true;
     this.subscription = this.quizService.getSharedQuizzes().subscribe({
       next: (data: IApiResponse) => {
         this.isLoadingResults = true;
@@ -91,9 +92,9 @@ export class SharedQuizzesComponent implements OnInit, OnChanges, OnDestroy {
       }
     })
   }
-  
-  
-  viewQuestionList(id){
+
+
+  viewQuestionList(id) {
     const dialogRef = this.dialog.open(ViewSharedQuizContentComponent, {
       width: '650px',
       data: { quizId: id }
