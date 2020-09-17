@@ -49,9 +49,10 @@
             </ng-container>
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef> Actions </th>
-                <td mat-cell *matCellDef="let q">
+                <td mat-cell *matCellDef="let q" class="flex-row">
                    <button mat-button (click)="delete(q?._id)"><mat-icon class="icon-button" color="warn">delete</mat-icon></button>
                    <button mat-button [routerLink]="['/creator/quiz/update',q._id]"><mat-icon class="icon-button" color="primary">edit</mat-icon></button>
+                   <button mat-button [routerLink]="['/creator/session/open',q._id]"><mat-icon class="icon-button" color="primary">airplay</mat-icon></button>
                 </td>
             </ng-container>
     
@@ -65,3 +66,6 @@
         
     </div>
 </div>
+
+
+<!-- TODO: Implement Open/Close Quiz Session -->

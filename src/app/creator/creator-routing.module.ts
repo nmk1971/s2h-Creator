@@ -1,3 +1,5 @@
+import { SessionListComponent } from './../shared/session/session-list/session-list.component';
+import { SessionFormComponent } from './../shared/session/session-form/session-form.component';
 import { QuizResolver } from './../shared/quiz/quiz-resolver';
 import { CreatorLandPageComponent } from './creator-land-page/creator-land-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -25,6 +27,21 @@ export const routes: Routes = [
         _quiz:QuizResolver
       }
     },
+      {
+        path:'session/open/:id',
+        component:SessionFormComponent,
+        resolve: {
+          _quiz:QuizResolver
+        }
+      },
+      {
+        path:'session/update/:id',
+        component:SessionFormComponent,
+        resolve: {
+          _quiz:QuizResolver
+        }
+      },
+      {path:'session/list',component:SessionListComponent},
       { path: 'about', component: AboutComponent },
       { path: 'support', component: SupportPageComponent },
       { path: 'shared', component : SharedQuizzesComponent},

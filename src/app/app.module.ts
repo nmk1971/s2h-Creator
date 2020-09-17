@@ -6,7 +6,7 @@ import { UserModule } from './shared/user/user.module';
 import { QuizModule } from './shared/quiz/quiz.module';
 import { MaterialModule } from './shared/material/material.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, Pipe, PipeTransform } from '@angular/core';
+import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,16 +22,6 @@ import localeFrExtra from '@angular/common/locales/extra/fr';
 
 registerLocaleData(localeFr,'fr-FR',localeFrExtra);
 
-/*@Pipe({
-name : 'monthAsLabel'
-})
-
-export class MonthAsLabelPipe implements PipeTransform{
-  transform(value: DateModel, args?:any): any {
-    return formatDate(value.dateTime, 'MMMM', 'fr-FR');
-  }
-}
-*/
 @NgModule({
   declarations: [
     AppComponent,ConfirmationDialogComponent
