@@ -1,13 +1,13 @@
-import { CreatorLandPageComponent } from './creator/creator-land-page/creator-land-page.component';
 import { SupportComponent } from './guest/support/support.component';
 import { LandHomeComponent } from './guest/land-home/land-home.component';
 import { SignupComponent } from './shared/user/signup/signup.component';
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AboutComponent } from './guest/about/about.component';
 import { ContactComponent } from './guest/contact/contact.component';
 import { LoginComponent } from './shared/user/login/login.component';
 import { AuthGuard } from './guard/auth.guard';
+import { CommonModule } from '@angular/common';
 
 const routes: Routes = [
   {
@@ -41,7 +41,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [CommonModule, RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

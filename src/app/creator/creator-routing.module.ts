@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { SessionListComponent } from './../shared/session/session-list/session-list.component';
 import { SessionFormComponent } from './../shared/session/session-form/session-form.component';
 import { QuizResolver } from './../shared/quiz/quiz-resolver';
@@ -22,11 +23,11 @@ export const routes: Routes = [
       { path: 'quiz/add', component: AddQuizComponent },
       { 
         path: 'quiz/update/:id', 
-      component: AddQuizComponent,
-      resolve: {
+        component: AddQuizComponent,
+        resolve: {
         _quiz:QuizResolver
-      }
-    },
+        }
+      },
       {
         path:'session/open/:id',
         component:SessionFormComponent,
@@ -41,7 +42,7 @@ export const routes: Routes = [
           _quiz:QuizResolver
         }
       },
-      {path:'session/list',component:SessionListComponent},
+      { path: 'session/list', component: SessionListComponent},
       { path: 'about', component: AboutComponent },
       { path: 'support', component: SupportPageComponent },
       { path: 'shared', component : SharedQuizzesComponent},
@@ -54,7 +55,7 @@ export const routes: Routes = [
 
 @NgModule({
   providers:[],
-  imports: [RouterModule.forChild(routes)],
+  imports: [CommonModule, RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class CreatorRoutingModule { }

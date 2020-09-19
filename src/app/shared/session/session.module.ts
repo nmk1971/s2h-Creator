@@ -1,30 +1,29 @@
-import { QuizModule } from './../quiz/quiz.module';
+
 import { MaterialModule } from './../material/material.module';
-import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+
 import { SessionListComponent } from './session-list/session-list.component';
-import { SessionFormComponent } from './session-form/session-form.component';
 import { WidgetSessionListComponent } from './widget-session-list/widget-session-list.component';
+import { SessionFormComponent } from './session-form/session-form.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 
 @NgModule({
   declarations: [
-    SessionListComponent,
-    SessionFormComponent,
-    WidgetSessionListComponent],
+    SessionListComponent, 
+    WidgetSessionListComponent, 
+    SessionFormComponent],
   imports: [
     CommonModule,
-    FormsModule,
-    HttpClientModule,
-    ReactiveFormsModule,
     RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
     MaterialModule,
-    QuizModule
-  ],
-  exports:[]
+    HttpClientModule
+  ]
 })
 export class SessionModule { }

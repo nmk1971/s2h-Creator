@@ -1,3 +1,4 @@
+import { SessionModule } from './../shared/session/session.module';
 import { QuestionService } from './../shared/quiz/question.service';
 import { QuizService } from './../shared/quiz/quiz.service';
 import { UserModule } from './../shared/user/user.module';
@@ -38,7 +39,8 @@ import { CreatorLandPageComponent } from './creator-land-page/creator-land-page.
     ReactiveFormsModule,
     MaterialModule,
     QuizModule,
-    UserModule
+    UserModule,
+    SessionModule
   ],
   exports:[
     HomePageComponent,
