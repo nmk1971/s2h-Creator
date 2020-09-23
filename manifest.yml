@@ -3,6 +3,3 @@
   disk_quota: 512M
   path: dist/s2hCreator
   buildpack: https://github.com/cloudfoundry/staticfile-buildpack.git
-  random-route : true
-
-      
