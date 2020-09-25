@@ -1,1 +1,1 @@
-ng build --prod --aot && echo "pushstate : enabled" > .\dist\s2hCreator\Staticfile && git add . && git commit -m %1 && git push
+ng build --prod --aot && echo pushstate : enabled> .\dist\s2hCreator\Staticfile && git add . && git commit -m %1 && git push
