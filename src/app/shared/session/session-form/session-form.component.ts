@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-session-form',
@@ -6,10 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./session-form.component.scss']
 })
 export class SessionFormComponent implements OnInit {
-  public list=[1,2,3];
-  constructor() { }
+  public readonly evaluationTypes = [
+    'Evaluation des prérequis',
+    'Evaluation Formative',
+    'Evaluation Sammative'];
+
+    public openSessionForm: FormGroup;
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
+    this.openSessionForm = this.fb.group({
+      evalutionType: [''],
+      isAnonymous: [true]
+    });
+  }
+
+  onSubmit(): void{
+
   }
 
 }

@@ -16,19 +16,19 @@ interface Gender {
 export class SignupComponent implements OnInit {
   signupForm: FormGroup;
   returnUrl: string;
-  public hide:boolean;
-  private subscription:Subscription;
+  public hide: boolean;
+  private subscription: Subscription;
   public genders: Gender[] = [
     {name: 'Homme'},
     {name: 'Femme'}
   ]
 
 
-  constructor(private fb:FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
-    private snackBar:MatSnackBar,
-    private userService: UserService) {  }
+  constructor(private fb: FormBuilder,
+              private route: ActivatedRoute,
+              private router: Router,
+              private snackBar: MatSnackBar,
+              private userService: UserService) {  }
 
   ngOnInit(): void {
     this.signupForm = this.fb.group({
@@ -55,13 +55,13 @@ export class SignupComponent implements OnInit {
       password:this.signupForm.value.password
     };
 
-   this.subscription=this.userService.postUser(user).subscribe({
-      next:(response:IApiResponse)=>{
+    this.subscription=this.userService.postUser(user).subscribe({
+      next:(response: IApiResponse)=>{
         this.snackBar.open(response.status+'\n'+response.message,'X',{duration:4000});
         this.signupForm.reset();
         this.router.navigate(['/home']);
       },
-      error:(error:Error)=>{
+      error:(error: Error)=>{
           this.snackBar.open(error.message,'close');
       },
       complete:console.log

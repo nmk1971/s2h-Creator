@@ -11,7 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
-  declarations: [LoginComponent, SignupComponent,UserBadgeComponent],
+  declarations: [LoginComponent, SignupComponent, UserBadgeComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -20,6 +20,6 @@ import { HttpClientModule } from '@angular/common/http';
     MaterialModule,
     HttpClientModule
   ],
-  exports:[LoginComponent, SignupComponent,UserBadgeComponent]
+  exports:[LoginComponent, SignupComponent, UserBadgeComponent]
 })
 export class UserModule { }
