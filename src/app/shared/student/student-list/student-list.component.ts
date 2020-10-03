@@ -1,8 +1,9 @@
+import { IStudent } from './../student.model';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { StudentListDataSource, StudentListItem } from './student-list-datasource';
+import { StudentListDataSource} from './student-list-datasource';
 
 @Component({
   selector: 'app-student-list',
@@ -12,19 +13,23 @@ import { StudentListDataSource, StudentListItem } from './student-list-datasourc
 export class StudentListComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatTable) table: MatTable<StudentListItem>;
+  @ViewChild(MatTable) table: MatTable<IStudent>;
   dataSource: StudentListDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  displayedColumns = ['firstname', 'lastname', 'gender', 'loginname', 'password', 'actions'];
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.dataSource = new StudentListDataSource();
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
+  }
+
+  delete(id): void{
+    console.log(id);
   }
 }

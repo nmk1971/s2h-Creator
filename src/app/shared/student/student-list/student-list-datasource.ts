@@ -1,3 +1,4 @@
+import { IStudent } from './../student.model';
 import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -5,33 +6,13 @@ import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
 
 // TODO: Replace this with your own data model type
-export interface StudentListItem {
-  name: string;
-  id: number;
-}
+
 
 // TODO: replace this with real data from your application
-const EXAMPLE_DATA: StudentListItem[] = [
-  {id: 1, name: 'Hydrogen'},
-  {id: 2, name: 'Helium'},
-  {id: 3, name: 'Lithium'},
-  {id: 4, name: 'Beryllium'},
-  {id: 5, name: 'Boron'},
-  {id: 6, name: 'Carbon'},
-  {id: 7, name: 'Nitrogen'},
-  {id: 8, name: 'Oxygen'},
-  {id: 9, name: 'Fluorine'},
-  {id: 10, name: 'Neon'},
-  {id: 11, name: 'Sodium'},
-  {id: 12, name: 'Magnesium'},
-  {id: 13, name: 'Aluminum'},
-  {id: 14, name: 'Silicon'},
-  {id: 15, name: 'Phosphorus'},
-  {id: 16, name: 'Sulfur'},
-  {id: 17, name: 'Chlorine'},
-  {id: 18, name: 'Argon'},
-  {id: 19, name: 'Potassium'},
-  {id: 20, name: 'Calcium'},
+const EXAMPLE_DATA: IStudent[] = [
+  {id : '1', firstname: 'Ferid', lastname: 'HELALI', gender: 'Homme', loginname: 'helaliferid', password: 'toto'},
+    { id : '1', firstname: 'Sameh', lastname: 'Ben Ali', gender: 'Femme', loginname: 'samehbali', password: 'toto'}
+
 ];
 
 /**
@@ -39,8 +20,8 @@ const EXAMPLE_DATA: StudentListItem[] = [
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class StudentListDataSource extends DataSource<StudentListItem> {
-  data: StudentListItem[] = EXAMPLE_DATA;
+export class StudentListDataSource extends DataSource<IStudent> {
+  data: IStudent[] = EXAMPLE_DATA;
   paginator: MatPaginator;
   sort: MatSort;
 
@@ -53,7 +34,7 @@ export class StudentListDataSource extends DataSource<StudentListItem> {
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
    */
-  connect(): Observable<StudentListItem[]> {
+  connect(): Observable<IStudent[]> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
     const dataMutations = [
@@ -71,13 +52,13 @@ export class StudentListDataSource extends DataSource<StudentListItem> {
    *  Called when the table is being destroyed. Use this function, to clean up
    * any open connections or free any held resources that were set up during connect.
    */
-  disconnect() {}
+  disconnect(): void {}
 
   /**
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getPagedData(data: StudentListItem[]) {
+  private getPagedData(data: IStudent[]): IStudent[] {
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
     return data.splice(startIndex, this.paginator.pageSize);
   }
@@ -86,7 +67,7 @@ export class StudentListDataSource extends DataSource<StudentListItem> {
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: StudentListItem[]) {
+  private getSortedData(data: IStudent[]): IStudent[] {
     if (!this.sort.active || this.sort.direction === '') {
       return data;
     }
@@ -94,8 +75,10 @@ export class StudentListDataSource extends DataSource<StudentListItem> {
     return data.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
-        case 'name': return compare(a.name, b.name, isAsc);
-        case 'id': return compare(+a.id, +b.id, isAsc);
+        case 'loginname': return compare(a.loginname, b.loginname, isAsc);
+        case 'firstname': return compare(+a.firstname, +b.firstname, isAsc);
+        case 'lastname': return compare(+a.lastname, +b.lastname, isAsc);
+        case 'gender': return compare(+a.gender, +b.gender, isAsc);
         default: return 0;
       }
     });
@@ -103,6 +86,6 @@ export class StudentListDataSource extends DataSource<StudentListItem> {
 }
 
 /** Simple sort comparator for example ID/Name columns (for client-side sorting). */
-function compare(a: string | number, b: string | number, isAsc: boolean) {
+function compare(a: string | number, b: string | number, isAsc: boolean): number{
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
