@@ -4,15 +4,15 @@
             <form [formGroup]="openSessionForm">
                <mat-label>Type d'évaluation</mat-label>
                     <mat-select formControlName="evalutionType">
-                        <mat-option *ngFor="let evaluType of evaluationTypes" [value]="evaluType">
-                            {{evaluType}}
+                        <mat-option *ngFor="let evaluationType of evaluationTypes" [value]="evaluationType">
+                            {{evaluationType}}
                         </mat-option>
                     </mat-select>
                     <mat-checkbox formControlName="isAnonymous" color="accent">Anonyme</mat-checkbox>
                 <button mat-stroked-button [disabled]="!openSessionForm.valid"
                     class="shadow-lg pt-3 pb-3 w-full text-white bg-indigo-500 hover:bg-indigo-400 rounded-full cursor-pointer "
                     (click)="onSubmit()">
-                     Creer Une Session
+                     Créer Une Session
                 </button>
             </form>
 

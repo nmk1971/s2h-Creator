@@ -19,11 +19,11 @@ import { registerLocaleData, CommonModule } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import localeFrExtra from '@angular/common/locales/extra/fr';
 
-registerLocaleData(localeFr,'fr-FR',localeFrExtra);
+registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
 
 @NgModule({
   declarations: [
-    AppComponent,ConfirmationDialogComponent
+    AppComponent, ConfirmationDialogComponent
   ],
   imports: [
     CommonModule,

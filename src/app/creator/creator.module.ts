@@ -1,6 +1,6 @@
+import { StudentModule } from './../shared/student/student.module';
+import { GroupModule } from './../shared/group/group.module';
 import { SessionModule } from './../shared/session/session.module';
-import { QuestionService } from './../shared/quiz/question.service';
-import { QuizService } from './../shared/quiz/quiz.service';
 import { UserModule } from './../shared/user/user.module';
 import { QuizModule } from './../shared/quiz/quiz.module';
 import { MaterialModule } from './../shared/material/material.module';
@@ -18,6 +18,8 @@ import { CommonModule } from '@angular/common';
 import { CreatorRoutingModule } from './creator-routing.module';
 import { SettingsComponent } from './settings/settings.component';
 import { CreatorLandPageComponent } from './creator-land-page/creator-land-page.component';
+import { GroupPageComponent } from './group-page/group-page.component';
+import { StudentPageComponent } from './student-page/student-page.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { CreatorLandPageComponent } from './creator-land-page/creator-land-page.
     SideBarComponent,
     SupportPageComponent,
     SettingsComponent,
-    CreatorLandPageComponent
+    CreatorLandPageComponent,
+    GroupPageComponent,
+    StudentPageComponent
   ],
   imports: [
     CommonModule,
@@ -40,9 +44,11 @@ import { CreatorLandPageComponent } from './creator-land-page/creator-land-page.
     MaterialModule,
     QuizModule,
     UserModule,
-    SessionModule
+    SessionModule,
+    GroupModule,
+    StudentModule
   ],
-  exports:[
+  exports: [
     HomePageComponent,
     NavbarComponent,
     FooterComponent,

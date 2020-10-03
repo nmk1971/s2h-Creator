@@ -1,44 +1,4 @@
-<!--
-<div class="flex justify-start align-middle">
-            <div class="flex flex-row block px-2 py-2 font-mono font-extrabold">
-                Espace Créateur
-            </div>
-            <div class="hidden sm:flex">
-                <a [routerLink]='["home"]' routerLinkActive="active-link"
-                    [routerLinkActive]='["active","inactive"]' mat-button>
-                    <mat-icon>home</mat-icon>
-                    Home
-                </a>
-                <a [routerLink]='["quiz"]' routerLinkActive="active-link"
-                    [routerLinkActive]='["active","inactive"]' mat-button>
-                    Quiz
-                </a>
-                <a [routerLink]='["about"]' routerLinkActive="active-link"
-                    [routerLinkActive]='["active","inactive"]' mat-button>
-                    About
-                </a>
-                <a [routerLink]='["support"]' routerLinkActive="active-link"
-                    [routerLinkActive]='["active","inactive"]' mat-button>
-                    Support
-                </a>
-                <a [routerLink]='["settings"]' routerLinkActive="active-link"
-                    [routerLinkActive]='["active","inactive"]' mat-button>
-                    Settings
-                </a>
-                
-            </div>
-             <button mat-stroked-button class="w-full  justify-end" color="warn" (click)="logout()">Se déconnecter</button>
-            <app-user-badge [userInfo]="_user"></app-user-badge>
-        </div>
-      
-          
-           
-        
- 
-    </mat-toolbar-row>
-    
-</mat-toolbar>
--->
+
 <nav id="header" class="top-0 z-30 w-full py-1">
     <div class="container flex flex-wrap items-center justify-between w-full px-6 py-3 mx-auto mt-0">
 
@@ -64,7 +24,19 @@
                     <li>
                         <a class="inline-block px-4 py-2 no-underline rounded-md hover:text-black hover:underline hover:bg-gray-200"
                             [routerLink]="['quiz']" routerLinkActive="router-link-active">
-                            MyQuizzes
+                            Mes Quiz
+                        </a>
+                    </li>
+                    <li>
+                        <a class="inline-block px-4 py-2 no-underline rounded-md hover:text-black hover:underline hover:bg-gray-200"
+                            [routerLink]="['group']" routerLinkActive="router-link-active">
+                            Mes Groupes
+                        </a>
+                    </li>
+                    <li>
+                        <a class="inline-block px-4 py-2 no-underline rounded-md hover:text-black hover:underline hover:bg-gray-200"
+                            [routerLink]="['student']" routerLinkActive="router-link-active">
+                            Mes Apprenants
                         </a>
                     </li>
 
@@ -94,7 +66,7 @@
 
         <div class="order-1 md:order-1">
             <a class="flex items-center text-xl font-bold tracking-wide text-gray-800 no-underline hover:no-underline "
-                href="#">
+                href="creator">
                 <img class="h-12 p-2" src="assets/logo.png">
                 <span class="text-lg text-opacity-75">Espace Créateur</span>
             </a>

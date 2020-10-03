@@ -19,10 +19,10 @@ const routes: Routes = [
       { path: 'signup', component: SignupComponent },
       { path: 'about', component: AboutComponent },
       { path: 'support', component: SupportComponent },
-      { 
-        path: 'contact', 
+      {
+        path: 'contact',
         component: ContactComponent,
-        canActivate:[AuthGuard]
+        canActivate: [AuthGuard]
       },
       { path: '**', redirectTo: 'home' },
     ]
@@ -31,9 +31,9 @@ const routes: Routes = [
   {
     path: 'creator',
     loadChildren: () => import('./creator/creator.module').then(m => m.CreatorModule),
-    canLoad:[AuthGuard],
-    canActivate:[AuthGuard],
-    canActivateChild:[AuthGuard]
+    canLoad: [AuthGuard],
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard]
   },
   { path: '**', redirectTo: 'home', pathMatch: 'full' },
 
