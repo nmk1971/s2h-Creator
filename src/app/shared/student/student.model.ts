@@ -1,4 +1,3 @@
-import { IUser } from './../user/user.model';
 export interface IStudent{
    id?: string;
    firstname: string;

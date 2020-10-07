@@ -6,7 +6,6 @@ import { QuizService } from './../quiz.service';
 import { Component, OnInit, ViewChild, OnChanges, OnDestroy } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { getQuiz } from './quiz-source';
 import { MatTableDataSource } from '@angular/material/table';
 import { IQuiz } from '../quiz.model';
 import { MatDialog } from '@angular/material/dialog';
@@ -19,8 +18,8 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./quiz-list.component.scss']
 })
 export class QuizListComponent implements OnInit, OnChanges, OnDestroy {
-  public isLoadingResults: boolean = false;
-  public displayedColumns = ["dateCreated", "theme", "title", "cover", "shared", "actions"];
+  public isLoadingResults = false;
+  public displayedColumns = ['dateCreated', 'theme', 'title', 'cover', 'shared', 'actions'];
   private subscription: Subscription;
 
 
@@ -42,16 +41,16 @@ export class QuizListComponent implements OnInit, OnChanges, OnDestroy {
     this.getCreatorQuizzes();
   }
 
-  ngOnChanges() {
+  ngOnChanges(): void{
     this.datasource = new MatTableDataSource(this.quiz);
     this.datasource.paginator = this.paginator;
     this.datasource.sort = this.sort;
   }
 
-  delete(id) {
+  delete(id): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '450px',
-      data: "Supprimer le Quiz?"+"\n"
+      data: 'Supprimer le Quiz?' + '\n'
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -66,18 +65,18 @@ export class QuizListComponent implements OnInit, OnChanges, OnDestroy {
           },
           complete: console.log
         });
-      };
+      }
     });
 
 
 
   }
 
-  edit(id) {
-    console.log(id)
+  edit(id): void {
+    console.log(id);
   }
 
-  applyFilter(filterValue: string) {
+  applyFilter(filterValue: string): void {
     this.datasource.filter = filterValue.trim().toLowerCase();
   }
 
@@ -87,11 +86,11 @@ export class QuizListComponent implements OnInit, OnChanges, OnDestroy {
   }
 
 
-  getCreatorQuizzes() {
+  getCreatorQuizzes(): void {
     this.isLoadingResults = true;
     this.subscription = this.quizService.getQuizzesByCreator(JSON.parse(localStorage.getItem('currentUser'))._id).subscribe({
       next: (data: IApiResponse) => {
-        
+
         this.quiz = data.payload;
         this.datasource = new MatTableDataSource<IQuiz>(this.quiz);
         this.resultsLength = this.quiz?.length;
@@ -105,6 +104,6 @@ export class QuizListComponent implements OnInit, OnChanges, OnDestroy {
       complete: () => {
         this.isLoadingResults = false;
       }
-    })
+    });
   }
 }

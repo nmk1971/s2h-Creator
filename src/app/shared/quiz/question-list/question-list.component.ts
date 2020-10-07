@@ -1,3 +1,4 @@
+import { HighlightDirective } from './../../helpers/highlight.directive';
 import { Observable } from 'rxjs';
 import { QuestionService } from './../question.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
@@ -16,7 +17,7 @@ import { IApiResponse } from '../../helpers/api-response.model';
 export class QuestionListComponent implements OnInit {
   @Output() onQuestionUpdateCliqued=new EventEmitter<IQuestion>();
   public searchText:string='';
-
+ public color='orange';
   public questions$:Observable<IQuestion[]>;
   constructor(
     private questionService:QuestionService,

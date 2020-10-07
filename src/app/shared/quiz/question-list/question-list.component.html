@@ -1,5 +1,5 @@
 <div class="w-full">
-    <h1 class="text-center">Liste des Questions <span class="text-blue-800">({{(questions$ | async).length}})</span>
+    <h1  class="text-center">Liste des Questions <span class="text-blue-800">({{(questions$ | async).length}})</span>
     </h1>
     <!--  Search-->
 
@@ -23,12 +23,11 @@
 
 
 
-    <ol class="w-full px-4 mx-2 flex flex-col overflow-y-scroll h-48">
-        <li class="bg-gray-200 text-gray-800 justify-between flex  w-full"
+    <ol   class="w-full px-4 mx-2 flex flex-col overflow-y-scroll h-48">
+        <li appHighlight [highlightColor]="'green'" class="text-gray-800 justify-between flex  w-full"
             *ngFor="let question of (questions$ | async) | questionListFilter:searchText;let i=index;">
 
-            <span class="bg-red-300 text-bold px-2 inline-block align-middle">
-                {{i+1}}-
+            <span ><!-- class="bg-red-300 text-bold px-2 inline-block align-middle">-->                {{i+1}}-
                 {{question.questionText}}
             </span>
             <span class="align-middle">

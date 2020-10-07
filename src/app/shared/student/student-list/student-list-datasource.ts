@@ -5,15 +5,6 @@ import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
 
-// TODO: Replace this with your own data model type
-
-
-// TODO: replace this with real data from your application
-const EXAMPLE_DATA: IStudent[] = [
-  {id : '1', firstname: 'Ferid', lastname: 'HELALI', gender: 'Homme', loginname: 'helaliferid', password: 'toto'},
-    { id : '1', firstname: 'Sameh', lastname: 'Ben Ali', gender: 'Femme', loginname: 'samehbali', password: 'toto'}
-
-];
 
 /**
  * Data source for the StudentList view. This class should
@@ -21,9 +12,10 @@ const EXAMPLE_DATA: IStudent[] = [
  * (including sorting, pagination, and filtering).
  */
 export class StudentListDataSource extends DataSource<IStudent> {
-  data: IStudent[] = EXAMPLE_DATA;
+  data: IStudent[] = [];
   paginator: MatPaginator;
   sort: MatSort;
+  size: number;
 
   constructor() {
     super();

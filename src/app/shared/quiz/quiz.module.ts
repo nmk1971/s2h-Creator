@@ -21,6 +21,7 @@ import { ChoixTypeQuestionComponent } from './choix-type-question/choix-type-que
 import { QuestionListPipe } from './question-list.pipe';
 import { SharedQuizzesComponent } from './shared-quizzes/shared-quizzes.component';
 import { ViewSharedQuizContentComponent } from './view-shared-quiz-content/view-shared-quiz-content.component';
+import { HighlightDirective } from '../helpers/highlight.directive';
 
 
 
@@ -36,7 +37,8 @@ import { ViewSharedQuizContentComponent } from './view-shared-quiz-content/view-
     ChoixTypeQuestionComponent,
     QuestionListPipe,
     SharedQuizzesComponent,
-    ViewSharedQuizContentComponent],
+    ViewSharedQuizContentComponent,
+    HighlightDirective],
   imports: [
     CommonModule,
     RouterModule,
@@ -48,6 +50,6 @@ import { ViewSharedQuizContentComponent } from './view-shared-quiz-content/view-
     MatSortModule,
     MaterialFileInputModule
   ],
-  exports: [AddQuizComponent, QuizListComponent]
+  exports: [AddQuizComponent, QuizListComponent, HighlightDirective]
 })
 export class QuizModule { }
