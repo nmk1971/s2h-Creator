@@ -1,25 +1,36 @@
-<div class="mat-elevation-z8">
-  <table mat-table class="full-width-table" matSort aria-label="Elements">
-    <!-- Id Column -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
-      <td mat-cell *matCellDef="let row">{{row.id}}</td>
-    </ng-container>
+ <h1 class="text-gray-900 font-sans">Mes Groupes</h1>
+ 
+ <div class="example-action-buttons">
+    <button mat-button (click)="accordion.openAll()">Tout Ouvrir</button>
+    <button mat-button (click)="accordion.closeAll()">Tout Fermer</button>
+  </div>
+  <mat-accordion class="example-headers-align" multi>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-      <td mat-cell *matCellDef="let row">{{row.name}}</td>
-    </ng-container>
+    <mat-expansion-panel *ngFor="let group of currentGroups; let i=index">
+      <mat-expansion-panel-header >
+        <mat-panel-title>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+         {{i+1}}- {{group.label}} ({{group.students?.length}})
+        </mat-panel-title>
+        <mat-panel-description>
+          {{group.description}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
 
-  <mat-paginator #paginator
-      [length]="dataSource?.data.length"
-      [pageIndex]="0"
-      [pageSize]="50"
-      [pageSizeOptions]="[25, 50, 100, 250]">
-  </mat-paginator>
-</div>
+      <mat-list>
+        <mat-list-item *ngFor="let student of group?.students">
+          <mat-icon matListIcon>person</mat-icon>
+          <h3 matLine> {{student.firstname}} {{student.lastname}}</h3>
+        </mat-list-item>
+      </mat-list>
+     
+
+    </mat-expansion-panel>
+  </mat-accordion>
+
+
+<!--
+<pre><code>
+  {{currentGroups | json }}
+</code></pre>
+-->
