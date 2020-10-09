@@ -14,6 +14,6 @@ export class GroupService {
   constructor(private http: HttpClient) { }
 
   getGroupsByCreator(creatorId: string): Observable<IApiResponse>{
-    return this.http.get(`${environment.apiUrl}/api/v1/groups/creator/${creatorId}`) as Observable<IApiResponse>
+    return this.http.get(`${environment.apiUrl}/api/v1/groups/creator/${creatorId}`) as Observable<IApiResponse>;
   }
 }
