@@ -1,1 +1,61 @@
-<p>session-list works!</p>
+<h2>Liste des Sessions</h2>
+
+<mat-form-field>
+
+  <input matInput placeholder="Chercher sessions" #input>
+
+</mat-form-field>
+
+<div class="spinner-container" *ngIf="dataSource.loading$ | async">
+  <mat-spinner></mat-spinner>
+</div>
+<div class="mat-elevation-z8">
+  <table mat-table  [dataSource]="dataSource" matSort matSortActive="opendate" matSortDirection="asc" matSortDisableClear aria-label="Sessions">
+    <!-- OpenDate Column -->
+    <ng-container matColumnDef="opendate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Créée le</th>
+      <td mat-cell *matCellDef="let row">{{row.opendate | date : 'd MMMM y à HH:mm' : '':'fr-FR'}}</td>
+    </ng-container>
+
+    <!-- Quiz Column -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Quiz</th>
+      <td mat-cell *matCellDef="let row">{{row.idquiz.title}} </td>
+    </ng-container>
+<!-- TODO: to navigate to µDashboard of the concerned session-->
+    <!-- isAnonymous  Column -->
+    <ng-container matColumnDef="isAnonymous">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Anonyme</th>
+      <td mat-cell *matCellDef="let row"><mat-checkbox matInput color="primary" [checked]="row?.isAnonymous" disabled></mat-checkbox></td>
+    </ng-container>
+
+    <!-- Groupe Column -->
+    <ng-container matColumnDef="group">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Groupe</th>
+      <td mat-cell *matCellDef="let row">{{row.group?.label}}</td>
+    </ng-container>
+
+    <!-- Actions -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
+      <td mat-cell *matCellDef="let row">
+        <button *ngIf="!row?.isopen"  mat-button (click)="start(row?._id)">
+          <mat-icon class="icon-button" color="primary">play_circle_outline</mat-icon>
+        </button>
+        <button *ngIf="row?.isopen" mat-button (click)="close(row?._id)">
+          <mat-icon class="icon-button" color="warn">stop</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator #paginator [length]="dataSource.totalCount$ | async"  [pageSize]="10"
+    [pageSizeOptions]="[10, 20, 50, 100]">
+  </mat-paginator>
+
+
+
+</div>

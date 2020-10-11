@@ -35,14 +35,14 @@
                             </mat-option>
                         </mat-select>
                     </div>
-                    <br>{{openSessionForm.value.group | json}}
+                    <br>
+                    <!--{{openSessionForm.value.group | json}}-->
                     <button mat-stroked-button [disabled]="!openSessionForm.valid || (!openSessionForm.value.isAnonymous &&  openSessionForm.value.group?.length===0)"
                         class="shadow-lg pt-3 pb-3 w-full text-white bg-indigo-500 hover:bg-indigo-400 rounded-full cursor-pointer "
                         (click)="onSubmit()">
                         Créer Une Session
                     </button>
                 </form>
-
             </div>
         </div>
     </div>

@@ -83,7 +83,7 @@ export class SessionFormComponent implements OnInit, OnDestroy {
     this.sessionSubscription = this.sessionService.openSession(sendedSession).subscribe({
       next: (response: IApiResponse) => {
         if (response.status === 'success') {
-          this.snackBar.open(response.status + '\n' + `${response.message}\n Code : ${response.payload.code}`, 'X', { duration: 6000 });
+          this.snackBar.open(response.status + '\n' + `${response.message}`, 'X', { duration: 6000 });
           this.router.navigate(['/creator/session/list']);
         } else {
           this.snackBar.open(response.status + '\n' + response.message, 'X');
