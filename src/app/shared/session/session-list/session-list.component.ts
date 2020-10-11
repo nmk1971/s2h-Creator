@@ -77,10 +77,12 @@ export class SessionListComponent implements AfterViewInit, OnInit, OnDestroy{
 
   start(id): void {
     console.log('Start Session:', id);
+       //TODO: Implement action start over API
   }
 
   close(id): void {
     console.log('Close Session:', id);
+    //TODO: Implement action clese over API
   }
 
   ngOnDestroy(): void {
