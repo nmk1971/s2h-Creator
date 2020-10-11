@@ -10,4 +10,6 @@ export interface IQuiz {
     cover: string;
     isShared:boolean;
     questions:IQuestion[] ;
+    dateCreated?: any;
+    updatedAt?:any; 
   }

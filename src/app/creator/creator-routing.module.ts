@@ -58,7 +58,7 @@ export const routes: Routes = [
         path: 'session/open/:id',
         component: SessionFormComponent,
         resolve: {
-          _quiz: QuizResolver
+          quiz: QuizResolver
         }
       },
       {

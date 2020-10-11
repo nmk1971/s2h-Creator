@@ -72,9 +72,6 @@ export class QuizListComponent implements OnInit, OnChanges, OnDestroy {
 
   }
 
-  edit(id): void {
-    console.log(id);
-  }
 
   applyFilter(filterValue: string): void {
     this.datasource.filter = filterValue.trim().toLowerCase();

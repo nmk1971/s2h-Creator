@@ -1,29 +1,111 @@
-import { Component, OnInit } from '@angular/core';
+import { ISession } from './../session.model';
+import { SessionService } from './../session.service';
+import { IQuiz } from './../../quiz/quiz.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
+import { IGroup } from './../../group/group.model';
+import { element } from 'protractor';
+import { IStudent } from './../../student/student.model';
+import { IApiResponse } from './../../helpers/api-response.model';
+import { IUser } from './../../user/user.model';
+import { pipe, Subscription } from 'rxjs';
+import { GroupService } from './../../group/group.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { AuthenticationService } from '../../user/authentication.service';
+import { map } from 'rxjs/operators';
+import { CdkStepLabel } from '@angular/cdk/stepper';
 
 @Component({
   selector: 'app-session-form',
   templateUrl: './session-form.component.html',
   styleUrls: ['./session-form.component.scss']
 })
-export class SessionFormComponent implements OnInit {
+export class SessionFormComponent implements OnInit, OnDestroy {
   public readonly evaluationTypes = [
     'Evaluation des prérequis',
     'Evaluation Formative',
     'Evaluation Sammative'];
+  public groups: any;
+  public openSessionForm: FormGroup;
+  private userSubscription: Subscription;
+  private groupSubscription: Subscription;
+  private sessionSubscription: Subscription;
 
-    public openSessionForm: FormGroup;
-  constructor(private fb: FormBuilder) {}
+  private creator: IUser;
+  public concernedQuiz: IQuiz;
+
+  constructor(
+    private route: ActivatedRoute,
+    private fb: FormBuilder,
+    private groupService: GroupService,
+    private authService: AuthenticationService,
+    private sessionService: SessionService,
+    private snackBar: MatSnackBar,
+    private router: Router) {
+    this.userSubscription = this.authService.currentUser.subscribe(user => this.creator = user);
+    this.concernedQuiz = this.route.snapshot.data?.quiz?.payload as IQuiz;
+  }
 
   ngOnInit(): void {
+    const grps = [];
+    this.groupSubscription = this.groupService.getGroupsByCreator(this.creator._id)
+      .pipe(
+        map(data => data.payload),
+        map(groups => {
+          groups.forEach((group: IGroup) => {
+            grps.push({ id: group._id, label: group.label });
+          });
+          return grps;
+        }))
+      .subscribe({
+        next: data => {
+          console.log(data);
+          this.groups = data;
+        }
+      });
     this.openSessionForm = this.fb.group({
-      evalutionType: [''],
-      isAnonymous: [true]
+      evaluationType: [''],
+      isAnonymous: true,
+      group: ['']
     });
   }
 
-  onSubmit(): void{
 
+  onSubmit(): void {
+    let sendedSession: ISession;
+    sendedSession  = {...this.openSessionForm.value};
+    if(this.openSessionForm.value.group === ''){
+      this.openSessionForm.value.group = null;
+    }
+    sendedSession.creator= this.creator._id;
+    sendedSession.idquiz = this.concernedQuiz._id ;
+    this.sessionSubscription = this.sessionService.openSession(sendedSession).subscribe({
+      next: (response: IApiResponse) => {
+        if (response.status === 'success') {
+          this.snackBar.open(response.status + '\n' + `${response.message}\n Code : ${response.payload.code}`, 'X', { duration: 6000 });
+          this.router.navigate(['/creator/session/list']);
+        } else {
+          this.snackBar.open(response.status + '\n' + response.message, 'X');
+        }
+      },
+      error: (error) => {
+        this.snackBar.open(error, 'close');
+      },
+      complete: console.log
+    });
   }
 
+  ngOnDestroy(): void {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
+    if (this.groupSubscription) {
+      this.groupSubscription.unsubscribe();
+    }
+    if (this.sessionSubscription) {
+      this.sessionSubscription.unsubscribe();
+    }
+
+  }
 }

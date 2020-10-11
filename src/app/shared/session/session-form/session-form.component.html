@@ -1,21 +1,49 @@
-<div class="shadow-lg sm:flex">
-    <div class="sm:w-3/5 w-full bg-white">
-        <div class="p-8">
-            <form [formGroup]="openSessionForm">
-               <mat-label>Type d'évaluation</mat-label>
-                    <mat-select formControlName="evalutionType">
+<div class="flex flex-col justify-center items-center">
+    <h2 class="text-blue-700">Ouvrir Session pour le quiz:</h2>
+   <div class="flex flex-col text-green-500 justify-center items-center">
+    <h1 class="text-gray-800">
+        {{concernedQuiz.title}} - {{concernedQuiz?.questions?.length}} question(s)
+    </h1>        
+    <img class="w-1/6" [src]="concernedQuiz.cover" alt="cover">
+    <h2 class="text-gray-500">
+        {{concernedQuiz.description}}
+    </h2>
+    <p class="text-blue-800">Theme : {{concernedQuiz.theme}}</p>
+    <p class="text-blue-800">Partagé : <mat-checkbox matInput color="primary" [checked]="concernedQuiz?.isShared" disabled></mat-checkbox></p>
+    <h4 class="text-blue-800">Date Creation : {{concernedQuiz?.dateCreated | date : 'd MMMM y' : '':'fr-FR'}}</h4>
+    <h4 class="text-blue-800">Date de Modification Creation : {{concernedQuiz?.updatedAt |date : 'd MMMM y' : '':'fr-FR'}}</h4>
+   </div>
+
+    <div class="shadow-lg sm:flex w-1/2">
+        <div class="sm:w-full bg-white">
+            <div class="p-8">
+                <form [formGroup]="openSessionForm">
+                    <mat-label>Type d'évaluation</mat-label>
+                    <mat-select formControlName="evaluationType" required>
                         <mat-option *ngFor="let evaluationType of evaluationTypes" [value]="evaluationType">
                             {{evaluationType}}
                         </mat-option>
                     </mat-select>
                     <mat-checkbox formControlName="isAnonymous" color="accent">Anonyme</mat-checkbox>
-                <button mat-stroked-button [disabled]="!openSessionForm.valid"
-                    class="shadow-lg pt-3 pb-3 w-full text-white bg-indigo-500 hover:bg-indigo-400 rounded-full cursor-pointer "
-                    (click)="onSubmit()">
-                     Créer Une Session
-                </button>
-            </form>
+                    <br>
 
+                    <div *ngIf="!openSessionForm.value.isAnonymous">
+                        <mat-label>Group</mat-label>
+                        <mat-select formControlName="group">
+                            <mat-option *ngFor="let grp of groups" [value]="grp?.id">
+                                {{grp.label}}
+                            </mat-option>
+                        </mat-select>
+                    </div>
+                    <br>{{openSessionForm.value.group | json}}
+                    <button mat-stroked-button [disabled]="!openSessionForm.valid || (!openSessionForm.value.isAnonymous &&  openSessionForm.value.group?.length===0)"
+                        class="shadow-lg pt-3 pb-3 w-full text-white bg-indigo-500 hover:bg-indigo-400 rounded-full cursor-pointer "
+                        (click)="onSubmit()">
+                        Créer Une Session
+                    </button>
+                </form>
+
+            </div>
         </div>
     </div>
 </div>
