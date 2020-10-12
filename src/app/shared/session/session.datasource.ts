@@ -40,7 +40,6 @@ export class SessionDataSource implements DataSource<ISession> {
     }
 
     connect(collectionViewer: CollectionViewer): Observable<ISession[]> {
-        console.log('Connecting data source');
         return this.sessionsSubject.asObservable();
     }
 

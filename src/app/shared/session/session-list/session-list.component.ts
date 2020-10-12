@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { SessionService } from './../session.service';
 import { SessionDataSource } from './../session.datasource';
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
@@ -8,19 +9,22 @@ import { MatSort } from '@angular/material/sort';
 import { AuthenticationService } from '../../user/authentication.service';
 import { merge } from 'rxjs';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
+import { IApiResponse } from '../../helpers/api-response.model';
 
 @Component({
   selector: 'app-session-list',
   templateUrl: './session-list.component.html',
   styleUrls: ['./session-list.component.scss']
 })
-export class SessionListComponent implements AfterViewInit, OnInit, OnDestroy{
+export class SessionListComponent implements AfterViewInit, OnInit, OnDestroy {
 
   public currentCreator: IUser;
-  private subscription: Subscription;
+  private creatorSubscription: Subscription;
   public resultsCount: number;
+  private sessionSubscription: Subscription;
 
-  displayedColumns = ['opendate', 'title', 'isAnonymous', 'group', 'actions'];
+
+  displayedColumns = ['createdate', 'title', 'isAnonymous', 'quizsessioncode', 'group', 'actions'];
 
   dataSource: SessionDataSource;
 
@@ -30,14 +34,15 @@ export class SessionListComponent implements AfterViewInit, OnInit, OnDestroy{
 
   constructor(
     private sessionService: SessionService,
-    private authService: AuthenticationService) {
-    this.subscription = this.authService.currentUser.subscribe(user => this.currentCreator = user);
+    private authService: AuthenticationService,
+    private snackbar: MatSnackBar) {
+    this.creatorSubscription = this.authService.currentUser.subscribe(user => this.currentCreator = user);
   }
 
 
   ngOnInit(): void {
     this.dataSource = new SessionDataSource(this.sessionService);
-    this.dataSource.loadSessions(this.currentCreator._id, 0, 10, 'opendate', 'desc', '');
+    this.dataSource.loadSessions(this.currentCreator._id, 0, 10, 'createdate', 'desc', '');
   }
 
   ngAfterViewInit(): void {
@@ -75,18 +80,40 @@ export class SessionListComponent implements AfterViewInit, OnInit, OnDestroy{
 
   }
 
+  // Start Session
   start(id): void {
-    console.log('Start Session:', id);
-       //TODO: Implement action start over API
+    this.sessionSubscription = this.sessionService.startSession(id).subscribe({
+      next: (response: IApiResponse) => {
+        this.snackbar.open(response.message, 'X', { duration: 4000 });
+        this.loadSessionsPage();
+      },
+      error: (error) => {
+        this.snackbar.open(error.message, 'X');
+      },
+      complete: console.log
+    });
   }
 
   close(id): void {
-    console.log('Close Session:', id);
-    //TODO: Implement action clese over API
+    this.sessionSubscription = this.sessionService.closeSession(id).subscribe({
+      next: (response: IApiResponse) => {
+        this.snackbar.open(response.message, 'X', { duration: 4000 });
+        this.loadSessionsPage();
+      },
+      error: (error) => {
+        this.snackbar.open(error.message, 'X');
+      },
+      complete: console.log
+    });
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    if (this.creatorSubscription) {
+      this.creatorSubscription.unsubscribe();
+    }
+    if (this.sessionSubscription) {
+      this.sessionSubscription.unsubscribe();
+    }
   }
 
 }

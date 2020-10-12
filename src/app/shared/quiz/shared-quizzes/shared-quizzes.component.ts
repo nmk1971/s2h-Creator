@@ -16,8 +16,8 @@ import { IApiResponse } from '../../helpers/api-response.model';
   styleUrls: ['./shared-quizzes.component.scss']
 })
 export class SharedQuizzesComponent implements OnInit, OnChanges, OnDestroy {
-  public isLoadingResults: boolean = false;
-  public displayedColumns = ["dateCreated", "theme", "title", "creator", "actions"];
+  public isLoadingResults = false;
+  public displayedColumns = ['dateCreated', 'theme', 'title', 'creator', 'actions'];
   private subscription: Subscription;
 
 
@@ -39,13 +39,13 @@ export class SharedQuizzesComponent implements OnInit, OnChanges, OnDestroy {
     this.getSharedQuizzes();
   }
 
-  ngOnChanges() {
+  ngOnChanges(): void {
     this.datasource = new MatTableDataSource(this.quiz);
     this.datasource.paginator = this.paginator;
     this.datasource.sort = this.sort;
   }
 
-  duplicate(id) {
+  duplicate(id): void {
 
     this.quizService.duplicateQuiz(id).subscribe({
       next: (response: IApiResponse) => {
@@ -58,21 +58,23 @@ export class SharedQuizzesComponent implements OnInit, OnChanges, OnDestroy {
     });
 
   }
-  edit(id) {
-    console.log(id)
+  edit(id): void {
+    console.log(id);
   }
 
-  applyFilter(filterValue: string) {
+  applyFilter(filterValue: string): void {
     this.datasource.filter = filterValue.trim().toLowerCase();
   }
 
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
 
-  getSharedQuizzes() {
+  getSharedQuizzes(): void {
     this.isLoadingResults = true;
     this.subscription = this.quizService.getSharedQuizzes().subscribe({
       next: (data: IApiResponse) => {
@@ -90,11 +92,11 @@ export class SharedQuizzesComponent implements OnInit, OnChanges, OnDestroy {
       complete: () => {
         this.isLoadingResults = false;
       }
-    })
+    });
   }
 
 
-  viewQuestionList(id) {
+  viewQuestionList(id): void {
     const dialogRef = this.dialog.open(ViewSharedQuizContentComponent, {
       width: '650px',
       data: { quizId: id }

@@ -41,7 +41,7 @@ export class QuizListComponent implements OnInit, OnChanges, OnDestroy {
     this.getCreatorQuizzes();
   }
 
-  ngOnChanges(): void{
+  ngOnChanges(): void {
     this.datasource = new MatTableDataSource(this.quiz);
     this.datasource.paginator = this.paginator;
     this.datasource.sort = this.sort;
@@ -79,7 +79,9 @@ export class QuizListComponent implements OnInit, OnChanges, OnDestroy {
 
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
 

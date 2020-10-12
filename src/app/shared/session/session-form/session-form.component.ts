@@ -80,7 +80,7 @@ export class SessionFormComponent implements OnInit, OnDestroy {
     }
     sendedSession.creator= this.creator._id;
     sendedSession.idquiz = this.concernedQuiz._id ;
-    this.sessionSubscription = this.sessionService.openSession(sendedSession).subscribe({
+    this.sessionSubscription = this.sessionService.createSession(sendedSession).subscribe({
       next: (response: IApiResponse) => {
         if (response.status === 'success') {
           this.snackBar.open(response.status + '\n' + `${response.message}`, 'X', { duration: 6000 });

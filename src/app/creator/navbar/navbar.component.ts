@@ -9,32 +9,34 @@ import { Router } from '@angular/router';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit,OnDestroy {
-  public _user:IUser;
-  private subscription:Subscription;
+export class NavbarComponent implements OnInit, OnDestroy {
+  public user: IUser;
+  private subscription: Subscription;
 
-  constructor(private authenticationService:AuthenticationService,
-              private router:Router) { }
+  constructor(private authenticationService: AuthenticationService,
+              private router: Router) { }
 
   ngOnInit(): void {
-        this.subscription=this.authenticationService.currentUser.subscribe(
+        this.subscription = this.authenticationService.currentUser.subscribe(
           {
-            next:data=>{
+            next: data => {
             //  console.log(data);
-            this._user={...data};
+            this.user = {...data};
             },
-         
-          error:err=>console.log(err),
-          complete:()=>console.log('Ok')
+
+          error: err => console.log(err),
+          complete: () => console.log('Ok')
         }
         );
   }
 
-  ngOnDestroy(){
+  ngOnDestroy(): void{
+    if (this.subscription){
         this.subscription.unsubscribe();
+    }
   }
-    
-logout(){
+
+logout(): void{
   this.authenticationService.logout();
   this.router.navigate(['/home']);
 }
