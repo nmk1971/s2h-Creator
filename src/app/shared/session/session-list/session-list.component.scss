@@ -58,3 +58,13 @@
     width: 100%;
   
   }
+
+  .zone {
+    cursor: pointer;
+  }
+
+ .zone:hover {
+   background-color: darkorchid;
+   color:white;
+   cursor: pointer;
+  }

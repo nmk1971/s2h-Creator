@@ -42,6 +42,10 @@ export class SessionService {
     );
   }
 
+  findSessionById(sessionId: string): Observable<IApiResponse>{
+    return this.http.get(`${environment.apiUrl}/api/v1/sessions/${sessionId}`) as Observable<IApiResponse>;
+  }
+
   startSession(sessionId: string): Observable<IApiResponse> {
     return this.http.patch(`${environment.apiUrl}/api/v1/sessions/start/${sessionId}`, null) as Observable<IApiResponse>;
   }

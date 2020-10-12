@@ -1,3 +1,5 @@
+import { SessionResolver } from './../shared/session/session.resolver';
+import { SessionDashboardComponent } from './../shared/session/session-dashboard/session-dashboard.component';
 import { UpdateStudentComponent } from './../shared/student/update-student/update-student.component';
 import { AddGroupComponent } from './../shared/group/add-group/add-group.component';
 import { UpdateGroupComponent } from './../shared/group/update-group/update-group.component';
@@ -33,7 +35,7 @@ export const routes: Routes = [
         path: 'quiz/update/:id',
         component: AddQuizComponent,
         resolve: {
-        _quiz: QuizResolver
+          _quiz: QuizResolver
         }
       },
       { path: 'group', component: GroupPageComponent },
@@ -41,18 +43,18 @@ export const routes: Routes = [
       {
         path: 'group/update/:id',
         component: UpdateGroupComponent,
- /*       resolve: {
-        _quiz:QuizResolver
-        }*/
+        /*       resolve: {
+               _quiz:QuizResolver
+               }*/
       },
       { path: 'student', component: StudentPageComponent },
       { path: 'student/add', component: AddStudentComponent },
       {
         path: 'student/update/:id',
         component: UpdateStudentComponent,
-  /*      resolve: {
-        _quiz:QuizResolver
-        }*/
+        /*      resolve: {
+              _quiz:QuizResolver
+              }*/
       },
       {
         path: 'session/open/:id',
@@ -68,12 +70,19 @@ export const routes: Routes = [
           _quiz: QuizResolver
         }
       },
-      { path: 'session/list', component: SessionListComponent},
+      { path: 'session/list', component: SessionListComponent },
+      {
+        path: 'session/dashboard/:id',
+        component: SessionDashboardComponent,
+        resolve: {
+          session: SessionResolver
+        }
+      },
       { path: 'about', component: AboutComponent },
       { path: 'support', component: SupportPageComponent },
-      { path: 'shared', component : SharedQuizzesComponent},
+      { path: 'shared', component: SharedQuizzesComponent },
       { path: 'settings', component: SettingsComponent },
-      { path: '**', redirectTo: 'home', pathMatch: 'full'}
+      { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ]
   },
   { path: '**', redirectTo: '' }

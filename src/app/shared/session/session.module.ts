@@ -9,6 +9,7 @@ import { WidgetSessionListComponent } from './widget-session-list/widget-session
 import { SessionFormComponent } from './session-form/session-form.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { SessionDashboardComponent } from './session-dashboard/session-dashboard.component';
 
 
 
@@ -16,7 +17,7 @@ import { RouterModule } from '@angular/router';
   declarations: [
     SessionListComponent, 
     WidgetSessionListComponent, 
-    SessionFormComponent],
+    SessionFormComponent, SessionDashboardComponent],
   imports: [
     CommonModule,
     RouterModule,

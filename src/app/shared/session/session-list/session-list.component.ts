@@ -106,7 +106,9 @@ export class SessionListComponent implements AfterViewInit, OnInit, OnDestroy {
       complete: console.log
     });
   }
-
+  gotoSessionDashboard(row): void{
+    console.log(row);
+  }
   ngOnDestroy(): void {
     if (this.creatorSubscription) {
       this.creatorSubscription.unsubscribe();
