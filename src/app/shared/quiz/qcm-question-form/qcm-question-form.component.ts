@@ -11,7 +11,7 @@ import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angu
   templateUrl: './qcm-question-form.component.html',
   styleUrls: ['./qcm-question-form.component.scss']
 })
-export class QcmQuestionFormComponent implements OnInit,OnChanges {
+export class QcmQuestionFormComponent implements OnInit, OnChanges {
   @Input() quizId;
   @Input() context;
   @Input() question: IQuestion;
@@ -23,16 +23,16 @@ export class QcmQuestionFormComponent implements OnInit,OnChanges {
 
 
   constructor(private fb: FormBuilder,
-    private questionService: QuestionService,
-    private snackBar: MatSnackBar) {
+              private questionService: QuestionService,
+              private snackBar: MatSnackBar) {
     this.QCMQuestionForm = fb.group({
       questionText: ['']
-    })
+    });
 
   }
 
   ngOnInit(): void {
-    console.log('from qcm-question-form context : ',this.context);
+    console.log('from qcm-question-form context : ', this.context);
     if (this.context === 'new') {
       this.qcmResponseList.push({ label: '', isValid: false });
       this.qcmResponseList.push({ label: '', isValid: false });
@@ -45,7 +45,7 @@ export class QcmQuestionFormComponent implements OnInit,OnChanges {
     }
   }
 
-  ngOnChanges(){
+  ngOnChanges(): void{
  //   console.log(`%c ${JSON.stringify(this.question)} `, 'background: tomato; color: white')
     if (this.context === 'update') {
       this.QCMQuestionForm = this.fb.group({
@@ -56,16 +56,16 @@ export class QcmQuestionFormComponent implements OnInit,OnChanges {
   }
 
 
-  addResponse() {
+  addResponse(): void {
     this.qcmResponseList.push({ label: '', isValid: false });
   }
 
-  deleteResponse(response) {
+  deleteResponse(response): void {
     this.qcmResponseList = this.qcmResponseList.filter(r => r !== response);
   }
 
-  radioChecked(index) {
-    for (var i = 0; i < this.qcmResponseList.length; i++) {
+  radioChecked(index): void {
+    for (let i = 0; i < this.qcmResponseList.length; i++) {
       if (i !== index) {
         this.qcmResponseList[i].isValid = false;
       } else {
@@ -76,12 +76,12 @@ export class QcmQuestionFormComponent implements OnInit,OnChanges {
 
 // save to api
   createQuestion() {
-    let quest: IQuestion = {
+    const quest: IQuestion = {
       quizId: this.quizId,
       questionText: this.QCMQuestionForm.value.questionText,
       question_type: 'QCM',
       qcxResponse: this.qcmResponseList
-    }
+    };
 
     this.questionService.postQuestion(quest).subscribe({
       next: (data: IApiResponse) => {
@@ -93,19 +93,19 @@ export class QcmQuestionFormComponent implements OnInit,OnChanges {
         this.snackBar.open(error.message, 'x');
       },
       complete: console.log
-    })
+    });
 
   }
 
 // update to api
   updateQuestion() {
-    let quest: IQuestion = {
+    const quest: IQuestion = {
       _id: this.question._id,
       quizId: this.quizId,
       questionText: this.QCMQuestionForm.value.questionText,
       question_type: 'QCM',
       qcxResponse: this.qcmResponseList
-    }
+    };
 
     this.questionService.updateQuestionInAPI(this.question._id, quest).subscribe({
       next: (data: IApiResponse) => {
@@ -117,7 +117,7 @@ export class QcmQuestionFormComponent implements OnInit,OnChanges {
         this.snackBar.open(error.message, 'x');
       },
       complete: console.log
-    })
+    });
   }
 
   saveQuestion() {

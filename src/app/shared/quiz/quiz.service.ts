@@ -31,19 +31,19 @@ export class QuizService {
   }
 
 
-  getQuizById(id) {
+  getQuizById(id): Observable<IApiResponse> {
     return this.httpClient.get(`${environment.apiUrl}/api/v1/quizzes/${id}`) as Observable<IApiResponse>;
   }
   
-  getAllQuizzes() {
+  getAllQuizzes(): Observable<IApiResponse> {
     return this.httpClient.get(`${environment.apiUrl}/api/v1/quizzes`) as Observable<IApiResponse>;
   }
 
-  getSharedQuizzes() {
+  getSharedQuizzes(): Observable<IApiResponse> {
     return this.httpClient.get(`${environment.apiUrl}/api/v1/quizzes/shared`) as Observable<IApiResponse>;
   }
 
-  getQuizzesByCreator(userId) {
+  getQuizzesByCreator(userId): Observable<IApiResponse> {
     return this.httpClient.get(`${environment.apiUrl}/api/v1/quizzes/creator/${userId}`) as Observable<IApiResponse>;
   }
 

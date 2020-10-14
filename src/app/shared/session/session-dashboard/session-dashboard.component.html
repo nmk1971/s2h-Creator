@@ -1,3 +1,104 @@
+<h1 class="mat-h1">Tableau de Bord Session</h1>
+<p class="">
+    <span class="text-center 
+        text-gray-900 
+        text-base 
+        sm:text-sm
+        md:text-md
+        lg:text-lg  
+        xl:text-xl 
+        font-mono font-bold .placeholder-gray-400  px-2 py-2">
+        Titre du Quiz : {{currentSession?.idquiz?.title}}
+    </span>
+</p>
+<p class="">
+    <span class="text-center 
+        text-gray-700
+        text-base 
+        sm:text-sm
+        md:text-md
+        lg:text-lg  
+        xl:text-xl 
+        font-mono font-bold placeholder-gray-400">
+        Thème : {{currentSession?.idquiz?.theme}}
+    </span>
+</p>
+<div *ngIf="currentSession?.idquiz?.description" class="text-gray-700
+font-mono font-bold placeholder-gray-400  px-2 py-2">
+    Description : {{currentSession?.idquiz?.description}}
+</div>
+
+<div class="text-gray-700 font-mono font-bold placeholder-gray-400  px-2 py-2">
+    Questions : {{currentSession?.idquiz?.questions?.length}}
+</div>
+
+
+<div class="flex flex-row flex-wrap md:flex-no-wrap justify-center w-full">
+    <!--  Card One-->
+    <mat-card class="mx-2 px-2 py-2 w-1/2">
+
+        <mat-card-content class="flex flex-col">
+            <div class="flex flex-col self-center 
+                        text-center 
+                        text-gray-900
+                        text-base 
+                        sm:text-2xl 
+                        md:text-3xl
+                        lg:text-4xl  
+                        xl:text-5xl 
+                        font-mono 
+                        font-bold
+                        placeholder-gray-400 
+                        border-blue-900 
+                        p-2
+                        shadow-lg border">
+                Code : {{currentSession?.quizsessioncode}}
+            </div>
+
+
+            <div class="flex flex-row px-3 py-3">
+                <div class="bg-yellow-200 w-1/2 h-full px-3 py-3">
+                    <div *ngIf="currentSession.isAnonymous">
+                        <p class="">Session Anonyme</p>
+                    </div>
+                    <div *ngIf="!currentSession.isAnonymous">
+                        <p class="">Group : {{currentSession?.group?.label}}</p>
+                    </div>
+
+                    <div class="bg-green-200">
+
+                    </div>
+                </div>
+                <div class="bg-green-200 w-1/2 h-full  px-3 py-3">
+                    salah
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+
+    <!--Card 2-->
+    <mat-card class="mx-2 px-2 py-2 w-1/2">
+        <mat-card-content>
+
+            <h1 class="text-blue-900 ">Apprenants: ({{currentSession?.group?.students?.length}})</h1>
+            <div class="w-full h-40 overflow-y-scroll">
+                <mat-selection-list #students [multiple]="false">
+                    <mat-list-option *ngFor="let student of currentSession?.group?.students;let i=index">
+                        <div class="flex flex-row">
+                            <div class="w-11/12"> {{i+1}}- {{student.firstname}} {{student.lastname}}</div>
+                            <div class="w-1/12">
+                                <mat-icon>fiber_manual_record</mat-icon>
+                            </div>
+                        </div>
+                    </mat-list-option>
+                </mat-selection-list>
+
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
+
 <pre><code>
     {{
         currentSession | json

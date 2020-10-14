@@ -16,18 +16,18 @@
             placeholder="Description" formControlName="description" matInput>
         </mat-form-field>
 
-        <!--************* T H E M E   **********************-->
+        <!--************* T H E M E **********************-->
         <mat-form-field class="w-full">
           <input class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1" type="text"
             placeholder="Theme" formControlName="theme" matInput>
         </mat-form-field>
 
-        <!--************* S H A R E D   **********************-->
+        <!--************* S H A R E D **********************-->
         <div class="w-full">
           <mat-checkbox formControlName="isShared" class="px-6">Partagé</mat-checkbox>
         </div>
 
-        <!--************* B O U T O N   S U B M I T  **********************-->
+        <!--************* B O U T O N   S U B M I T **********************-->
         <div class="w-full">
           <button mat-raised-button color="primary" (click)="saveQuiz()" [disabled]="!createQuizForm.valid">
             <span *ngIf="!isCreated">Créer le quiz</span>

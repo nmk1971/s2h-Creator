@@ -28,6 +28,12 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Genre</th>
       <td mat-cell *matCellDef="let row">{{row.gender}}</td>
     </ng-container>
+    
+    <!-- group Column -->
+    <ng-container matColumnDef="group">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Groupe</th>
+      <td mat-cell *matCellDef="let row">{{row.group.label}}</td>
+    </ng-container>
 
     <!-- loginname Column -->
     <ng-container matColumnDef="loginname">
@@ -35,13 +41,13 @@
       <td mat-cell *matCellDef="let row">{{row.loginname}}</td>
     </ng-container>
 
-    <!-- lastname Column -->
+    <!-- password Column -->
     <ng-container matColumnDef="password">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Mot de Passe</th>
       <td mat-cell *matCellDef="let row">{{row.password}}</td>
     </ng-container>
 
-    <!-- lastname Actions -->
+    <!--Actions -->
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
       <td mat-cell *matCellDef="let row">

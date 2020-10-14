@@ -10,7 +10,7 @@ import { QuizService } from './../quiz.service';
 import { Component, OnInit, OnChanges, SimpleChanges, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -58,7 +58,7 @@ export class AddQuizComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.userSubscription = this.authenticationService.currentUser.subscribe(data => this.currentUser = data);
+    this.userSubscription = this.authenticationService.currentUser.subscribe(user => this.currentUser = user);
 
     // when navigated from update route
     const data = this.route.snapshot.data?._quiz?.payload as IQuiz;
@@ -79,14 +79,14 @@ export class AddQuizComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  createQuiz() {
+  createQuiz(): void {
     const quiz = { ...this.createQuizForm.value };
     quiz.creator = this.currentUser._id;
     quiz.dateCreated = new Date();
     quiz.cover = 'assets/quiz.jpg';
     this.subscription = this.quizService.postQuiz(quiz).subscribe({
       next: (response: IApiResponse) => {
-        if (response.status == 'success') {
+        if (response.status === 'success') {
           this.snackBar.open(response.status + '\n' + response.message, 'X', { duration: 4000 });
           this.currentQuiz = response.payload;
           this.isCreated = true;
@@ -102,7 +102,7 @@ export class AddQuizComponent implements OnInit, OnChanges, OnDestroy {
 
   }
 
-  saveQuiz() {
+  saveQuiz(): void {
     if (this.isCreated) {
       this.updateQuiz();
     } else {
@@ -110,7 +110,7 @@ export class AddQuizComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  updateQuiz() {
+  updateQuiz(): void {
     this.updateSubscription = this.quizService.updateQuiz(this.currentQuiz._id, this.createQuizForm.value).subscribe({
       next: (response: IApiResponse) => {
         this.snackBar.open(response.status + '\n' + response.message, 'X', { duration: 4000 });
@@ -142,7 +142,7 @@ export class AddQuizComponent implements OnInit, OnChanges, OnDestroy {
     if (this.updateSubscription) { this.updateSubscription.unsubscribe(); }
   }
 
-  updateQuestionContext(question: IQuestion) {
+  updateQuestionContext(question: IQuestion): void {
     this.currentQuestionType = question.question_type;
     this.questionToUpdate = { ...question };
     this.context = 'update';

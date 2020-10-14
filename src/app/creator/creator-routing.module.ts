@@ -1,8 +1,7 @@
+import { GroupResolver } from './../shared/group/group.resolver';
 import { SessionResolver } from './../shared/session/session.resolver';
 import { SessionDashboardComponent } from './../shared/session/session-dashboard/session-dashboard.component';
-import { UpdateStudentComponent } from './../shared/student/update-student/update-student.component';
 import { AddGroupComponent } from './../shared/group/add-group/add-group.component';
-import { UpdateGroupComponent } from './../shared/group/update-group/update-group.component';
 import { AddStudentComponent } from './../shared/student/add-student/add-student.component';
 
 
@@ -42,20 +41,13 @@ export const routes: Routes = [
       { path: 'group/add', component: AddGroupComponent },
       {
         path: 'group/update/:id',
-        component: UpdateGroupComponent,
-        /*       resolve: {
-               _quiz:QuizResolver
-               }*/
+        component: AddGroupComponent,
+              resolve: {
+               group: GroupResolver
+              }
       },
       { path: 'student', component: StudentPageComponent },
       { path: 'student/add', component: AddStudentComponent },
-      {
-        path: 'student/update/:id',
-        component: UpdateStudentComponent,
-        /*      resolve: {
-              _quiz:QuizResolver
-              }*/
-      },
       {
         path: 'session/open/:id',
         component: SessionFormComponent,

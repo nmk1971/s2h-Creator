@@ -2,18 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AddStudentComponent } from './add-student/add-student.component';
 import { StudentListComponent } from './student-list/student-list.component';
-import { UpdateStudentComponent } from './update-student/update-student.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { StudentsGadgetComponent } from './students-gadget/students-gadget.component';
+import { StudentListFilterPipe } from './student-list-filter.pipe';
 
 
 
 @NgModule({
-  declarations: [AddStudentComponent, StudentListComponent, UpdateStudentComponent],
+  declarations: [AddStudentComponent, StudentListComponent, StudentsGadgetComponent, StudentListFilterPipe],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -24,6 +25,6 @@ import { MatSortModule } from '@angular/material/sort';
     MatPaginatorModule,
     MatSortModule
   ],
-  exports : [AddStudentComponent, StudentListComponent, UpdateStudentComponent]
+  exports : [AddStudentComponent, StudentListComponent, StudentsGadgetComponent]
 })
 export class StudentModule { }

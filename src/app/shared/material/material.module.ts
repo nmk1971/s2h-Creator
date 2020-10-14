@@ -1,10 +1,11 @@
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatButtonModule} from '@angular/material/button';
 import { MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatCardModule} from '@angular/material/card'; 
+import {MatBadgeModule} from '@angular/material/badge';
   
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatChipsModule} from '@angular/material/chips';
@@ -38,6 +39,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 import { RouterModule } from '@angular/router';
+import { from } from 'rxjs';
 
 const materials=[
   MatAutocompleteModule,
@@ -60,7 +62,8 @@ const materials=[
   MatProgressBarModule,
   MatProgressSpinnerModule,
   MatRadioModule,
-  //MatRippleModule,
+  MatBadgeModule,
+  // MatRippleModule,
   MatSelectModule,
   MatSidenavModule,
   MatSliderModule,

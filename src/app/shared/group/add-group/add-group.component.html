@@ -1,1 +1,47 @@
-<p>add-group works!</p>
+<div class="flex flex-col mx-auto">
+    <div class="flex flex-row">
+      <!--************* F O R M U L A I R E **********************-->
+      <div class="shadow-lg sm:flex sm:w-full bg-white p-8 mx-2 w-1/2">
+  
+        <form [formGroup]="createGroupForm" class="w-full p-5 m-5">
+          <!--************* N O M   D U   G R O U P E  **********************-->
+          <mat-form-field class="w-full">
+            <input matInput
+              class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1 text-4xl"
+              type="text" placeholder="Nom du groupe" required formControlName="label">
+          </mat-form-field>
+          <!--************* D E S C R I P T I O N  **********************-->
+          <mat-form-field class="w-full">
+            <input class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1" type="text"
+              placeholder="Description" formControlName="description" matInput>
+          </mat-form-field>
+  
+            
+          <!--************* B O U T O N   S U B M I T  **********************-->
+          <div class="w-full">
+            <button mat-raised-button color="primary" (click)="saveGroup()" [disabled]="!createGroupForm.valid">
+              <span *ngIf="!isCreated"> Créer le Groupe </span>
+              <span *ngIf="isCreated">  Enregistrer le Groupe </span>
+            </button>
+          </div>
+  
+        </form>
+      </div>
+  
+      <div class="shadow-lg sm:flex sm:w-full bg-white p-8 mx-2 w-1/2">
+        <app-students-gadget (onStudentUpdateClicked)="updateStudentContext($event)" class="w-full"></app-students-gadget>
+      </div>
+    </div>
+    <div class="flex w-full justify-center py-4 px-2 bg-gray-200 m-3">
+    <div class="w-3/4">
+
+      <app-add-student 
+      [groupId]="currentGroup?._id" 
+      [creator]="currentGroup?.owner"
+      [context]="context"
+      [student]="studentToUpdate"
+      (onStudentSave)="onStudentSaveHandler($event)">
+         </app-add-student>
+    </div>
+  </div>
+  </div>

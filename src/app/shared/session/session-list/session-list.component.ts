@@ -106,6 +106,10 @@ export class SessionListComponent implements AfterViewInit, OnInit, OnDestroy {
       complete: console.log
     });
   }
+
+  show(id): void {
+    console.log(id);
+  }
   gotoSessionDashboard(row): void{
     console.log(row);
   }

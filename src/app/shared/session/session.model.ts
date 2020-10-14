@@ -18,12 +18,12 @@ export interface ISession {
 
 export interface ISessionDashboard{
     _id?: string;
-    quiz: IQuiz;
+    idquiz: IQuiz;
     evaluationType: string;
     isAnonymous: boolean;
     group?: string | IGroup;
     creator?: string | IUser;
-    quizSessionCode?: string;
+    quizsessioncode?: string;
     isOpen: boolean;
     createDate: Date;
     startDate: Date;

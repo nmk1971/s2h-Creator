@@ -22,7 +22,7 @@ export class StudentListComponent implements AfterViewInit, OnInit, OnDestroy {
   private subscription: Subscription;
   public resultsCount: number;
 
-  displayedColumns = ['firstname', 'lastname', 'gender', 'loginname', 'password', 'actions'];
+  displayedColumns = ['firstname', 'lastname', 'gender', 'group', 'loginname', 'password', 'actions'];
 
   dataSource: StudentDataSource;
 

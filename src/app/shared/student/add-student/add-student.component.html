@@ -1,1 +1,39 @@
-<p>add-student works!</p>
+<div class="flex flex-col mx-auto">
+    <div class="flex flex-row">
+        <!--************* F O R M U L A I R E **********************-->
+        <div class="shadow-lg sm:flex sm:w-full bg-white p-8 mx-2 w-1/2">
+
+            <form [formGroup]="createStudentForm" class="w-full p-5 m-5">
+                <!--************* P R E N O M   D E  L ' A P P R E N A N T  **********************-->
+                <mat-form-field class="w-full">
+                    <input matInput
+                        class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1 text-4xl"
+                        type="text" placeholder="Prénom" required formControlName="firstname">
+                </mat-form-field>
+                <!--*************  N O M   D E  L ' A P P R E N A N T  **********************-->
+                <mat-form-field class="w-full">
+                    <input class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1"
+                        type="text" placeholder="Nom" formControlName="lastname" matInput>
+                </mat-form-field>
+                
+                <!--*************  G E N R E   D E  L ' A P P R E N A N T  **********************-->
+                <mat-label>Genre</mat-label>
+                <mat-select formControlName="gender" required>
+                    <mat-option *ngFor="let gender of genders" [value]="gender">
+                        {{gender}}
+                    </mat-option>
+                </mat-select>
+
+
+                <!--************* B O U T O N   S U B M I T  **********************-->
+                <div class="w-full">
+                    <button mat-raised-button color="primary" (click)="saveStudent()"
+                        [disabled]="!createStudentForm.valid">
+                        Enregistrer
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
