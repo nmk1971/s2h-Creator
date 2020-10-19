@@ -1,35 +1,40 @@
- <h1 class="text-gray-900 font-sans">Mes Groupes</h1>
- 
- <div class="example-action-buttons">
-    <button mat-button (click)="accordion.openAll()">Tout Ouvrir</button>
-    <button mat-button (click)="accordion.closeAll()">Tout Fermer</button>
-  </div>
-  <div class="align-center">
-    <a mat-stroked-button [routerLink]="['/creator/group/add']"  class="justify-end"><mat-icon>add</mat-icon></a>
-  </div>
-  <mat-accordion class="example-headers-align" multi>
+<h1 class="text-gray-900 font-sans">Mes Groupes</h1>
 
-    <mat-expansion-panel *ngFor="let group of currentGroups; let i=index">
-      <mat-expansion-panel-header >
-        <mat-panel-title>
+<div class="example-action-buttons">
+  <button mat-button (click)="accordion.openAll()">Tout Ouvrir</button>
+  <button mat-button (click)="accordion.closeAll()">Tout Fermer</button>
+</div>
+<div class="align-center">
+  <a mat-stroked-button [routerLink]="['/creator/group/add']" class="justify-end">
+    <mat-icon>add</mat-icon>
+  </a>
+</div>
+<mat-accordion class="example-headers-align" multi>
 
-         {{i+1}}- {{group.label}} ({{group.students?.length}})
-        </mat-panel-title>
-        <mat-panel-description>
-          {{group.description}}
-        </mat-panel-description>
-      </mat-expansion-panel-header>
+  <mat-expansion-panel *ngFor="let group of currentGroups; let i=index">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
 
-      <mat-list>
-        <mat-list-item *ngFor="let student of group?.students">
-          <mat-icon matListIcon>person</mat-icon>
-          <h3 matLine> {{student.firstname}} {{student.lastname}}</h3>
-        </mat-list-item>
-      </mat-list>
-     
+        {{i+1}}- {{group.label}} ({{group.students?.length}})
+      </mat-panel-title>
+      <mat-panel-description>
+        {{group.description}}
+      </mat-panel-description>
+      <button mat-button color="primary" (click)="editGroup(group._id)">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </mat-expansion-panel-header>
 
-    </mat-expansion-panel>
-  </mat-accordion>
+    <mat-list>
+      <mat-list-item *ngFor="let student of group?.students">
+        <mat-icon matListIcon>person</mat-icon>
+        <h3 matLine> {{student.firstname}} {{student.lastname}}</h3>
+      </mat-list-item>
+    </mat-list>
+
+
+  </mat-expansion-panel>
+</mat-accordion>
 
 
 <!--

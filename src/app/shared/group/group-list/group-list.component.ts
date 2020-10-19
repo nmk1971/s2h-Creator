@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { IUser } from './../../user/user.model';
 import { AuthenticationService } from './../../user/authentication.service';
@@ -26,7 +27,8 @@ export class GroupListComponent implements  OnInit {
   constructor(
     private groupService: GroupService,
     private authenticationService: AuthenticationService,
-    private snackbar: MatSnackBar){
+    private snackbar: MatSnackBar,
+    private route: Router){
     this.authenticationService.currentUser.subscribe(user => this.currentCreator = user );
   }
 
@@ -45,5 +47,9 @@ export class GroupListComponent implements  OnInit {
       }
     }
     );
+  }
+
+  editGroup(id): void{
+    this.route.navigate(['creator/group/update', id]);
   }
 }
