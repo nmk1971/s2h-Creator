@@ -53,7 +53,7 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
         <td mat-cell *matCellDef="let row">
-          <div *ngIf="!row?.startdate">
+          <div *ngIf="!row?.startdate || row?.isopen">
             <button *ngIf="!row?.isopen" mat-button (click)="start(row?._id)">
               <mat-icon class="icon-button text-green-700">play_circle_outline</mat-icon>
             </button>
@@ -61,7 +61,7 @@
               <mat-icon class="icon-button text-red-700">stop</mat-icon>
             </button>
           </div>
-          <div *ngIf="row?.startdate">
+          <div *ngIf="row?.startdate && !row?.isopen">
             <mat-icon class="text-gray-700">checked</mat-icon>
           </div>
 
