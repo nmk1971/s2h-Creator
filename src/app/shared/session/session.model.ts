@@ -21,6 +21,7 @@ export interface ISessionDashboard{
     idquiz: IQuiz;
     evaluationType: string;
     isAnonymous: boolean;
+    returnCorrectResponse: boolean;
     group?: string | IGroup;
     creator?: string | IUser;
     quizsessioncode?: string;

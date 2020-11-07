@@ -4,17 +4,14 @@ import { IQuiz } from './../../quiz/quiz.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IGroup } from './../../group/group.model';
-import { element } from 'protractor';
-import { IStudent } from './../../student/student.model';
 import { IApiResponse } from './../../helpers/api-response.model';
 import { IUser } from './../../user/user.model';
-import { pipe, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { GroupService } from './../../group/group.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthenticationService } from '../../user/authentication.service';
 import { map } from 'rxjs/operators';
-import { CdkStepLabel } from '@angular/cdk/stepper';
 
 @Component({
   selector: 'app-session-form',
@@ -67,6 +64,7 @@ export class SessionFormComponent implements OnInit, OnDestroy {
     this.openSessionForm = this.fb.group({
       evaluationType: [''],
       isAnonymous: true,
+      returnCorrectResponse: true,
       group: ['']
     });
   }
@@ -74,12 +72,12 @@ export class SessionFormComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     let sendedSession: ISession;
-    sendedSession  = {...this.openSessionForm.value};
-    if(this.openSessionForm.value.group === ''){
+    sendedSession = { ...this.openSessionForm.value };
+    if (this.openSessionForm.value.group === '') {
       this.openSessionForm.value.group = null;
     }
-    sendedSession.creator= this.creator._id;
-    sendedSession.idquiz = this.concernedQuiz._id ;
+    sendedSession.creator = this.creator._id;
+    sendedSession.idquiz = this.concernedQuiz._id;
     this.sessionSubscription = this.sessionService.createSession(sendedSession).subscribe({
       next: (response: IApiResponse) => {
         if (response.status === 'success') {

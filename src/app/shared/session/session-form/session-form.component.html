@@ -26,6 +26,8 @@
                     </mat-select>
                     <mat-checkbox formControlName="isAnonymous" color="accent">Anonyme</mat-checkbox>
                     <br>
+                    <mat-checkbox formControlName="returnCorrectResponse" color="accent">Renvoyer les bonnes réponses</mat-checkbox>
+                    <br>
 
                     <div *ngIf="!openSessionForm.value.isAnonymous">
                         <mat-label>Group</mat-label>
