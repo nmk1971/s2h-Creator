@@ -71,6 +71,7 @@ export class SessionFormComponent implements OnInit, OnDestroy {
 
 
   onSubmit(): void {
+
     let sendedSession: ISession;
     sendedSession = { ...this.openSessionForm.value };
     if (this.openSessionForm.value.group === '') {
