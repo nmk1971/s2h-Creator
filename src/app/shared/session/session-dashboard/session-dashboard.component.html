@@ -88,7 +88,7 @@ font-mono font-bold placeholder-gray-400  px-2 py-2">
                         <div class="flex flex-row">
                             <div class="w-11/12"> {{i+1}}- {{student.firstname}} {{student.lastname}}</div>
                             <div class="w-1/12">
-                                <mat-icon>fiber_manual_record</mat-icon>
+                                <mat-icon [ngStyle]="{'color': (student.hasResponded) ? '#1E8827' : '#FF5533'}">fiber_manual_record</mat-icon>
                             </div>
                         </div>
                     </mat-list-option>
