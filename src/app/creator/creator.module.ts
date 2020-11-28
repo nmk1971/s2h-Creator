@@ -1,3 +1,4 @@
+import { DashboardModule } from './dashboard/dashboard.module';
 import { StudentModule } from './../shared/student/student.module';
 import { GroupModule } from './../shared/group/group.module';
 import { SessionModule } from './../shared/session/session.module';
@@ -20,6 +21,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { CreatorLandPageComponent } from './creator-land-page/creator-land-page.component';
 import { GroupPageComponent } from './group-page/group-page.component';
 import { StudentPageComponent } from './student-page/student-page.component';
+
 
 
 @NgModule({
@@ -46,7 +48,8 @@ import { StudentPageComponent } from './student-page/student-page.component';
     UserModule,
     SessionModule,
     GroupModule,
-    StudentModule
+    StudentModule,
+    DashboardModule
   ],
   exports: [
     HomePageComponent,
