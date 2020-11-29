@@ -14,6 +14,6 @@ import { CorrectResponsesBySessionComponent } from './correct-responses-by-sessi
     MaterialModule,
     NgxChartsModule
   ],
-  exports: [StatAvgQuizComponent]
+  exports: [StatAvgQuizComponent, CorrectResponsesBySessionComponent]
 })
 export class DashboardModule { }

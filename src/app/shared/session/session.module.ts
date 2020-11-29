@@ -1,3 +1,4 @@
+import { DashboardModule } from './../../creator/dashboard/dashboard.module';
 
 import { MaterialModule } from './../material/material.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -24,7 +25,8 @@ import { SessionDashboardComponent } from './session-dashboard/session-dashboard
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    DashboardModule
   ]
 })
 export class SessionModule { }

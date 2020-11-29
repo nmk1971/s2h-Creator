@@ -11,8 +11,16 @@ export class StatisticsService {
 
   constructor(private http: HttpClient) { }
 
-  public getAllResponseByCreator(creatorId: string): Observable<IApiResponse>{
+  public getAllResponseByCreator(creatorId: string): Observable<IApiResponse> {
     return this.http.get(`${environment.apiUrl}/api/v1/statistics/responses`) as Observable<IApiResponse>;
+  }
+
+  public getAllResponseBySession(sessionId: string): Observable<IApiResponse> {
+    return this.http.get(`${environment.apiUrl}/api/v1/statistics/session/${sessionId}`) as Observable<IApiResponse>;
+  }
+
+  public getAllResponseByStudent(studentId: string): Observable<IApiResponse> {
+    return this.http.get(`${environment.apiUrl}/api/v1/statistics/student/${studentId}`) as Observable<IApiResponse>;
   }
 
 }
