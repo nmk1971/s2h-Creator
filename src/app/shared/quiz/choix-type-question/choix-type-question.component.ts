@@ -8,7 +8,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class ChoixTypeQuestionComponent implements OnInit {
   public qtypes = ['QCM', 'QCU', 'INPUT', 'ORDERING'];
-  public question_type:string;
+  public question_type: string;
 
   constructor(
     public dialogRef: MatDialogRef<ChoixTypeQuestionComponent>,

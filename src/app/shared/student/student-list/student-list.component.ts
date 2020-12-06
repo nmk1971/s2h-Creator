@@ -57,7 +57,6 @@ export class StudentListComponent implements AfterViewInit, OnInit, OnDestroy {
     merge(this.sort.sortChange, this.paginator.page)
       .pipe(
         tap(() => {
-         // this.paginator.page.subscribe(event => console.log(JSON.stringify(event)));
           this.loadStudentsPage();
         })
       )

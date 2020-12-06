@@ -1,3 +1,4 @@
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { IUser } from './../../user/user.model';
@@ -12,6 +13,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { GroupListDataSource, GroupListItem } from './group-list-datasource';
 import { IApiResponse } from '../../helpers/api-response.model';
+import { StudentEvolutionComponent } from 'src/app/creator/dashboard/student-evolution/student-evolution.component';
 
 @Component({
   selector: 'app-group-list',
@@ -23,12 +25,14 @@ export class GroupListComponent implements  OnInit {
   public currentGroups: IGroup[];
   private subscription: Subscription;
   public currentCreator: IUser;
+  
 
   constructor(
     private groupService: GroupService,
     private authenticationService: AuthenticationService,
     private snackbar: MatSnackBar,
-    private route: Router){
+    private route: Router,
+    private dialog: MatDialog){
     this.authenticationService.currentUser.subscribe(user => this.currentCreator = user );
   }
 
@@ -51,5 +55,12 @@ export class GroupListComponent implements  OnInit {
 
   editGroup(id): void{
     this.route.navigate(['creator/group/update', id]);
+  }
+  
+  public openDialog(studentId): void {
+    const dialogRef = this.dialog.open(StudentEvolutionComponent, {
+      width: '800px',
+      data: { studentId }
+    });
   }
 }

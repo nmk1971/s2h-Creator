@@ -33,7 +33,7 @@ export class CorrectResponsesBySessionComponent implements OnInit {
 
   ngOnInit(): void {
     const sessionId = this.route.snapshot.paramMap.get('id');
-    console.log(sessionId);
+
     this.statisticService.getAllResponseBySession(sessionId)
       .subscribe(
         {
@@ -49,7 +49,6 @@ export class CorrectResponsesBySessionComponent implements OnInit {
   }
 
   private transformResponse(data): any {
-    console.log(data);
     const result = [{ name: 'Correctes', value: 0 }, { name: 'Erronées', value: 0 }];
     result[0].value = _.reduce(data, (sum, n) => {
       return sum + n.score;

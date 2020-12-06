@@ -54,7 +54,6 @@ export class AddGroupComponent implements OnInit, OnChanges, OnDestroy {
 
     // when navigated from update route
     const data = this.route.snapshot.data?.group?.payload as IGroup;
-    console.log('FROM ngInit : ', data);
     if (data) {
       this.createGroupForm = this.fb.group({
         label: [data.label],

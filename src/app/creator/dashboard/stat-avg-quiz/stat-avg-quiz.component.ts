@@ -24,7 +24,7 @@ export class StatAvgQuizComponent implements OnInit {
   yAxisLabel = 'Moyenne (%)';
 
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA', '#500454', '#A19978', '#07B42C', '#BBBBBB']
   };
 
   constructor(
@@ -33,7 +33,6 @@ export class StatAvgQuizComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.authenticationService.currentUserValue._id);
     this.statisticService.getAllResponseByCreator(this.authenticationService.currentUserValue._id)
       .subscribe(
         {
@@ -51,20 +50,19 @@ export class StatAvgQuizComponent implements OnInit {
   private transformResponse(data): any {
     const res = _.groupBy(data, 'sessionId');
     const res1 = _.values(res);
-    const result = res1.map(r => {
+    const result = res1.map((r, index)  => {
       const tmp = { name: '', value: 0 };
      // tmp.name = r[0].quizTitle + ' (' + r[0].groupLabel + ')';
-      tmp.name = r[0].sessionId;
-      tmp.value = _.reduce(r, function(sum, n) {
+      tmp.name = r[0].quizTitle + ' (' + (index + 1).toString() + ')';
+      tmp.value = _.reduce(r, (sum, n) => {
         return sum + n.score;
       }, 0) * 100 / r.length;
       return tmp;
     });
-    console.log(res1);
     return result;
   }
 
-  onResize(event) {
+  onResize(event): void {
     this.view = [event.target.innerWidth / 1.1, 400];
 }
 

@@ -9,9 +9,9 @@
         {{concernedQuiz.description}}
     </h2>
     <p class="text-blue-800">Theme : {{concernedQuiz.theme}}</p>
-    <p class="text-blue-800">Partagé : <mat-checkbox matInput color="primary" [checked]="concernedQuiz?.isShared" disabled></mat-checkbox></p>
+<!--    <p class="text-blue-800">Partagé : <mat-checkbox matInput color="primary" [checked]="concernedQuiz?.isShared" disabled></mat-checkbox></p>
     <h4 class="text-blue-800">Date Creation : {{concernedQuiz?.dateCreated | date : 'd MMMM y' : '':'fr-FR'}}</h4>
-    <h4 class="text-blue-800">Date de Modification Creation : {{concernedQuiz?.updatedAt |date : 'd MMMM y' : '':'fr-FR'}}</h4>
+    <h4 class="text-blue-800">Date de Modification Creation : {{concernedQuiz?.updatedAt |date : 'd MMMM y' : '':'fr-FR'}}</h4>-->
    </div>
 
     <div class="shadow-lg sm:flex w-1/2">
@@ -20,13 +20,13 @@
                 <form [formGroup]="openSessionForm">
                     <mat-label>Type d'évaluation</mat-label>
                     <mat-select formControlName="evaluationType" required>
-                        <mat-option *ngFor="let evaluationType of evaluationTypes" [value]="evaluationType">
+                        <mat-option class="w-1/2" *ngFor="let evaluationType of evaluationTypes" [value]="evaluationType">
                             {{evaluationType}}
                         </mat-option>
                     </mat-select>
                     <mat-checkbox formControlName="isAnonymous" color="accent">Anonyme</mat-checkbox>
                     <br>
-                    <mat-checkbox formControlName="returnCorrectResponse" color="accent">Renvoyer les bonnes réponses</mat-checkbox>
+                    <mat-checkbox *ngIf="openSessionForm.value.evaluationType!=='Sondage'" formControlName="returnCorrectResponse" color="accent">Renvoyer les bonnes réponses</mat-checkbox>
                     <br>
 
                     <div *ngIf="!openSessionForm.value.isAnonymous">

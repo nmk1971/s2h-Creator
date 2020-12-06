@@ -46,7 +46,6 @@ export class QuestionService {
   }
   public updateQuestion(question: IQuestion): void{
     const objIndex = this.questionList.findIndex(obj => obj._id === question._id);
-    console.log(objIndex, '  ', question);
     this.questionList[objIndex] = question;
     this.currentQuestionList$.next(this.questionList);
   }

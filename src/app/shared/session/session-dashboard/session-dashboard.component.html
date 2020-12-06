@@ -69,7 +69,7 @@ font-mono font-bold placeholder-gray-400  px-2 py-2">
                     <mat-selection-list #students [multiple]="false">
                         <mat-list-option *ngFor="let student of currentSession?.group?.students;let i=index">
                             <div class="flex flex-row">
-                                <div class="w-11/12"> {{i+1}}- {{student.firstname}} {{student.lastname}}</div>
+                                <div class="w-11/12" (click)="openDialog(student._id)"> {{i+1}}- {{student.firstname}} {{student.lastname}}</div>
                                 <div class="w-1/12">
                                     <mat-icon [ngStyle]="{'color': (student.hasResponded) ? '#1E8827' : '#FF5533'}">
                                         fiber_manual_record</mat-icon>
@@ -88,8 +88,3 @@ font-mono font-bold placeholder-gray-400  px-2 py-2">
     </mat-card>
 </div>
 
-<pre><code>
-    {{
-        currentSession | json
-    }}
-</code></pre>

@@ -29,6 +29,10 @@
       <mat-list-item *ngFor="let student of group?.students">
         <mat-icon matListIcon>person</mat-icon>
         <h3 matLine> {{student.firstname}} {{student.lastname}}</h3>
+        <button mat-button color="primary" (click)="openDialog(student._id)">
+          <mat-icon>leaderboard</mat-icon>
+        </button>
+
       </mat-list-item>
     </mat-list>
 
@@ -36,9 +40,3 @@
   </mat-expansion-panel>
 </mat-accordion>
 
-
-<!--
-<pre><code>
-  {{currentGroups | json }}
-</code></pre>
--->

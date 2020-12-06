@@ -22,5 +22,13 @@ export class StatisticsService {
   public getAllResponseByStudent(studentId: string): Observable<IApiResponse> {
     return this.http.get(`${environment.apiUrl}/api/v1/statistics/student/${studentId}`) as Observable<IApiResponse>;
   }
+  
+  public getAllResponseBySessionByStudent(sessionId: string, studentId: string): Observable<IApiResponse> {
+    return this.http.get(`${environment.apiUrl}/api/v1/statistics/session/${sessionId}/student/${studentId}`) as Observable<IApiResponse>;
+  }
+
+  public getDashboard(): Observable<IApiResponse> {
+    return this.http.get(`${environment.apiUrl}/api/v1/statistics/dashboard`) as Observable<IApiResponse>;
+  }
 
 }

@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Réponses de l'élève {{response?.studentFullName}}</h2>
+
+<mat-dialog-content>
+    <div>
+        <mat-grid-list cols="8" rowHeight="2:1">
+            <mat-grid-tile *ngFor="let quest of response?.questions; let i=index"
+                [ngStyle]="{'background-color': (quest.isCorrect === true) ? '#33FFC3' : '#FF5533'}">
+                {{i+1}}
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="mat-raised-button" (click)="confirm()">Fermer</button>
+</mat-dialog-actions>

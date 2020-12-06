@@ -20,6 +20,7 @@ import { map } from 'rxjs/operators';
 })
 export class SessionFormComponent implements OnInit, OnDestroy {
   public readonly evaluationTypes = [
+    'Sondage',
     'Evaluation des prérequis',
     'Evaluation Formative',
     'Evaluation Sammative'];

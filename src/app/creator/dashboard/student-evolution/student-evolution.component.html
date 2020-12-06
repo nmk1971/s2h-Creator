@@ -1,0 +1,22 @@
+<div *ngIf="!isLoadingResults">
+    <div *ngIf="responses?.length!==0">
+        <h2 mat-dialog-title>Evolution de l'élève {{responses[0]?.studentFullName}}</h2>
+
+        <mat-dialog-content>
+            <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [legend]="legend"
+                [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxis]="xAxis" [yAxis]="yAxis"
+                [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [timeline]="timeline" [results]="forGraph" [legendPosition]="legendPosition">
+            </ngx-charts-line-chart>
+        </mat-dialog-content>
+    </div>
+    <div *ngIf="responses?.length===0">
+        <h2 mat-dialog-title>Pas de réponses pour cet apprenant</h2>
+    </div>
+    <mat-dialog-actions>
+        <button class="mat-raised-button" (click)="confirm()">Fermer</button>
+    </mat-dialog-actions>
+</div>
+<div class="spinner-container flex-col" *ngIf="isLoadingResults">
+    <mat-spinner strokeWidth="4" [diameter]="45" color="warn" title="loading..."></mat-spinner>
+    <p class="text-gray-600">Loading, please wait...</p>
+</div>

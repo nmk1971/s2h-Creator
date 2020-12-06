@@ -1,6 +1,8 @@
+import { ResultsByStudentComponent } from './../../../creator/dashboard/results-by-student/results-by-student.component';
+import { MatDialog } from '@angular/material/dialog';
 import { ISessionDashboard } from './../session.model';
 import { Component, OnInit } from '@angular/core';
-import {  ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -10,9 +12,14 @@ import {  ActivatedRoute } from '@angular/router';
 })
 export class SessionDashboardComponent implements OnInit {
   public currentSession: ISessionDashboard;
-  constructor(private route: ActivatedRoute) {
+
+
+  constructor(
+    private route: ActivatedRoute,
+    public dialog: MatDialog
+  ) {
     this.currentSession = this.route.snapshot?.data?.session.payload;
-   }
+  }
 
 
 
@@ -20,4 +27,10 @@ export class SessionDashboardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public openDialog(studentId): void {
+    const dialogRef = this.dialog.open(ResultsByStudentComponent, {
+      width: '600px',
+      data: { sessionId: this.route.snapshot.paramMap.get('id'), studentId }
+    });
+  }
 }

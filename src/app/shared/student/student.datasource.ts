@@ -40,7 +40,7 @@ export class StudentDataSource implements DataSource<IStudent> {
     }
 
     connect(collectionViewer: CollectionViewer): Observable<IStudent[]> {
-        console.log('Connecting data source');
+  //      console.log('Connecting data source');
         return this.studentsSubject.asObservable();
     }
 

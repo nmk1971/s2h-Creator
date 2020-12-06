@@ -38,7 +38,6 @@ export class AddStudentComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    console.log('from add-student-form context : ', this.context);
     if (this.context === 'new') {
         this.createStudentForm.reset();
     } else if (this.context === 'update') {
@@ -51,7 +50,6 @@ export class AddStudentComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void{
-    console.log(`%c ${JSON.stringify(this.student)} `, 'background: tomato; color: white');
     if (this.context === 'update') {
       this.createStudentForm = this.fb.group({
         firstname: [this.student.firstname, Validators.required],
@@ -66,7 +64,6 @@ export class AddStudentComponent implements OnInit, OnChanges {
   postStudent(): void {
     const theStudent = {...this.createStudentForm.value};
     theStudent.group = this.groupId;
-    console.log(this.creator);
     theStudent.creator = (this.creator as IUser)._id;
 
     this.studentService.postStudent(theStudent).subscribe({
@@ -105,7 +102,6 @@ export class AddStudentComponent implements OnInit, OnChanges {
   }
 
   saveStudent(): void {
-    console.log(this.context, ' FROM SaveStudent()');
     if (this.context === 'new') {
       this.postStudent();
     } else if (this.context === 'update') {

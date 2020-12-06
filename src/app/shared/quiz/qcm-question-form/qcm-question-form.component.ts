@@ -32,7 +32,6 @@ export class QcmQuestionFormComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    console.log('from qcm-question-form context : ', this.context);
     if (this.context === 'new') {
       this.qcmResponseList.push({ label: '', isValid: false });
       this.qcmResponseList.push({ label: '', isValid: false });
@@ -46,7 +45,6 @@ export class QcmQuestionFormComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void{
- //   console.log(`%c ${JSON.stringify(this.question)} `, 'background: tomato; color: white')
     if (this.context === 'update') {
       this.QCMQuestionForm = this.fb.group({
         questionText: [this.question.questionText]

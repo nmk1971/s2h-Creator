@@ -1,3 +1,4 @@
+import { DashboardModule } from './creator/dashboard/dashboard.module';
 import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confirmation-dialog.component';
 import { ErrorInterceptor } from './shared/helpers/error.interceptor';
 import { JwtInterceptor } from './shared/helpers/jwt.intercepror';
@@ -36,7 +37,8 @@ registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
     MatPaginatorModule,
     MatSortModule,
     UserModule,
-    GuestModule
+    GuestModule,
+    DashboardModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
