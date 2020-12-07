@@ -8,7 +8,7 @@
         lg:text-lg  
         xl:text-xl 
         font-mono font-bold .placeholder-gray-400  px-2 py-2">
-        Titre du Quiz : {{currentSession?.idquiz?.title}}
+        Titre du Quiz : {{currentSession?.idquiz?.title}} ({{currentSession?.evaluationType}})
     </span>
 </p>
 <p class="">
@@ -55,7 +55,9 @@ font-mono font-bold placeholder-gray-400  px-2 py-2">
                 Code : {{currentSession?.quizsessioncode}}
             </div>
 
-            <app-correct-responses-by-session></app-correct-responses-by-session>
+            <app-correct-responses-by-session *ngIf="currentSession?.evaluationType !== 'Sondage'">
+            </app-correct-responses-by-session>
+            <app-responses-by-survey *ngIf="currentSession?.evaluationType === 'Sondage'"></app-responses-by-survey>
         </mat-card-content>
     </mat-card>
 
@@ -64,12 +66,14 @@ font-mono font-bold placeholder-gray-400  px-2 py-2">
     <mat-card class="mx-2 px-2 py-2 w-1/2">
         <mat-card-content>
             <div *ngIf="!currentSession?.isAnonymous">
-                <h1 class="text-blue-900 ">{{currentSession?.group?.label}} ({{currentSession?.group?.students?.length}})</h1>
+                <h1 class="text-blue-900 ">{{currentSession?.group?.label}}
+                    ({{currentSession?.group?.students?.length}})</h1>
                 <div class="w-full h-64 overflow-y-scroll">
                     <mat-selection-list #students [multiple]="false">
                         <mat-list-option *ngFor="let student of currentSession?.group?.students;let i=index">
                             <div class="flex flex-row">
-                                <div class="w-11/12" (click)="openDialog(student._id)"> {{i+1}}- {{student.firstname}} {{student.lastname}}</div>
+                                <div class="w-11/12" (click)="openDialog(student._id)"> {{i+1}}- {{student.firstname}}
+                                    {{student.lastname}}</div>
                                 <div class="w-1/12">
                                     <mat-icon [ngStyle]="{'color': (student.hasResponded) ? '#1E8827' : '#FF5533'}">
                                         fiber_manual_record</mat-icon>
@@ -81,10 +85,9 @@ font-mono font-bold placeholder-gray-400  px-2 py-2">
             </div>
             <div *ngIf="currentSession?.isAnonymous">
                 <h1 class="text-blue-900 ">Session Anonyme ({{currentSession?.group?.students?.length}})</h1>
-                
+
             </div>
-            
+
         </mat-card-content>
     </mat-card>
 </div>
-
