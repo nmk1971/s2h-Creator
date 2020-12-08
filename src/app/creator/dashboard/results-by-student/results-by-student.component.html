@@ -1,4 +1,6 @@
-<h2 mat-dialog-title>Réponses de l'élève {{response?.studentFullName}}</h2>
+<div *ngIf="response?.studentFullName">
+
+<h2 mat-dialog-title>Réponses de l'apprenant {{response?.studentFullName}}</h2>
 
 <mat-dialog-content>
     <div>
@@ -12,7 +14,10 @@
 
 
 </mat-dialog-content>
-
+</div>
+<div *ngIf="!response?.studentFullName">
+    <h2>L'apprenant n'a pas répondu</h2>
+</div>
 <mat-dialog-actions>
     <button class="mat-raised-button" (click)="confirm()">Fermer</button>
 </mat-dialog-actions>

@@ -9,5 +9,6 @@
   [showXAxisLabel]="showXAxisLabel"
   [showYAxisLabel]="showYAxisLabel"
   [xAxisLabel]="xAxisLabel"
-  [yAxisLabel]="yAxisLabel">
+  [yAxisLabel]="yAxisLabel"
+  (window:resize)="onResize($event)">
 </ngx-charts-bar-vertical-normalized>

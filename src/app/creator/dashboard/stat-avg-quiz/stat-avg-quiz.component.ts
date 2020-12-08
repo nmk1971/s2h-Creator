@@ -31,14 +31,14 @@ export class StatAvgQuizComponent implements OnInit {
   evaluationType_view: any[] = [700, 200];
 
   // options
-  evaluationType_showXAxis: boolean = true;
-  evaluationType_showYAxis: boolean = true;
-  evaluationType_gradient: boolean = false;
-  evaluationType_showLegend: boolean = true;
-  evaluationType_showXAxisLabel: boolean = true;
-  evaluationType_yAxisLabel: string = 'Country';
-  evaluationType_showYAxisLabel: boolean = true;
-  evaluationType_xAxisLabel: string = 'Population';
+  evaluationType_showXAxis = true;
+  evaluationType_showYAxis = true;
+  evaluationType_gradient = false;
+  evaluationType_showLegend = true;
+  evaluationType_showXAxisLabel = false;
+  evaluationType_yAxisLabel = 'Type d\'évaluation';
+  evaluationType_showYAxisLabel = true;
+  evaluationType_xAxisLabel = '';
 
   evaluationType_colorScheme = {
     domain: ['#5AA454', '#F70F2C', '#AAAAAA']
@@ -58,7 +58,7 @@ export class StatAvgQuizComponent implements OnInit {
             this.data = response.payload;
             this.forGraph = this.transformResponse(this.data);
             this.forEvaluationTypeGraph = this.transformResponseEvaluationType(this.data);
-            console.dir(this.data);
+   //         console.dir(this.data);
           },
           error: error => { console.log('Error:'); },
           complete: console.log
@@ -71,6 +71,7 @@ export class StatAvgQuizComponent implements OnInit {
     const res = _.groupBy(data, 'sessionId');
     const res1 = _.values(res);
     const result = res1.map((r, index) => {
+      if (r[0].evaluationType!=='Sondage'){
       const tmp = { name: '', value: 0 };
       // tmp.name = r[0].quizTitle + ' (' + r[0].groupLabel + ')';
       tmp.name = r[0].quizTitle + ' (' + (index + 1).toString() + ')';
@@ -78,14 +79,15 @@ export class StatAvgQuizComponent implements OnInit {
         return sum + n.score;
       }, 0) * 100 / r.length;
       return tmp;
+    }
     });
-    return result;
+    return _.compact(result);
   }
 
   private transformResponseEvaluationType(data): any {
     const res = _.groupBy(data, 'evaluationType');
     const res1 = _.values(res);
-    console.log(res1);
+ //   console.log(res1);
     const result = res1.map((et, index) => {
       if (et[0].evaluationType !== 'Sondage') {
         const tmp = { name: '', series: [] };
@@ -97,7 +99,8 @@ export class StatAvgQuizComponent implements OnInit {
         return tmp;
       }
     });
-    return result;
+ //   console.log(result);
+    return _.compact(result);
   }
 
   onResize(event): void {
