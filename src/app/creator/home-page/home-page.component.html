@@ -1,10 +1,10 @@
 <div class="flex justify-around">
-        <mat-card class="bg-blue-300">
+        <mat-card class="shadow-xl border-gray-500 bg-gray-200 hover:bg-gray-400 text-gray-700">
                 <mat-card-title>
                         <h2>Créateurs de Quiz</h2>
                 </mat-card-title>
                 <mat-card-content>
-                        <p class="text-2xl">{{data?.creatorsCount}}</p>
+                        <p class="text-center text-2xl">{{data?.creatorsCount}}</p>
                 </mat-card-content>
         </mat-card>
         <mat-card class="bg-blue-300">
@@ -12,29 +12,29 @@
                         <h2>Quiz créés</h2>
                 </mat-card-title>
                 <mat-card-content>
-                        <p>
+                        <p class="text-center text-2xl">
                                 <span class="text-2xl"> {{data?.creatorQuizzesCount}} </span>parmi<span class="text-xl">
                                         {{data?.allQuizzesCount}}</span>
                         </p>
                 </mat-card-content>
         </mat-card>
-        <mat-card mat-elevation-z8 class="bg-blue-300">
+        <mat-card mat-elevation-z8  class="shadow-xl border-gray-500 bg-gray-200 hover:bg-gray-400 text-gray-700">
                 <mat-card-title>
                         <h2>Sessions créées</h2>
                 </mat-card-title>
                 <mat-card-content>
-                        <p>
+                        <p class="text-center text-2xl">
                                 <span class="text-2xl"> {{data?.creatorSessionsCount}} </span>parmi<span class="text-xl">
                                         {{data?.allSessionsCount}}</span>
                         </p>
                 </mat-card-content>
         </mat-card>
-        <mat-card mat-elevation-z8 class="bg-blue-300">
+        <mat-card mat-elevation-z8  class="shadow-xl border-gray-500 bg-gray-200 hover:bg-gray-400 text-gray-700">
                 <mat-card-title>
                         <h2>Apprenants</h2>
                 </mat-card-title>
                 <mat-card-content>
-                        <p>
+                        <p class="text-center text-2xl">
                                 <span class="text-2xl"> {{data?.creatorStudentsCount}} </span>parmi<span class="text-xl">
                                         {{data?.allStudentsCount}}</span>
                         </p>
@@ -44,5 +44,5 @@
 
 
 
-<h2 class="text-blue-900 ">Moyenne des scores par Quiz</h2>
-<app-stat-avg-quiz class="w-full h-full"></app-stat-avg-quiz>
+<h2 class="text-blue-900 px-4 m-2 py-4">Moyenne des scores par Quiz</h2>
+<app-stat-avg-quiz class="w-full h-full px-4 m-2"></app-stat-avg-quiz>

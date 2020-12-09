@@ -12,7 +12,10 @@
   [xAxisLabel]="xAxisLabel"
   [yAxisLabel]="yAxisLabel">
 </ngx-charts-bar-vertical>
-
+<div class="spinner-container flex-col" *ngIf="isLoadingResults">
+  <mat-spinner strokeWidth="4" [diameter]="45" color="warn" title="loading..."></mat-spinner>
+  <p class="text-gray-600">Téléchargement en cours...</p>
+</div>
 <ngx-charts-bar-horizontal-stacked
   [view]="evaluationType_view"
   [scheme]="evaluationType_colorScheme"

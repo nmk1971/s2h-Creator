@@ -24,6 +24,7 @@ export class AddGroupComponent implements OnInit, OnChanges, OnDestroy {
   public isCreated = false;
   public currentGroup: IGroup;
   private updateSubscription: Subscription;
+  //public tmp_currentGroup:IGroup;
 
   public studentToUpdate: IStudent;
   public currentStudent: IStudent;
@@ -46,7 +47,7 @@ export class AddGroupComponent implements OnInit, OnChanges, OnDestroy {
 
 
   ngOnChanges(changes: SimpleChanges): void {
-
+ //   this.currentGroup =  this.tmp_currentGroup; 
   }
 
   ngOnInit(): void {
@@ -76,6 +77,7 @@ export class AddGroupComponent implements OnInit, OnChanges, OnDestroy {
       next: (response: IApiResponse) => {
         if (response.status === 'success') {
           this.snackBar.open(response.status + '\n' + response.message, 'X', { duration: 4000 });
+   //       this.tmp_currentGroup = response.payload;
           this.currentGroup = response.payload;
           this.isCreated = true;
         } else {

@@ -13,6 +13,7 @@ export class StatAvgQuizComponent implements OnInit {
   public data: any;
   public forGraph: any;
   public forEvaluationTypeGraph: any;
+  public isLoadingResults = false;
   view: any[] = [700, 400];
 
   showXAxis = true;
@@ -50,6 +51,7 @@ export class StatAvgQuizComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.isLoadingResults = true;
     this.statisticService.getAllResponseByCreator(this.authenticationService.currentUserValue._id)
       .subscribe(
         {
@@ -58,9 +60,13 @@ export class StatAvgQuizComponent implements OnInit {
             this.data = response.payload;
             this.forGraph = this.transformResponse(this.data);
             this.forEvaluationTypeGraph = this.transformResponseEvaluationType(this.data);
+            this.isLoadingResults = false;
    //         console.dir(this.data);
           },
-          error: error => { console.log('Error:'); },
+          error: error => { 
+            console.log('Error:'); 
+            this.isLoadingResults = false;
+        },
           complete: console.log
         });
     this.view = [innerWidth / 1.1, 400];
@@ -71,7 +77,7 @@ export class StatAvgQuizComponent implements OnInit {
     const res = _.groupBy(data, 'sessionId');
     const res1 = _.values(res);
     const result = res1.map((r, index) => {
-      if (r[0].evaluationType!=='Sondage'){
+      if (r[0].evaluationType !== 'Sondage'){
       const tmp = { name: '', value: 0 };
       // tmp.name = r[0].quizTitle + ' (' + r[0].groupLabel + ')';
       tmp.name = r[0].quizTitle + ' (' + (index + 1).toString() + ')';
@@ -92,7 +98,8 @@ export class StatAvgQuizComponent implements OnInit {
       if (et[0].evaluationType !== 'Sondage') {
         const tmp = { name: '', series: [] };
         // tmp.name = r[0].quizTitle + ' (' + r[0].groupLabel + ')';
-        tmp.name = et[0].evaluationType;
+        tmp.name = et[0].evaluationType === 'Evaluation des prérequis'?
+        'Prérequis' : et[0].evaluationType === 'Evaluation Formative'? 'Formative' : 'Sommative';
         tmp.series = [{ name: '>=50%', value: 0 }, { name: '<50%', value: 0 }];
         tmp.series[0].value = _.filter(et, o => o.score >= 0.5).length;
         tmp.series[1].value = _.filter(et, o => o.score < 0.5).length;

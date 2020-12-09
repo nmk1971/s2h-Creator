@@ -30,4 +30,8 @@ export class GroupService {
   updateGroup(id, group: IGroup): Observable<IApiResponse> {
     return this.http.patch(`${environment.apiUrl}/api/v1/groups/update/${id}`, group) as Observable<IApiResponse>;
   }
+
+  deleteGroup(id): Observable<IApiResponse> {
+    return this.http.delete(`${environment.apiUrl}/api/v1/groups/delete/${id}`) as Observable<IApiResponse>;
+  }
 }

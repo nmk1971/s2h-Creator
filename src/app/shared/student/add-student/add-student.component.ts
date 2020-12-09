@@ -64,7 +64,7 @@ export class AddStudentComponent implements OnInit, OnChanges {
   postStudent(): void {
     const theStudent = {...this.createStudentForm.value};
     theStudent.group = this.groupId;
-    theStudent.creator = (this.creator as IUser)._id;
+    theStudent.creator = typeof(this.creator) === 'object' ? (this.creator as IUser)._id : this.creator;
 
     this.studentService.postStudent(theStudent).subscribe({
       next: (data: IApiResponse) => {
@@ -93,6 +93,8 @@ export class AddStudentComponent implements OnInit, OnChanges {
         this.snackBar.open(data.message, 'x', { duration: 4000 });
         this.studentService.updateStudent(theStudent);
         this.onStudentSave.emit('Ok');
+        this.context = 'new';
+        this.createStudentForm.reset();
       },
       error: (error: Error) => {
         this.snackBar.open(error.message, 'x');

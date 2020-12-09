@@ -29,7 +29,7 @@
             </ng-container>
      
             <ng-container matColumnDef="title">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Titre </th>
                 <td mat-cell *matCellDef="let q"> {{q?.title}}
                 <br>
                 <p class="w-full text-gray-700 font-mono"> {{q?.description}}</p>
@@ -42,7 +42,7 @@
             </ng-container>
 
             <ng-container matColumnDef="shared">
-                <th mat-header-cell *matHeaderCellDef> Shared </th>
+                <th mat-header-cell *matHeaderCellDef> Partagé </th>
                 <td mat-cell *matCellDef="let q">
                    {{q.isShared}}
                 </td>

@@ -9,6 +9,10 @@
     <mat-icon>add</mat-icon>
   </a>
 </div>
+<div class="spinner-container flex-col" *ngIf="isLoadingResults">
+  <mat-spinner strokeWidth="4" [diameter]="45" color="warn" title="loading..."></mat-spinner>
+  <p class="text-gray-600">Téléchargement en cours...</p>
+</div>
 <mat-accordion class="example-headers-align" multi>
 
   <mat-expansion-panel *ngFor="let group of currentGroups; let i=index">
@@ -22,6 +26,9 @@
       </mat-panel-description>
       <button mat-button color="primary" (click)="editGroup(group._id)">
         <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-button color="accent" (click)="deleteGroup(group._id)">
+        <mat-icon>delete</mat-icon>
       </button>
     </mat-expansion-panel-header>
 
