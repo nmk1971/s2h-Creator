@@ -1,12 +1,58 @@
-<div class="">
-    <h3>Support For Creator</h3>
-    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum tenetur corrupti,
-        recusandae impedit dolores molestias architecto est neque quod,
-        laborum minus? Nam quae error quaerat nostrum nesciunt saepe tenetur at.</p>
-    <h3>Issues</h3>
-    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum tenetur corrupti,
-        recusandae impedit dolores molestias architecto est neque quod,
-        laborum minus? Nam quae error quaerat nostrum nesciunt saepe tenetur at.</p>
-</div>
+<h1>	S2H Creator</h1>
+<p class="mx-4">L’application S2H Creator permettant à un enseignant de créer ses Quiz, de gérer ses groupes d’apprenant, de gérer ses sessions de Quiz ainsi que de consulter les résultats des tests des apprenant est disponible sur l’URL https://s2h-creator.eu-gb.cf.appdomain.cloud
+Dans la suite de cette partie je vais décrire quelques-uns des interfaces utilisateur.</p>
+<h2>	Page de démarrage (Land Page)</h2>
+<p class="mx-4"> chaque fois qu’un internaute tente d’accéder à l’application et qu’il ne s’est pas authentifié dans une session précédente, il tombera sur la page Login lui permettant de se connecter à son espace de travail.
+Dans le cas où l’internaute ne dispose déjà pas de compte, il pourra s’enregistrer.
+ </p>
+<img mat-card-md-image src="../../../assets/landpage.png"/>
+
+
+<h2>	Page d’accueil du Créateur</h2>
+Une fois authentifié, l’utilisateur aura accès à son espace de travail formé essentiellement par deux barres de navigation dont l’une est rétractable et permettant d’accéder aux différentes fonctionnalités de l’application
+ 
+<img src ="../../../assets/homepage.png"/>
+<h2>	Liste des Quiz</h2>
+En accédant au lien « Mes Quiz », l’utilisateur est redirigé vers la page représentant la liste des quiz et un bouton permettant d’ajouter un nouveau Quiz.
+Chaque ligne du tableau contiendra les informations d’un quiz et un ensemble d’actions que l’utilisateur pourra entreprendre (Supprimer le Quiz, Modifier le Quiz ou créer une session basée sur le Quiz).
+ 
+<img src="../../../assets/Quizlist.png">
+<h2>	Création de Quiz</h2>
+En choisissant d’ajouter un nouveau Quiz, l’utilisateur tombera sur la page suivante :
+ 
+<img src="../../../assets/Quizform.png">
+A gauche un formulaire permettant de saisir les informations d’un Quiz.
+A droite une liste représentant la liste des questions constituant le Quiz.
+
+En ajoutant une nouvelle question, un formulaire s’affichera en bas de la page permettant de saisir les informations d’une question.
+Le formulaire permet la saisie du texte de la question ainsi que les réponses. Dans le cas d’une QCM par exemple, l’utilisateur devra saisir toutes les réponses proposées et d’indiquer celles qui sont bonnes.
+ 
+<img src="../../../assets/addquestion.png">
+
+
+
+
+
+
+
+
+<h2>	Créer une Session</h2>
+A partir de la liste des Quiz, et si l’utilisateur choisi de démarrer une session basée sur un Quiz, il sera redirigé vers la page de création de session.
+ 
+<img src="../../../assets/addsession.png">
+Après avoir créé la session, l’utilisateur sera automatiquement redirigé vers la liste de ses sessions.
+<h2>	Liste des sessions</h2>
+  
+<img src="../../../assets/sessionlist.png">
+
+Cette interface comprend la liste des sessions que l’utilisateur a créées. Chacune passe par 3 états :
+<ul>
+<li> créée : C’est une session en instance attendant qu’elle soit démarrée en cliquant sur le bouton «   ».</li>
+<li> démarrée : C’est une session qui a été démarrée et qui attend qu’elle soit clôturée en cliquant sur le bouton «   ».</li>
+<li> Clôturée : C’est une session qui a été clôturée et est marquée par la marque «  » et il n’y aura plus d’actions à entreprendre pour cette session.</li>
+</ul>
+
+Lors du passage de la session de l’état créée à l’état démarrée, un code aléatoire est généré automatiquement afin d’être communiqué aux apprenants pour qu’ils puissent s’y connecter.
+ 
 
 <!--TODO: To implement Support For Creator-->

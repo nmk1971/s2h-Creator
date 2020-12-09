@@ -1,21 +1,20 @@
 <h1>contactez-nous</h1>
 <div class="shadow-lg sm:flex">
-    <div class="sm:w-full w-full bg-white">
-      <div class="p-8">
-        <form>
-          <label for="username" class="text-xs text-gray-500">Nom d'utlisateur</label>
-          <input id="username" class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1"
-            type="text" placeholder="Tapez votre nom d'utilisateur" />
-          <label id="passowrd" class="text-xs text-gray-500">Mot de passe</label>
-          <input id="password" class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-grey-700 pb-1"
-            type="password" placeholder="Tapez votre mot de passe">
-          <a [routerLink]="['']">
-            <button
-              class="shadow-lg pt-3 pb-3 w-full text-white bg-indigo-500 hover:bg-indigo-400 rounded-full cursor-pointer ">
-              Valider
-            </button>
-          </a>
-        </form>
-      </div>
+  <div class="sm:w-full w-full bg-white">
+    <div class="p-8">
+      <form>
+        <label for="username" class="text-xs text-gray-500">Votre message</label>
+        <textarea id="username" rows="10"
+          class="bg-transparent border-b m-auto block border-gray-500 w-full mb-6 text-gray-700 pb-1" type="text"
+          placeholder="Tapez votre message">
+        </textarea>
+        <a [routerLink]="['']">
+          <button
+            class="shadow-lg pt-3 pb-3 w-full text-white bg-indigo-500 hover:bg-indigo-400 rounded-full cursor-pointer ">
+            Envoyer
+          </button>
+        </a>
+      </form>
     </div>
   </div>
+</div>

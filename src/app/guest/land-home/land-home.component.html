@@ -2,12 +2,86 @@
 
 <div class="px-8 mx-auto mt-8">
   <div class="mx-auto">
-   <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
   </div>
   <div class="flex-item">
-    
-  
+    <div>
+      <mat-grid-list cols="2" rows="4">
+        <mat-grid-tile class="text-gray-600 text-2xl text-right leading-relaxed">
+          Avec S2H vous allez pouvoir gérer des questionnaires et des quiz avec différents types de questions
+          (QCM,QCU...).
+          Le temps voulu, vous pourriez démarrer des session basées sur ces quiz afin de permettres à l'audience ou aux
+          apprenants de répondre.
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-card class="example-card">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>Quiz</mat-card-title>
+              <mat-card-subtitle>Gérer vos Quiz</mat-card-subtitle>
+            </mat-card-header>
+            <img src="../../../assets/quiz.gif" alt="Quiz">
+            <mat-card-actions>
+              <button [routerLink]="['signup']" mat-button>S'enregistrer</button>
+            </mat-card-actions>
+          </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-card class="example-card">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>Groupes</mat-card-title>
+              <mat-card-subtitle>Gérer vos Groupes d'apprenants</mat-card-subtitle>
+            </mat-card-header>
+            <img src="../../../assets/groups.gif" alt="Groupes">
+            <mat-card-actions>
+              <button [routerLink]="['signup']" mat-button>S'enregistrer</button>
+            </mat-card-actions>
+          </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile class="text-gray-600 text-2xl text-left leading-relaxed">
+          Avec S2H vous allez pouvoir gérer des groupes d'apprenants dont l'identifiant et le mot de passe sont générés
+          automatiquement.
+          Cela vous permettra par la suite de limiter l'accès à un Quiz à un groupe bien déterminé.
+        </mat-grid-tile>
+        <mat-grid-tile class="text-gray-600 text-2xl text-right leading-relaxed">
+          Un tableau de bord vous donnera un aperçu statistique sur les réponses de vos apprenants.
+          Des courbes vous montreront l'évolution de vos apprenants.
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-card class="example-card">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>Dashboard</mat-card-title>
+              <mat-card-subtitle>Vue globale de vos informations</mat-card-subtitle>
+            </mat-card-header>
+            <img src="../../../assets/dashboard.gif" alt="Dashboard">
+            <mat-card-actions>
+              <button [routerLink]="['signup']" mat-button>S'enregistrer</button>
+            </mat-card-actions>
+          </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-card class="example-card">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>S2H Quiz</mat-card-title>
+              <mat-card-subtitle>Interface de saisie des réponses</mat-card-subtitle>
+            </mat-card-header>
+            <img src="../../../assets/s2h-quiz.gif" alt="S2H Quiz">
+            <mat-card-actions>
+              <button [routerLink]="['signup']" mat-button>S'enregistrer</button>
+            </mat-card-actions>
+          </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile class="text-gray-600 text-2xl text-left leading-relaxed">
+          Avec S2H Quiz, un apprenant ou un membre de l'audience aura la possibilité de répondre aux questions proposées dans vos Quiz.
+          Dans le cas d'une évaluation, il aura comme retour son score obtenu et éventuellement les bonnes réponses si vous le désirez.
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+
   </div>
-  </div>
-  
-  <app-land-footer></app-land-footer>
+</div>
+
+<app-land-footer></app-land-footer>

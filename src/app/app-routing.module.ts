@@ -19,6 +19,7 @@ const routes: Routes = [
       { path: 'signup', component: SignupComponent },
       { path: 'about', component: AboutComponent },
       { path: 'support', component: SupportComponent },
+      { path: 'contact', component: ContactComponent },
       {
         path: 'contact',
         component: ContactComponent,
